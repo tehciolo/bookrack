@@ -1,0 +1,139 @@
+.wrapper {
+  background-color: map_get($ui-colors, secondary);
+  padding: 5px;
+  box-shadow: 0 5px 16px 5px rgba(50, 50, 50, 0.9);
+  margin: auto;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  max-width: 1400px;
+}
+
+.book {
+  lost-utility: clearfix;
+}
+
+.static {
+  background-color: $white;
+  @include element(inner) {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 2em 0;
+    font-size: 150%;
+    line-height: 2;
+    p {
+      line-height: 1.3;
+    }
+  }
+  @include element(heading) {
+    text-align: center;
+    line-height: 1;
+    padding-bottom: 1em;
+  }
+  @include element(chapters) {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    a {
+      display: block;
+      padding: 0 1em;
+      color: $log-cabin;
+      text-decoration: none;
+      &:focus,
+      &:hover {
+        color: map-get($ui-colors, secondary);
+        background-color: lighten(map-get($ui-colors, secondary), 33%);
+      }
+    }
+  }
+  @include element(help) {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    span {
+      color: map-get($ui-colors, secondary);
+      margin: 0 1rem;
+      font-size: larger;
+      vertical-align: middle;
+    }
+  }
+  @include element(page) {
+    float: right;
+  }
+}
+
+.left-page,
+.right-page {
+  lost-column: 1/2 2 0;
+}
+
+.left-page,
+.right-page {
+  position: relative;
+  @include element(content) {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+  @include element(interactions) {
+    padding-top: 4%;
+    text-align: center;
+    button {
+      margin: 0 4%;
+      padding: 2% 2% 1%;
+      font-size: 2.2rem;
+      color: map_get($ui-colors, secondary);
+      background-color: rgba(map_get($ui-colors, secondary), .1);
+      text-shadow: 0 1px 2px rgba(50, 50, 50, 0.3);
+      border-radius: 4px;
+    }
+  }
+}
+
+.left-page {
+  @include element(interactions) {
+    padding-left: 20%;
+  }
+  @include element(actionable) {
+    cursor: pointer;
+    position: absolute;
+    bottom: 4%;
+    right: 4%;
+    left: 8%;
+    top: 14%;
+    border-radius: 10px;
+    background: transparent;
+    opacity: 0;
+    &:hover {
+      background: map_get($ui-colors, secondary);
+      opacity: 0.1;
+      transition: background 0.5s ease-in-out;
+    }
+  }
+}
+
+.right-page {
+  @include element(interactions) {
+    padding-right: 20%;
+  }
+  @include element(actionable) {
+    cursor: pointer;
+    position: absolute;
+    bottom: 4%;
+    left: 4%;
+    right: 8%;
+    top: 14%;
+    border-radius: 10px;
+    background: transparent;
+    opacity: 0;
+    &:hover {
+      background: map_get($ui-colors, secondary);
+      opacity: 0.1;
+      transition: background 0.5s ease-in-out;
+    }
+  }
+}

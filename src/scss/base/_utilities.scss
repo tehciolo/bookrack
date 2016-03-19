@@ -1,0 +1,42 @@
+// Import if Google Fonts URL is defined
+@if variable-exists(font-url--google) {
+  @import url($font-url--google);
+}
+
+// Calculate em values
+@function em($target, $context: $base__font-size) {
+  @return ($target / $context) * 1em;
+}
+
+// Call the color palette modifiers
+@function palette($palette, $shade: 'base') {
+  @return map-get(map_get($palettes, $palette), $shade);
+}
+
+// BEM selectors
+@mixin element($element) {
+  &__#{$element} {
+    @content;
+  }
+}
+@mixin modifier($modifier) {
+  &--#{$modifier} {
+    @content;
+  }
+}
+
+// Generate modifier color classes
+@mixin bg-colors($map) {
+  @each $theme, $color in $map {
+    &--#{$theme} {
+      background-color: $color;
+    }
+  }
+}
+@mixin text-colors($map) {
+  @each $theme, $color in $map {
+    &--#{$theme} {
+      color: $color;
+    }
+  }
+}

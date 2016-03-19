@@ -1,0 +1,97 @@
+#js--main-menu__toggle:checked + label span.wb-chevron-right:before {
+  content: "\e900";
+}
+
+.main-menu #js--main-menu__toggle {
+  display: none;
+}
+
+.main-menu #js--main-menu__toggle + label {
+  cursor: pointer;
+  font-size: em(25px);
+  text-align: center;
+  width: em(25px, 25px);
+  display: inline-block;
+  padding: em(10px, 25px);
+  border-bottom-right-radius: $br--medium;
+  color: $white;
+  background: map_get($ui-colors, secondary);
+  position: absolute;
+  left: 0;
+  transition: left 0.5s ease-in-out;
+  border: 1px solid $white;
+  border-left: none;
+}
+
+#js--main-menu__toggle:checked + label {
+  left: 165px;
+}
+
+#js--main-menu__toggle:checked ~ .main-menu__content {
+  left: 0;
+}
+
+.main-menu {
+  position: absolute;
+  left: 0;
+  width: 165px;
+  z-index: 1;
+}
+
+.main-menu__content {
+  background: map_get($ui-colors, secondary);
+  padding: em(15px);
+  color: $white;
+  position: relative;
+  left: -165px;
+  transition: left 0.5s ease-in-out;
+  border: 1px solid $white;
+}
+
+.page-buttons {
+  lost-utility: clearfix;
+  margin-bottom: em(20px);
+  > div {
+    lost-column: 1/2 0 0;
+    text-align: center;
+    > span {
+      display: block;
+      margin-bottom: em(10px);
+    }
+  }
+}
+
+.navigator {
+  line-height: (20px / 14px);
+  text-align: center;
+  margin-bottom: em(30px);
+  @include element(label) {
+    font-size: em(18px);
+    line-height: (20px / 18px);
+    display: block;
+    margin-bottom: em(10px);
+  }
+  @include element(input) {
+    width: em(30px);
+    border: 2px solid $white;
+    border-radius: $br--small;
+    line-height: (20px / 14px);
+    color: map_get($ui-colors, secondary);
+    padding: em(2px) em(4px);
+    text-align: center;
+    &:focus {
+      border-color: $white;
+      background-color: map_get($ui-colors, secondary);
+      color: $white;
+    }
+  }
+}
+
+.info-pages {
+  .button {
+    margin-bottom: em(10px);
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+}

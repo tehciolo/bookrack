@@ -1,0 +1,545 @@
+.exercise {
+  position: relative;
+  height: 0px;
+  width: 100%;
+  padding: 75% 0px 0px;
+
+  @include element(container) {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  @include modifier(mediumselect) {
+    .exercise__row {
+      position: relative;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      max-height: 100%;
+      left: 0px;
+      right: 0px;
+      top: 0px;
+      bottom: 0px;
+      margin: auto;
+      position: absolute;
+    }
+  }
+
+  @include modifier(circleselect) {
+    .exercise__row {
+      position: relative;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      max-height: 100%;
+      left: 0px;
+      right: 0px;
+      top: 0px;
+      bottom: 0px;
+      margin: auto;
+      position: absolute;
+    }
+  }
+
+  @include modifier(bigselect) {
+    .exercise__container {
+      padding-top: 3%;
+    }
+
+    .exercise__row {
+      position: relative;
+      height: 24.25%;
+    }
+  }
+
+  @include modifier(typer) {
+    img {
+      display: block;
+      max-width: 100%;
+      max-height: 100%;
+      left: 0px;
+      right: 0px;
+      top: 0px;
+      bottom: 0px;
+      margin: auto;
+      position: absolute;
+    }
+  }
+
+  @include modifier(dnd) {
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+
+    img {
+      display: block;
+      max-width: 100%;
+      max-height: 100%;
+      left: 0px;
+      right: 0px;
+      top: 0px;
+      bottom: 0px;
+      margin: auto;
+      position: absolute;
+    }
+  }
+}
+
+.static-asset {
+  position: relative;
+  height: 0px;
+  width: 100%;
+  padding: 75% 0px 0px;
+
+  @include modifier(single) {
+    img {
+      display: block;
+      max-width: 100%;
+      max-height: 100%;
+      left: 0px;
+      right: 0px;
+      top: 0px;
+      bottom: 0px;
+      margin: auto;
+      position: absolute;
+    }
+  }
+
+  @include modifier(multiple) {
+    select {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      margin-left: 50%;
+      margin-top: -30px;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      max-height: 100%;
+      left: 0px;
+      right: 0px;
+      bottom: 0px;
+      margin: auto;
+      position: absolute;
+    }
+  }
+}
+
+.radio-input {
+  display: none;
+
+  &:checked + label {
+    opacity: 1;
+  }
+}
+
+.labelBigselect {
+  @include element(answer) {
+    width: 14.5%;
+    height: 80%;
+    position: absolute;
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+
+    @include modifier(true) {
+      background-image: url(../img/bigselect--true.png);
+    }
+
+    @include modifier(false) {
+      background-image: url(../img/bigselect--false.png);
+    }
+  }
+}
+
+.labelMediumselect {
+  @include element(answer) {
+    width: 4%;
+    height: 100%;
+    position: absolute;
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+
+    @include modifier(true) {
+      background-image: url(../img/mediumselect--true.png);
+    }
+
+    @include modifier(false) {
+      background-image: url(../img/mediumselect--false.png);
+    }
+  }
+}
+
+.labelCircleselect {
+  @include element(answer) {
+    width: 14%;
+    height: 100%;
+    position: absolute;
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+
+    @include modifier(true) {
+      background-image: url(../img/circleselect--true.png);
+    }
+  }
+}
+
+.typer {
+  @include element(wrapper) {
+    display: inline-block;
+    text-align: left;
+    position: absolute;
+    font-family: Arial, sans-serif;
+  }
+
+  @include element(input) {
+    border: none;
+    background: transparent;
+    text-align: center;
+
+    @media screen and (min-width: 768px) {
+      font-size: 16px;
+    }
+  }
+
+  @include modifier(18_3) {
+    width: 70%;
+  }
+
+  @include modifier(25) {
+    width: 70%;
+  }
+
+  @include modifier(31) {
+    font-size: 12px;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+
+    &.correct {
+      background-color: rgba($tradewind, .3);
+    }
+
+    &.incorrect {
+      background-color: rgba($red-orange, .3);
+    }
+  }
+
+  @include modifier(70) {
+    font-size: 13px;
+    width: 92%;
+    height: 24px;
+    text-transform: uppercase;
+    font-weight: $font-weight--bold;
+
+    &.correct {
+      background-color: rgba($tradewind, .3);
+    }
+
+    &.incorrect {
+      background-color: rgba($red-orange, .3);
+    }
+  }
+
+  @include modifier(71) {
+    font-size: 12px;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+
+    &.correct {
+      background-color: rgba($tradewind, .3);
+    }
+
+    &.incorrect {
+      background-color: rgba($red-orange, .3);
+    }
+  }
+
+  @include modifier(80) {
+    width: 60%;
+  }
+}
+
+.mediumselect {
+  @include modifier(18) {
+    & + .labelMediumselect__answer {
+      width: 20%;
+    }
+  }
+
+  @include modifier(33) {
+    & + .labelMediumselect__answer {
+      width: 14%;
+    }
+  }
+
+  @include modifier(50) {
+    & + .labelMediumselect__answer {
+      width: 14%;
+    }
+  }
+
+  @include modifier(65) {
+    & + .labelMediumselect__answer {
+      width: 14%;
+    }
+  }
+}
+
+.dnd {
+  @include element(checkmark) {
+    display: none;
+  }
+
+  @include element(dropzone-row) {
+    lost-utility: clearfix;
+    padding: 0.5rem;
+
+    &:nth-of-type(2n) {
+      background-color: rgba($grey, .1);
+    }
+
+    > div {
+      lost-column: 1/2;
+    }
+  }
+
+  @include element(dropzone-def) {
+    display: inline-block;
+    padding: 0.3rem 0.7rem;
+    border: 1px solid transparent;
+    line-height: 20px;
+  }
+
+  @include element(dropzone-a) {
+    line-height: 32px;
+
+    &.dropped {
+      background-color: rgba($tradewind, .3);
+    }
+
+    .dnd__checkmark {
+      display: inline;
+    }
+  }
+
+  @include element(sandbox) {
+    line-height: 3;
+    padding: 1em;
+  }
+
+  @include element(answer-container) {
+    display: inline-block;
+  }
+
+  @include element(sandbox-a) {
+    display: inline-block;
+    border-radius: 4px;
+    padding: 0.3rem 0.7rem;
+    border: 1px solid lighten($grey, 30%);
+    cursor: grab;
+    line-height: 20px;
+  }
+
+  @include element(label) {
+    display: inline-block;
+    background-color: $amber;
+    border-radius: 50%;
+    color: $white;
+    height: 20px;
+    width: 20px;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  @include element(solution) {
+    text-transform: uppercase;
+
+    &::after {
+      content: " | ";
+    }
+
+    &:last-of-type::after {
+      content: '';
+    }
+  }
+}
+
+// dragula styles
+
+.gu-mirror {
+  position: fixed !important;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+  margin: 0 !important;
+  z-index: 10101 !important;
+  opacity: 0.8;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+  filter: alpha(opacity=80);
+}
+.gu-hide {
+  display: none !important;
+}
+.gu-unselectable {
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+}
+.gu-transit {
+  opacity: 0.2;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
+  filter: alpha(opacity=20);
+}
+
+/* razvan */
+
+.id--18 input[type="text"] {
+    border-bottom: 1px dashed #bbb;
+}
+
+.id--35 .dnd__answer-container {
+    width: 50%;
+}
+.id--35 .ui-droppable {
+    height: 72px;
+}
+.id--35 .dnd__sandbox {
+    line-height: 0.5;
+}
+
+.id--51 .typer__wrapper {
+  border: 2px solid red;
+  border-radius: 14px;
+  width: 20px;
+}
+.id--51 .typer__wrapper input[type="text"] {
+    width: 20px;
+}
+.id--51 .typer__wrapper .wb-cancel,
+.id--51 .typer__wrapper .wb-checkmark {
+    position: absolute;
+    left: 4px;
+    top: -20px;
+}
+
+/* dnd */
+.ui-droppable.dropped {
+    background-color: #fff;
+}
+.dnd__dropzone-row > div {
+    box-sizing: border-box;
+}
+.ui-droppable {
+    background-color: #fff;
+    border: 1px dashed #9A9B9C;
+    border-radius: 4px;
+}
+.drop-hover {
+    border-style: solid;
+}
+.on-drag .dnd__sandbox-a {
+    background-color: #fff;
+    box-shadow: 0 1px 5px;
+}
+.ui-droppable.dropped.ui-droppable-disabled {
+    background-color: rgba(108, 190, 176, 0.3);
+    border: 1px solid #59BF0D;
+}
+.ui-draggable-disabled .dnd__sandbox-a {
+    border: none;
+}
+
+/* adaptata de aici - http://ianlunn.github.io/Hover/ */
+.hvr-wobble-horizontal-custom {
+    -webkit-animation-name: hvr-wobble-horizontal;
+    animation-name: hvr-wobble-horizontal;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-timing-function: ease-in-out;
+    animation-timing-function: ease-in-out;
+    -webkit-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+}
+/* Wobble Horizontal */
+@-webkit-keyframes hvr-wobble-horizontal {
+  16.65% {
+    -webkit-transform: translateX(8px);
+    transform: translateX(8px);
+  }
+
+  33.3% {
+    -webkit-transform: translateX(-6px);
+    transform: translateX(-6px);
+  }
+
+  49.95% {
+    -webkit-transform: translateX(4px);
+    transform: translateX(4px);
+  }
+
+  66.6% {
+    -webkit-transform: translateX(-2px);
+    transform: translateX(-2px);
+  }
+
+  83.25% {
+    -webkit-transform: translateX(1px);
+    transform: translateX(1px);
+  }
+
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+}
+
+@keyframes hvr-wobble-horizontal {
+  16.65% {
+    -webkit-transform: translateX(8px);
+    transform: translateX(8px);
+  }
+
+  33.3% {
+    -webkit-transform: translateX(-6px);
+    transform: translateX(-6px);
+  }
+
+  49.95% {
+    -webkit-transform: translateX(4px);
+    transform: translateX(4px);
+  }
+
+  66.6% {
+    -webkit-transform: translateX(-2px);
+    transform: translateX(-2px);
+  }
+
+  83.25% {
+    -webkit-transform: translateX(1px);
+    transform: translateX(1px);
+  }
+
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+}

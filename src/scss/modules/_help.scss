@@ -1,0 +1,11 @@
+.help {
+  position: absolute;
+  background-color: map-get($ui-colors, secondary);
+  top: 1%;
+  left: 50%;
+  width: 35%;
+  transform: translateX(-50%);
+  font-size: larger;
+  padding: 0.5rem;
+  border-radius: 5px;
+}

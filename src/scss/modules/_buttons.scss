@@ -1,0 +1,182 @@
+@-webkit-keyframes pulse {
+  from {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+  50% {
+    -webkit-transform: scale3d(1.10, 1.10, 1.10);
+    transform: scale3d(1.10, 1.10, 1.10);
+  }
+  to {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+@keyframes pulse {
+  from {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+  50% {
+    -webkit-transform: scale3d(1.10, 1.10, 1.10);
+    transform: scale3d(1.10, 1.10, 1.10);
+  }
+  to {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+.button {
+  background-color: transparent;
+  border: none;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  @include modifier(default) {
+    border-radius: $br--small;
+    line-height: (20px / 14px);
+    padding: em(2px) em(8px);
+    border: 2px solid $white;
+    transition: all 0.2s ease-in-out;
+    &:focus,
+    &:hover {
+      background-color: $white;
+      color: map_get($ui-colors, secondary);
+    }
+  }
+  @include modifier(reversed) {
+    border-radius: $br--small;
+    line-height: (20px / 14px);
+    padding: em(2px) em(8px);
+    border: 2px solid map_get($ui-colors, secondary);
+    color: map_get($ui-colors, secondary);
+    transition: all 0.2s ease-in-out;
+    &:focus,
+    &:hover {
+      background-color: map_get($ui-colors, secondary);
+      color: $white;
+    }
+  }
+  @include modifier(large) {
+    font-size: em(17px);
+    line-height: (22px / 18px);
+    padding: em(4px) em(10px);
+  }
+  @include modifier(menunav) {
+    font-size: em(30px);
+    color: $white;
+  }
+  @include modifier(scale) {
+    transition: transform 0.2s ease-in-out;
+    &:focus,
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+  @include modifier(translateleft) {
+    transition: transform 0.2s ease-in-out;
+    &:focus,
+    &:hover {
+      transform: translate(-10px, -50%);
+    }
+  }
+  @include modifier(translateright) {
+    transition: transform 0.2s ease-in-out;
+    &:focus,
+    &:hover {
+      transform: translate(10px, -50%);
+    }
+  }
+  @include modifier(animated) {
+    -webkit-animation-name: pulse;
+    animation-name: pulse;
+    -webkit-animation-duration: 1.5s;
+    animation-duration: 1.5s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+  }
+  @include modifier(pagenav) {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: em(50px);
+    color: map_get($ui-colors, secondary);
+  }
+  @include modifier(previous) {
+    left: em(-60px, 50px);
+    text-shadow: -1px 1px 5px rgba(50, 50, 50, 0.9);
+  }
+  @include modifier(next) {
+    right: em(-60px, 50px);
+    text-shadow: 1px 1px 5px rgba(50, 50, 50, 0.9);
+  }
+  @include modifier(solve) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    font-size: em(30px);
+    color: map_get($ui-colors, secondary);
+  }
+  @include modifier(help) {
+    position: absolute;
+    top: 0;
+    left: 60px;
+    z-index: 1;
+    font-size: em(30px);
+    color: map_get($ui-colors, secondary);
+  }
+  @include modifier(stop) {
+    position: absolute;
+    top: 0;
+    right: 120px;
+    z-index: 1;
+    font-size: em(30px);
+    color: map_get($ui-colors, secondary);
+  }
+  @include modifier(pause) {
+    position: absolute;
+    top: 0;
+    right: 60px;
+    z-index: 1;
+    font-size: em(30px);
+    color: map_get($ui-colors, secondary);
+  }
+  @include modifier(play) {
+    position: absolute;
+    top: 0;
+    right: 60px;
+    z-index: 1;
+    font-size: em(30px);
+    color: map_get($ui-colors, secondary);
+  }
+  @include modifier(reset) {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    font-size: em(30px);
+    color: map_get($ui-colors, secondary);
+  }
+  @include modifier(block) {
+    display: block;
+    width: 100%;
+  }
+  @include modifier(trigger) {
+    padding: 1% 1% 0.2%;
+    font-size: 1.6rem;
+    color: map_get($ui-colors, secondary);
+    background-color: rgba(map_get($ui-colors, secondary), .2);
+    text-shadow: 0 1px 2px rgba(50, 50, 50, 0.3);
+    border-radius: 4px;
+    position: absolute;
+    @at-root .left-page .button--trigger {
+      left: 1%;
+    }
+    @at-root .right-page .button--trigger {
+      right: 1%;
+    }
+  }
+}
