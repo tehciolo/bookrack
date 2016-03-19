@@ -20,5 +20,28 @@
   "bugs": {
     "url": "https://github.com/tehciolo/bookrack/issues"
   },
-  "homepage": "https://github.com/tehciolo/bookrack#readme"
+  "homepage": "https://github.com/tehciolo/bookrack#readme",
+  "dependencies": {
+    "dragula": "^3.6.8",
+    "howler": "^1.1.29",
+    "jquery": "^2.2.2",
+    "jquery-ui": "^1.10.5",
+    "remodal": "^1.0.6",
+    "vue": "^1.0.18"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.3.3",
+    "browser-sync": "^2.11.1",
+    "browserify": "^13.0.0",
+    "gulp": "^3.9.1",
+    "gulp-file-include": "^0.13.7",
+    "gulp-imagemin": "^2.4.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-postcss": "^6.1.0",
+    "gulp-sass": "^2.2.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "imagemin-pngquant": "^4.2.2",
+    "lost": "^6.7.2",
+    "vinyl-source-stream": "^1.1.0"
+  }
 }
