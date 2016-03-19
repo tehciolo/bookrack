@@ -1,0 +1,24 @@
+{
+  "name": "bookrack",
+  "version": "1.0.0",
+  "description": "An interactive book template.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tehciolo/bookrack.git"
+  },
+  "keywords": [
+    "book",
+    "template",
+    "interactive"
+  ],
+  "author": "Cosmin Cioacla",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tehciolo/bookrack/issues"
+  },
+  "homepage": "https://github.com/tehciolo/bookrack#readme"
+}
