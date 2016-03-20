@@ -12,11 +12,11 @@
         <div>
           <span v-show="! canGoBack">&nbsp;</span>
           <span v-show="canGoBack" v-text="site.menu.prev"></span>
-          <button @click="prevPages" v-show="canGoBack" class="button button--menunav button--scale"><span class="wb-arrow-left"></span></button>
+          <button @click="goBack" v-show="canGoBack" class="button button--menunav button--scale"><span class="wb-arrow-left"></span></button>
         </div>
         <div>
           <span v-show="canGoForward" v-text="site.menu.next"></span>
-          <button @click="nextPages" v-show="canGoForward" class="button button--menunav button--scale"><span class="wb-arrow-right"></span></button>
+          <button @click="goForward" v-show="canGoForward" class="button button--menunav button--scale"><span class="wb-arrow-right"></span></button>
         </div>
       </div>
       <div class="navigator">

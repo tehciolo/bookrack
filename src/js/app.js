@@ -3,7 +3,7 @@ var VueRouter = require('vue-router');
 
 
 var siteData = require('./siteData.js');
-// var pageData = require('./pageData.js');
+var allowed = require('./allowed.js');
 
 Vue.use(VueRouter);
 //Vue.config.debug = true;
@@ -23,7 +23,7 @@ Vue.component('menu', {
   }
 });
 
-// Define book component
+// Define book component (can be assigned to route)
 var book = Vue.extend({
   name: 'book',
 
@@ -59,20 +59,44 @@ Vue.component('page', {
   props: ['data', 'type', 'src']
 });
 
-// Main Vue Instance
-// var App = new Vue({
-//   el: '#app',
-//
-//   data: {
-//     site: siteData()
-//   }
-// });
-
 // Set up router
 var App = Vue.extend({
   data: function() {
     return {
-      site: siteData()
+      site: siteData(),
+      allowed: allowed()
+    }
+  },
+
+  computed: {
+    canGoBack: function() {
+      var position = this.allowed.indexOf(this.$route.params.duo);
+      if (position > 0) {return true} else {return false}
+    },
+
+    canGoForward: function() {
+      var position = this.allowed.indexOf(this.$route.params.duo);
+      if (position < this.allowed.length - 1) {return true} else {return false}
+    }
+  },
+
+  methods: {
+    goBack: function() {
+      // get current route
+      var current = this.$route.params.duo;
+      // get position of current route in allowed routes
+      var position = this.allowed.indexOf(current);
+
+      if (position > 0) router.go(this.allowed[position - 1]);
+    },
+
+    goForward: function() {
+      // get current route
+      var current = this.$route.params.duo;
+      // get position of current route in allowed routes
+      var position = this.allowed.indexOf(current);
+
+      if (position < this.allowed.length - 1) router.go(this.allowed[position + 1]);
     }
   }
 });

@@ -15,6 +15,9 @@
       <router-view
         :duo="$route.params.duo"
       ></router-view>
+
+      <button @click="goBack" v-show="canGoBack" class="button button--pagenav button--previous button--translateleft"><span class="wb-arrow-left"></span></button>
+      <button @click="goForward" v-show="canGoForward" class="button button--pagenav button--next button--translateright"><span class="wb-arrow-right"></span></button>
     </div>
   </div>
 
