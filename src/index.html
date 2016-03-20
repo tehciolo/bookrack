@@ -8,6 +8,19 @@
   <link rel="stylesheet" type="text/css" href="./css/app.css">
 </head>
 <body>
+  <div id="app" class="root remodal-bg" v-cloak>
+    <menu></menu>
+
+    <div class="wrapper">
+      <router-view
+        :duo="$route.params.duo"
+      ></router-view>
+    </div>
+  </div>
+
+  @@include('./partials/menu-template.html')
+  @@include('./partials/book-template.html')
+  @@include('./partials/page-template.html')
 
   <script type="text/javascript" src="./js/bundle.js"></script>
 </body>

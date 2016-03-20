@@ -1,0 +1,35 @@
+<template id="menu-template">
+  <section class="main-menu">
+    <input type="checkbox" id="js--main-menu__toggle">
+
+    <label for="js--main-menu__toggle">
+      <span>m<br>e<br>n<br>i<br>u</span><br>&nbsp;
+      <span class="wb-chevron-right"></span>
+    </label>
+
+    <section class="main-menu__content">
+      <div class="page-buttons">
+        <div>
+          <span v-show="! canGoBack">&nbsp;</span>
+          <span v-show="canGoBack" v-text="site.menu.prev"></span>
+          <button @click="prevPages" v-show="canGoBack" class="button button--menunav button--scale"><span class="wb-arrow-left"></span></button>
+        </div>
+        <div>
+          <span v-show="canGoForward" v-text="site.menu.next"></span>
+          <button @click="nextPages" v-show="canGoForward" class="button button--menunav button--scale"><span class="wb-arrow-right"></span></button>
+        </div>
+      </div>
+      <div class="navigator">
+        <form @submit="jumpToPage">
+          <label class="navigator__label" for="goToPage" v-text="site.menu.jump"></label>
+          <input class="navigator__input" id="goToPage" type="text" v-model="jumpPage">&#8195;<button class="button button--default" type="submit" v-text="site.menu.search"></button>
+        </form>
+      </div>
+      <div class="info-pages">
+        <button @click="goStatic('toc')" class="button button--block button--default" v-text="site.menu.toc"></button>
+        <button @click="goStatic('help')" class="button button--block button--default" v-text="site.menu.help"></button>
+      </div>
+    </section>
+
+  </section>
+</template>
