@@ -4,6 +4,7 @@ var VueRouter = require('vue-router');
 
 var siteData = require('./siteData.js');
 var allowed = require('./allowed.js');
+var info = require('./info.js');
 
 Vue.use(VueRouter);
 //Vue.config.debug = true;
@@ -12,13 +13,28 @@ Vue.use(VueRouter);
 
 // Define menu component
 Vue.component('menu', {
-  //props: ['data'],
+  props: ['canGoBack', 'canGoForward', 'minPage', 'maxPage'],
 
   template: '#menu-template',
 
   data: function() {
     return {
-      site: siteData()
+      site: siteData(),
+      page: ''
+    }
+  },
+
+  methods: {
+    goBack: function() {
+      this.$dispatch('menu-go-back')
+    },
+
+    goForward: function() {
+      this.$dispatch('menu-go-forward')
+    },
+
+    jumpToPage: function() {
+      this.$dispatch('jump-to-page', this.page)
     }
   }
 });
@@ -63,8 +79,8 @@ Vue.component('page', {
 var App = Vue.extend({
   data: function() {
     return {
-      site: siteData(),
-      allowed: allowed()
+      allowed: allowed(),
+      info: info()
     }
   },
 
@@ -80,23 +96,67 @@ var App = Vue.extend({
     }
   },
 
+  events: {
+    'menu-go-back': function() {
+      this.goBack()
+    },
+
+    'menu-go-forward': function() {
+      this.goForward()
+    },
+
+    'jump-to-page': function(page) {
+      this.goToPage(page)
+    }
+  },
+
   methods: {
     goBack: function() {
       // get current route
-      var current = this.$route.params.duo;
+      var current = this.$route.params.duo
       // get position of current route in allowed routes
-      var position = this.allowed.indexOf(current);
+      var position = this.allowed.indexOf(current)
 
-      if (position > 0) router.go(this.allowed[position - 1]);
+      if (position > 0) router.go(this.allowed[position - 1])
     },
 
     goForward: function() {
       // get current route
-      var current = this.$route.params.duo;
+      var current = this.$route.params.duo
       // get position of current route in allowed routes
-      var position = this.allowed.indexOf(current);
+      var position = this.allowed.indexOf(current)
 
-      if (position < this.allowed.length - 1) router.go(this.allowed[position + 1]);
+      if (position < this.allowed.length - 1) router.go(this.allowed[position + 1])
+    },
+
+    goToPage: function(page) {
+      if (isNaN(page)) {
+        console.log('Please enter a page number.')
+        return false
+      }
+
+      var destination = parseInt(page)
+      var minPage = this.info.minPage
+      var maxPage = this.info.maxPage
+
+      if (destination < minPage || destination > maxPage) {
+        console.log('Oops! No such page.')
+        return false
+      } else {
+        var needle = destination;
+
+        if (needle < 10) {
+          needle = '0' + needle.toString()
+        } else {
+          needle = needle.toString()
+        }
+
+        for (var i = 0; i < this.allowed.length; i++) {
+          if (this.allowed[i].indexOf(needle) > -1) {
+            router.go(this.allowed[i])
+          }
+        }
+      }
     }
   }
 });

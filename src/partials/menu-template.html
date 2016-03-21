@@ -20,9 +20,9 @@
         </div>
       </div>
       <div class="navigator">
-        <form @submit="jumpToPage">
+        <form @submit.prevent="jumpToPage">
           <label class="navigator__label" for="goToPage" v-text="site.menu.jump"></label>
-          <input class="navigator__input" id="goToPage" type="text" v-model="jumpPage">&#8195;<button class="button button--default" type="submit" v-text="site.menu.search"></button>
+          <input class="navigator__input" id="goToPage" type="text" v-model="page">&#8195;<button class="button button--default" type="submit" v-text="site.menu.search"></button>
         </form>
       </div>
       <div class="info-pages">
