@@ -19,7 +19,8 @@ var onError = notify.onError({
 
 var src = {
   scss: 'src/scss/**/*.scss',
-  js: 'src/js/app.js',
+  js: 'src/js/*.js',
+  jsApp: 'src/js/app.js',
   img: 'src/img/**/*.{png,jpg,jpeg}',
   audio: 'src/audio/*.*',
   video: 'src/video/*.*',
@@ -112,7 +113,7 @@ gulp.task('video', function() {
 
 // Browserify
 gulp.task('browserify', function() {
-  return browserify(src.js)
+  return browserify(src.jsApp)
     .bundle()
     //Pass desired output filename to vinyl-source-stream
     .pipe(source('bundle.js'))
@@ -132,6 +133,7 @@ gulp.task('serve', ['build', 'images', 'audio', 'video', 'fonts', 'scss', 'brows
 
   gulp.watch(src.scss, ['scss']);
   gulp.watch(src.js, ['rescript']);
+  gulp.watch(src.img, ['images']);
   gulp.watch([src.partials, src.html], ['rebuild']);
 });
 

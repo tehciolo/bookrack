@@ -1,10 +1,13 @@
+var $ = require('jquery');
 var Vue = require('vue');
+var remodal = require('remodal');
 var VueRouter = require('vue-router');
 
 
 var siteData = require('./siteData.js');
 var allowed = require('./allowed.js');
 var info = require('./info.js');
+var pages = require('./pages.js');
 
 Vue.use(VueRouter);
 //Vue.config.debug = true;
@@ -63,7 +66,7 @@ var book = Vue.extend({
 
   data: function() {
     return {
-
+      pages: pages()
     }
   }
 });
@@ -72,7 +75,27 @@ var book = Vue.extend({
 Vue.component('page', {
   template: '#page-template',
 
-  props: ['data', 'type', 'src']
+  props: ['data', 'type', 'id'],
+
+  computed: {
+    hasStatic: function() {
+      if (this.data !== undefined) {
+        if ("static" in this.data) {
+          return true
+        } else {
+          return false
+        }
+      }
+      return false
+    }
+  }
+});
+
+// Define static modal component
+Vue.component('modal-static', {
+  template: '#modal-static-template',
+
+  props: ['index', 'item']
 });
 
 // Set up router

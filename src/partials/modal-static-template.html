@@ -1,0 +1,14 @@
+<template id="modal-static-template">
+  <div class="remodal" data-remodal-id="modal-static--{{ index }}" data-remodal-options="hashTracking: false, closeOnOutsideClick: false">
+    <button
+      @click="muteStaticSound('static')"
+      data-remodal-action="close"
+      class="remodal-close"
+    >
+    </button>
+
+    <div class="static-asset static-asset--single">
+      <img :src="'./img/' + item.image + '.jpg'">
+    </div>
+  </div>
+</template>
