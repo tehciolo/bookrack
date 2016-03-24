@@ -1,7 +1,7 @@
 <template id="modal-static-template">
   <div class="remodal" data-remodal-id="modal-static--{{ index }}" data-remodal-options="hashTracking: false, closeOnOutsideClick: false">
     <button
-      @click="muteStaticSound('static')"
+      @click="closeModalStatic"
       data-remodal-action="close"
       class="remodal-close"
     >
@@ -10,5 +10,13 @@
     <div class="static-asset static-asset--single">
       <img :src="'./img/' + item.image + '.jpg'">
     </div>
+
+    <audio
+      :src="'./audio/' + item.audio.source + '.mp3'"
+      v-el:player
+      class="remodal__audio"
+      loop
+      preload
+    ></audio>
   </div>
 </template>

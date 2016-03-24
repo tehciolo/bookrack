@@ -88,6 +88,12 @@ Vue.component('page', {
       }
       return false
     }
+  },
+
+  methods: {
+    openModalStatic: function(index) {
+      this.$broadcast('open-modal-static', index)
+    }
   }
 });
 
@@ -95,7 +101,22 @@ Vue.component('page', {
 Vue.component('modal-static', {
   template: '#modal-static-template',
 
-  props: ['index', 'item']
+  props: ['index', 'item'],
+
+  events: {
+    'open-modal-static': function(index) {
+      if (index === this.index) {
+        this.$els.player.play()
+      }
+    }
+  },
+
+  methods: {
+    closeModalStatic: function() {
+      this.$els.player.pause()
+      this.$els.player.load()
+    }
+  }
 });
 
 // Set up router

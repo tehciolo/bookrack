@@ -4,6 +4,10 @@ module.exports = function() {
       static: [
         {
           image: 'pg15static1',
+          audio: {
+            source: 'fundal1',
+            state: 'stopped'
+          },
           trigger: {
             button: {
               top: '20%'
