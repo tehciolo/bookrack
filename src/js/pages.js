@@ -10,11 +10,14 @@ module.exports = function() {
           },
           trigger: {
             button: {
-              top: '20%'
+              top: '10%'
             },
             zone: {
               top: '10%',
-              bottom: '50%'
+              right: '',
+              bottom: '50%',
+              left: '',
+              width: '40%'
             }
           }
         },
