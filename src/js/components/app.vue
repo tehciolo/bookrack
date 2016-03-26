@@ -33,6 +33,14 @@
 
       'jump-to-page': function(page) {
         this.goToPage(page)
+      },
+
+      'solution-true': function() {
+        this.$els.true.play()
+      },
+
+      'solution-false': function() {
+        this.$els.false.play()
       }
     },
 
