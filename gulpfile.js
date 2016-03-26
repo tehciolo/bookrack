@@ -10,6 +10,7 @@ var fileinclude = require('gulp-file-include');
 var imagemin = require('gulp-imagemin');
 var pngquant = require('imagemin-pngquant');
 var browserify = require('browserify');
+var vueify = require('vueify');
 var source = require('vinyl-source-stream');
 var browserSync = require('browser-sync').create();
 
@@ -19,7 +20,7 @@ var onError = notify.onError({
 
 var src = {
   scss: 'src/scss/**/*.scss',
-  js: 'src/js/*.js',
+  js: ['src/js/*.js', 'src/js/components/*.vue'],
   jsApp: 'src/js/app.js',
   img: 'src/img/**/*.{png,jpg,jpeg}',
   audio: 'src/audio/*.*',
@@ -114,6 +115,7 @@ gulp.task('video', function() {
 // Browserify
 gulp.task('browserify', function() {
   return browserify(src.jsApp)
+    .transform(vueify)
     .bundle()
     //Pass desired output filename to vinyl-source-stream
     .pipe(source('bundle.js'))
