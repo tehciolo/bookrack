@@ -1,4 +1,4 @@
-<template id="modal-static-template">
+<template>
   <div class="remodal" data-remodal-id="modal-static--{{ index }}" data-remodal-options="hashTracking: false, closeOnOutsideClick: false">
     <button
       @click="closeModalStatic"
@@ -20,3 +20,24 @@
     ></audio>
   </div>
 </template>
+
+<script>
+  export default {
+    props: ['index', 'item'],
+
+    events: {
+      'open-modal-static': function(index) {
+        if (index === this.index) {
+          this.$els.player.play()
+        }
+      }
+    },
+
+    methods: {
+      closeModalStatic: function() {
+        this.$els.player.pause()
+        this.$els.player.load()
+      }
+    }
+  }
+</script>

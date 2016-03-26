@@ -1,4 +1,4 @@
-<template id="page-template">
+<template>
   <div class="{{ type }}-page">
     <img v-bind:src="'./img/' + id + '.jpg'">
 
@@ -28,3 +28,28 @@
     </template>
   </div>
 </template>
+
+<script>
+  export default {
+    props: ['data', 'type', 'id'],
+
+    computed: {
+      hasStatic: function() {
+        if (this.data !== undefined) {
+          if ("static" in this.data) {
+            return true
+          } else {
+            return false
+          }
+        }
+        return false
+      }
+    },
+
+    methods: {
+      openModalStatic: function(index) {
+        this.$broadcast('open-modal-static', index)
+      }
+    }
+  }
+</script>

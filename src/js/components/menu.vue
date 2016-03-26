@@ -1,4 +1,4 @@
-<template id="menu-template">
+<template>
   <section class="main-menu">
     <input type="checkbox" id="js--main-menu__toggle">
 
@@ -7,7 +7,7 @@
       <span class="wb-chevron-right"></span>
     </label>
 
-    <section class="main-menu__content">
+    <div class="main-menu__content">
       <div class="page-buttons">
         <div>
           <span v-show="! canGoBack">&nbsp;</span>
@@ -29,7 +29,36 @@
         <button @click="goStatic('toc')" class="button button--block button--default" v-text="site.menu.toc"></button>
         <button @click="goStatic('help')" class="button button--block button--default" v-text="site.menu.help"></button>
       </div>
-    </section>
-
+    </div>
   </section>
 </template>
+
+<script>
+  var siteData = require('../siteData.js');
+
+  export default {
+    props: ['canGoBack', 'canGoForward', 'minPage', 'maxPage'],
+
+    data: function() {
+      return {
+        site: siteData(),
+        page: ''
+      }
+    },
+
+    methods: {
+      goBack: function() {
+        this.$dispatch('menu-go-back')
+      },
+
+      goForward: function() {
+        this.$dispatch('menu-go-forward')
+      },
+
+      jumpToPage: function() {
+        this.$dispatch('jump-to-page', this.page)
+        this.page = ''
+      }
+    }
+  }
+</script>
