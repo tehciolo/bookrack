@@ -20,7 +20,7 @@ var onError = notify.onError({
 
 var src = {
   scss: 'src/scss/**/*.scss',
-  js: ['src/js/*.js', 'src/js/components/*.vue'],
+  js: ['src/js/*.js', 'src/js/components/**/*.vue'],
   jsApp: 'src/js/app.js',
   img: 'src/img/**/*.{png,jpg,jpeg}',
   audio: 'src/audio/*.*',
