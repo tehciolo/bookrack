@@ -1,7 +1,7 @@
 <template>
   <div class="remodal page{{ pageId }}" data-remodal-id="modal-static--{{ index }}" data-remodal-options="hashTracking: false, closeOnOutsideClick: false">
     <button
-      @click="closeModalStatic"
+      @click="closeModal"
       data-remodal-action="close"
       class="remodal-close"
     >
@@ -23,7 +23,7 @@
 
 <script>
   export default {
-    props: ['index', 'item'],
+    props: ['index', 'item', 'pageId'],
 
     events: {
       'open-modal-static': function(index) {
@@ -34,7 +34,7 @@
     },
 
     methods: {
-      closeModalStatic: function() {
+      closeModal: function() {
         this.$els.player.pause()
         this.$els.player.load()
       }

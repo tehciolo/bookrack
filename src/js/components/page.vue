@@ -18,6 +18,20 @@
         </a>
       </template>
 
+      <template v-if="hasVideo">
+        <a
+          v-for="item in data.video"
+          data-remodal-target="modal-video--{{ $index }}"
+        >
+          <button :style="'top: ' + item.trigger.button.top" class="button button--scale button--animated button--trigger" type="button"><span class="wb-audio"></span></button>
+
+          <div
+            :style="'top: ' + item.trigger.zone.top + '; right: ' + item.trigger.zone.right + '; bottom: ' + item.trigger.zone.bottom + '; left: ' + item.trigger.zone.left + '; width: ' + item.trigger.zone.width"
+            class="{{ type }}-page__actionable"
+          ></div>
+        </a>
+      </template>
+
       <template v-if="hasExercise">
         <a
           v-for="item in data.exercise"
@@ -39,7 +53,18 @@
         <modal-static
           :index="$index"
           :item="item"
+          :page-id="id"
         ></modal-static>
+      </template>
+    </template>
+
+    <template v-if="hasVideo">
+      <template v-for="item in data.video">
+        <modal-video
+          :index="$index"
+          :item="item"
+          :page-id="id"
+        ></modal-video>
       </template>
     </template>
 

@@ -10,6 +10,7 @@ Vue.use(VueRouter);
 Vue.component('menu', require('./components/menu.vue'));
 Vue.component('page', require('./components/page.vue'));
 Vue.component('modal-static', require('./components/modal-static.vue'));
+Vue.component('modal-video', require('./components/modal-video.vue'));
 Vue.component('modal-exercise', require('./components/modal-exercise.vue'));
 Vue.component('help', require('./components/help.vue'));
 Vue.component('custom-audio', require('./components/custom-audio.vue'));

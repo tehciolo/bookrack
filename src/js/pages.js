@@ -241,6 +241,523 @@ module.exports = function() {
         }
       ]
     },
+    '41': {
+      video: [
+        {
+          video: {
+            // change me
+            source: 'test'
+          },
+          trigger: {
+            button: {
+              top: '89%'
+            },
+            zone: {
+              top: '89%',
+              bottom: '4%'
+            }
+          }
+        }
+      ],
+      exercise: [
+        {
+          type: 'type',
+          title: 'Numara obiectele si scrie numarul in casuta potrivita',
+          image: 'pg41ex6',
+          trigger: {
+            button: {
+              top: '6%'
+            },
+            zone: {
+              top: '6%',
+              bottom: '12%'
+            }
+          },
+          help: {
+            toggle: false,
+            text: 'CAUTA OBIECTELE, NUMARE-LE SI SCRIE NUMARUL. Cand ai terminat apasa pe cheita si verifica. Succes!'
+          },
+          data: [
+            {
+              identifier: 'one',
+              position: {
+                top: '81.2%',
+                left: '29.3%',
+                width: '5.5%',
+                height: '6.5%'
+              },
+              model: '',
+              solution: '4'
+            },
+            {
+              identifier: 'two',
+              position: {
+                top: '81.2%',
+                left: '48.8%',
+                width: '5.5%',
+                height: '6.5%'
+              },
+              model: '',
+              solution: '3'
+            },
+            {
+              identifier: 'three',
+              position: {
+                top: '81.2%',
+                left: '68.8%',
+                width: '5.5%',
+                height: '6.5%'
+              },
+              model: '',
+              solution: '6'
+            },
+            {
+              identifier: 'four',
+              position: {
+                top: '91.6%',
+                left: '29.3%',
+                width: '5.5%',
+                height: '6.5%'
+              },
+              model: '',
+              solution: '5'
+            },
+            {
+              identifier: 'five',
+              position: {
+                top: '91.6%',
+                left: '48.8%',
+                width: '5.5%',
+                height: '6.5%'
+              },
+              model: '',
+              solution: '1'
+            },
+            {
+              identifier: 'six',
+              position: {
+                top: '91.6%',
+                left: '68.8%',
+                width: '5.5%',
+                height: '6.5%'
+              },
+              model: '',
+              solution: '2'
+            }
+          ]
+        }
+      ]
+    },
+    '42': {
+      static: [
+        {
+          image: 'pg42ichhabe',
+          audio: {
+            // change me
+            source: 'fundal1',
+            state: 'stopped'
+          },
+          trigger: {
+            button: {
+              top: '61%'
+            },
+            zone: {
+              top: '61%',
+              bottom: '3%'
+            }
+          }
+        }
+      ],
+      video: [
+        {
+          video: {
+            // change me
+            source: 'test'
+          },
+          trigger: {
+            button: {
+              top: '7%'
+            },
+            zone: {
+              top: '7%',
+              bottom: '39%'
+            }
+          }
+        }
+      ]
+    },
+    '44': {
+      static: [
+        {
+          image: 'pg44ex2static1',
+          audio: {
+            // change me
+            source: 'fundal1',
+            state: 'stopped'
+          },
+          trigger: {
+            button: {
+              top: '17%'
+            },
+            zone: {
+              top: '17%',
+              bottom: '58%',
+              left: '12%',
+              width: '42%'
+            }
+          }
+        },
+        {
+          image: 'pg44ex2static2',
+          audio: {
+            // change me
+            source: 'fundal1',
+            state: 'stopped'
+          },
+          trigger: {
+            button: {
+              top: '37.5%'
+            },
+            zone: {
+              top: '17%',
+              bottom: '58%',
+              left: '54%',
+              width: '42%'
+            }
+          }
+        },
+        {
+          image: 'pg44ex2static3',
+          audio: {
+            // change me
+            source: 'fundal1',
+            state: 'stopped'
+          },
+          trigger: {
+            button: {
+              top: '42%'
+            },
+            zone: {
+              top: '42%',
+              bottom: '33%',
+              left: '12%',
+              width: '42%'
+            }
+          }
+        },
+        {
+          image: 'pg44ex2static4',
+          audio: {
+            // change me
+            source: 'fundal1',
+            state: 'stopped'
+          },
+          trigger: {
+            button: {
+              top: '62.5%'
+            },
+            zone: {
+              top: '42%',
+              bottom: '33%',
+              left: '54%',
+              width: '42%'
+            }
+          }
+        },
+        {
+          image: 'pg44ex2static5',
+          audio: {
+            // change me
+            source: 'fundal1',
+            state: 'stopped'
+          },
+          trigger: {
+            button: {
+              top: '67%'
+            },
+            zone: {
+              top: '67%',
+              bottom: '7%',
+              left: '12%',
+              width: '42%'
+            }
+          }
+        },
+        {
+          image: 'pg44ex2static6',
+          audio: {
+            // change me
+            source: 'fundal1',
+            state: 'stopped'
+          },
+          trigger: {
+            button: {
+              top: '88%'
+            },
+            zone: {
+              top: '67%',
+              bottom: '7%',
+              left: '54%',
+              width: '42%'
+            }
+          }
+        }
+      ],
+      video: [
+        {
+          video: {
+            // change me
+            source: 'test'
+          },
+          trigger: {
+            button: {
+              top: '8%'
+            },
+            zone: {
+              top: '8%',
+              bottom: '86%'
+            }
+          }
+        }
+      ]
+    },
+    '45': {
+      static: [
+        {
+          image: 'pg45static1',
+          audio: {
+            // change me
+            source: 'fundal1',
+            state: 'stopped'
+          },
+          trigger: {
+            button: {
+              top: '24%'
+            },
+            zone: {
+              top: '24%',
+              bottom: '54%'
+            }
+          }
+        },
+        {
+          image: 'pg45static2',
+          audio: {
+            // change me
+            source: 'fundal1',
+            state: 'stopped'
+          },
+          trigger: {
+            button: {
+              top: '46%'
+            },
+            zone: {
+              top: '46%',
+              bottom: '44%'
+            }
+          }
+        },
+        {
+          image: 'pg45static3',
+          audio: {
+            // change me
+            source: 'fundal1',
+            state: 'stopped'
+          },
+          trigger: {
+            button: {
+              top: '56%'
+            },
+            zone: {
+              top: '56%',
+              bottom: '22%'
+            }
+          }
+        },
+        {
+          image: 'pg45static4',
+          audio: {
+            // change me
+            source: 'fundal1',
+            state: 'stopped'
+          },
+          trigger: {
+            button: {
+              top: '78%'
+            },
+            zone: {
+              top: '78%',
+              bottom: '13%'
+            }
+          }
+        }
+      ]
+    },
+    '46': {
+      static: [
+        {
+          image: 'pg46static1',
+          audio: {
+            // change me
+            source: 'fundal1',
+            state: 'stopped'
+          },
+          trigger: {
+            button: {
+              top: '9%'
+            },
+            zone: {
+              top: '9%',
+              bottom: '82%'
+            }
+          }
+        },
+        {
+          image: 'pg46static2',
+          audio: {
+            // change me
+            source: 'fundal1',
+            state: 'stopped'
+          },
+          trigger: {
+            button: {
+              top: '19%'
+            },
+            zone: {
+              top: '19%',
+              bottom: '37%'
+            }
+          }
+        },
+        {
+          image: 'pg46static3',
+          audio: {
+            // change me
+            source: 'fundal1',
+            state: 'stopped'
+          },
+          trigger: {
+            button: {
+              top: '65%'
+            },
+            zone: {
+              top: '65%',
+              bottom: '6%'
+            }
+          }
+        }
+      ]
+    },
+    '47': {
+      video: [
+        {
+          video: {
+            // change me
+            source: 'test'
+          },
+          trigger: {
+            button: {
+              top: '15%'
+            },
+            zone: {
+              top: '15%',
+              bottom: '58%'
+            }
+          }
+        },
+        {
+          video: {
+            // change me
+            source: 'test'
+          },
+          trigger: {
+            button: {
+              top: '42%'
+            },
+            zone: {
+              top: '42%',
+              bottom: '5%'
+            }
+          }
+        }
+      ]
+    },
+    '48': {
+      static: [
+        {
+          image: 'pg48nikolaustag',
+          audio: {
+            // change me
+            source: 'fundal1',
+            state: 'stopped'
+          },
+          trigger: {
+            button: {
+              top: '9%'
+            },
+            zone: {
+              top: '9%',
+              bottom: '46%'
+            }
+          }
+        }
+      ],
+      video: [
+        {
+          video: {
+            // change me
+            source: 'test'
+          },
+          trigger: {
+            button: {
+              top: '59%'
+            },
+            zone: {
+              top: '59%',
+              bottom: '5%'
+            }
+          }
+        }
+      ]
+    },
+    '49': {
+      video: [
+        {
+          video: {
+            // change me
+            source: 'test'
+          },
+          trigger: {
+            button: {
+              top: '17%'
+            },
+            zone: {
+              top: '17%',
+              bottom: '5%'
+            }
+          }
+        }
+      ]
+    },
+    '50': {
+      video: [
+        {
+          video: {
+            // change me
+            source: 'test'
+          },
+          trigger: {
+            button: {
+              top: '11%'
+            },
+            zone: {
+              top: '11%',
+              bottom: '5%'
+            }
+          }
+        }
+      ]
+    },
     '52': {
       exercise: [
         {
