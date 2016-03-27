@@ -1,5 +1,137 @@
 module.exports = function() {
   return {
+    '07': {
+      static: [
+        {
+          image: 'pg7ex3',
+          audio: {
+            source: 'fundal1',
+            state: 'stopped'
+          },
+          trigger: {
+            button: {
+              top: '12%'
+            },
+            zone: {
+              top: '12%',
+              bottom: '48%'
+            }
+          }
+        }
+      ]
+    },
+    '10': {
+      static: [
+        {
+          image: 'pg10ichsage',
+          audio: {
+            source: 'fundal1',
+            state: 'stopped'
+          },
+          trigger: {
+            button: {
+              top: '82%'
+            },
+            zone: {
+              top: '82%',
+              bottom: '4%'
+            }
+          }
+        }
+      ]
+    },
+    '11': {
+      exercise: [
+        {
+          type: 'checker',
+          title: 'Titlu provizoriu (lipsa excel)',
+          image: 'pg11ex8',
+          trigger: {
+            button: {
+              top: '8%'
+            },
+            zone: {
+              top: '8%',
+              bottom: '4%'
+            }
+          },
+          help: {
+            toggle: false,
+            text: 'PRIVESTE IMAGINILE SI BIFEAZA ENUNTUL CORESPUNZATOR. Cand ai terminat apasa pe cheita si verifica. Succes!'
+          },
+          data: [
+            {
+              identifier: 'one',
+              model: '',
+              position: {
+                top: '6.5%',
+                left: '20%',
+                width: '30%',
+                height: '10.5%'
+              },
+              answerFalse: {
+                left: '68%',
+                top: '58%'
+              },
+              answerTrue: {
+                left: '75.5%'
+              }
+            },
+            {
+              identifier: 'two',
+              model: '',
+              position: {
+                top: '6.5%',
+                left: '50%',
+                width: '30%',
+                height: '10.5%'
+              },
+              answerTrue: {
+                left: '72%',
+                top: '58%'
+              },
+              answerFalse: {
+                left: '79.5%'
+              }
+            },
+            {
+              identifier: 'three',
+              model: '',
+              position: {
+                top: '54.5%',
+                left: '20%',
+                width: '30%',
+                height: '10.5%'
+              },
+              answerFalse: {
+                left: '77%',
+                top: '58%'
+              },
+              answerTrue: {
+                left: '82.5%'
+              }
+            },
+            {
+              identifier: 'four',
+              model: '',
+              position: {
+                top: '54.5%',
+                left: '50%',
+                width: '30%',
+                height: '10.5%'
+              },
+              answerTrue: {
+                left: '75%',
+                top: '58%'
+              },
+              answerFalse: {
+                left: '81.5%'
+              }
+            }
+          ]
+        }
+      ]
+    },
     '15': {
       static: [
         {
@@ -14,9 +146,7 @@ module.exports = function() {
             },
             zone: {
               top: '10%',
-              right: '',
               bottom: '50%',
-              left: '',
               width: '40%'
             }
           }
@@ -47,10 +177,7 @@ module.exports = function() {
             },
             zone: {
               top: '13%',
-              right: '',
-              bottom: '42%',
-              left: '',
-              width: ''
+              bottom: '42%'
             }
           },
           help: {
@@ -110,14 +237,11 @@ module.exports = function() {
           image: 'pg52ex4',
           trigger: {
             button: {
-              top: '53%'
+              top: '59%'
             },
             zone: {
-              top: '53%',
-              right: '',
-              bottom: '12%',
-              left: '',
-              width: ''
+              top: '59%',
+              bottom: '7%'
             }
           },
           help: {
@@ -128,13 +252,46 @@ module.exports = function() {
             {
               identifier: 'one',
               position: {
-                top: '26%',
-                left: '48%',
-                width: '2.5%',
-                height: '3.5%'
+                top: '27%',
+                left: '56.3%',
+                width: '4.5%',
+                height: '5.5%'
               },
               model: '',
-              solution: '3'
+              solution: '6'
+            },
+            {
+              identifier: 'two',
+              position: {
+                top: '40%',
+                left: '56.3%',
+                width: '4.5%',
+                height: '5.5%'
+              },
+              model: '',
+              solution: '4'
+            },
+            {
+              identifier: 'three',
+              position: {
+                top: '52.5%',
+                left: '68.3%',
+                width: '4.5%',
+                height: '5.5%'
+              },
+              model: '',
+              solution: '4'
+            },
+            {
+              identifier: 'four',
+              position: {
+                top: '65.2%',
+                left: '66.7%',
+                width: '4.5%',
+                height: '5.5%'
+              },
+              model: '',
+              solution: '1'
             }
           ]
         }

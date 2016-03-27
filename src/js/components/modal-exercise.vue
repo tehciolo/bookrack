@@ -1,5 +1,5 @@
 <template>
-  <div class="remodal" data-remodal-id="modal-exercise--{{ index }}" data-remodal-options="hashTracking: false, closeOnOutsideClick: false">
+  <div class="remodal page{{ pageId }}" data-remodal-id="modal-exercise--{{ index }}" data-remodal-options="hashTracking: false, closeOnOutsideClick: false">
     <button
       @click="closeModalExercise"
       data-remodal-action="close"
@@ -22,6 +22,14 @@
           :page-id="pageId"
           :index="index"
         ></type>
+      </template>
+
+      <template v-if="item.type === 'checker'">
+        <checker
+          :ex="item"
+          :page-id="pageId"
+          :index="index"
+        ></checker>
       </template>
       <!-- <div v-if="selectedPageObject.ex.name == 'bigselect'">
         @@include('./exercise--bigselect.html')
