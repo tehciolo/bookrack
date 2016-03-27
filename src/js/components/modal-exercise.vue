@@ -31,6 +31,14 @@
           :index="index"
         ></checker>
       </template>
+
+      <template v-if="item.type === 'picker'">
+        <picker
+          :ex="item"
+          :page-id="pageId"
+          :index="index"
+        ></picker>
+      </template>
       <!-- <div v-if="selectedPageObject.ex.name == 'bigselect'">
         @@include('./exercise--bigselect.html')
       </div>

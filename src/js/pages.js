@@ -165,6 +165,82 @@ module.exports = function() {
         }
       ]
     },
+    '51': {
+      exercise: [
+        {
+          type: 'picker',
+          title: 'Ce nu se potriveste?',
+          image: 'pg51ex2',
+          trigger: {
+            button: {
+              top: '60%'
+            },
+            zone: {
+              top: '60%',
+              bottom: '4%'
+            }
+          },
+          help: {
+            toggle: false,
+            text: '(lipsa excel)'
+          },
+          data: [
+            {
+              identifier: 'one',
+              model: '',
+              position: {
+                top: '28%',
+                left: '20%',
+                width: '62%',
+                height: '8.5%'
+              },
+              answer: {
+                left: '83.5%'
+              }
+            },
+            {
+              identifier: 'two',
+              model: '',
+              position: {
+                top: '41%',
+                left: '13%',
+                width: '77%',
+                height: '8.5%'
+              },
+              answer: {
+                left: '37.5%'
+              }
+            },
+            {
+              identifier: 'three',
+              model: '',
+              position: {
+                top: '54%',
+                left: '17%',
+                width: '67%',
+                height: '8.5%'
+              },
+              answer: {
+                left: '34.5%'
+              }
+            },
+            {
+              identifier: 'four',
+              model: '',
+              position: {
+                top: '67.5%',
+                left: '25%',
+                width: '52%',
+                height: '8.5%'
+              },
+              answer: {
+                left: '76.5%'
+              }
+            }
+          ]
+        }
+      ]
+    },
     '52': {
       exercise: [
         {

@@ -4,6 +4,11 @@
   width: 100%;
   padding: 75% 0px 0px;
 
+  // for dev only! remove before release!
+  @include element(row) {
+    background-color: rgba($red-orange, .3)
+  }
+
   @include element(container) {
     position: absolute;
     top: 0;
@@ -15,7 +20,6 @@
   @include modifier(checker) {
     .exercise__row {
       position: relative;
-      background-color: rgba($red-orange, .3)
     }
 
     img {
@@ -31,7 +35,7 @@
     }
   }
 
-  @include modifier(circleselect) {
+  @include modifier(picker) {
     .exercise__row {
       position: relative;
     }
@@ -185,7 +189,7 @@
   }
 }
 
-.labelCircleselect {
+.labelPicker {
   @include element(answer) {
     width: 14%;
     height: 100%;
@@ -197,7 +201,7 @@
     transition: opacity 0.2s ease-in-out;
 
     @include modifier(true) {
-      background-image: url(../img/circleselect--true.png);
+      background-image: url(../img/picker.png);
     }
   }
 }
@@ -252,6 +256,14 @@
     & + .labelChecker__answer {
       width: 12%;
       height: 40%;
+    }
+  }
+}
+
+.picker {
+  &--51-0 {
+    & + .labelPicker__answer {
+      width: 19%;
     }
   }
 }
