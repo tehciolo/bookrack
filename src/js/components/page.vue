@@ -1,5 +1,5 @@
 <template>
-  <div class="{{ type }}-page">
+  <div class="page{{ id }} {{ type }}-page">
     <img v-bind:src="'./img/' + id + '.jpg'">
 
     <div class="{{ type }}-page__content">

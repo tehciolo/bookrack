@@ -12,9 +12,10 @@
     right: 0;
   }
 
-  @include modifier(mediumselect) {
+  @include modifier(checker) {
     .exercise__row {
       position: relative;
+      background-color: rgba($red-orange, .3)
     }
 
     img {
@@ -163,7 +164,7 @@
   }
 }
 
-.labelMediumselect {
+.labelChecker {
   @include element(answer) {
     width: 4%;
     height: 100%;
@@ -175,11 +176,11 @@
     transition: opacity 0.2s ease-in-out;
 
     @include modifier(true) {
-      background-image: url(../img/mediumselect--true.png);
+      background-image: url(../img/checker--true.png);
     }
 
     @include modifier(false) {
-      background-image: url(../img/mediumselect--false.png);
+      background-image: url(../img/checker--false.png);
     }
   }
 }
@@ -235,7 +236,7 @@
   }
 
   &--52-1 {
-    font-size: 12px;
+    font-size: 18px;
     width: 100%;
     height: 100%;
     border-radius: 50%;
@@ -246,28 +247,11 @@
   }
 }
 
-.mediumselect {
-  @include modifier(18) {
-    & + .labelMediumselect__answer {
-      width: 20%;
-    }
-  }
-
-  @include modifier(33) {
-    & + .labelMediumselect__answer {
-      width: 14%;
-    }
-  }
-
-  @include modifier(50) {
-    & + .labelMediumselect__answer {
-      width: 14%;
-    }
-  }
-
-  @include modifier(65) {
-    & + .labelMediumselect__answer {
-      width: 14%;
+.checker {
+  &--11-0 {
+    & + .labelChecker__answer {
+      width: 12%;
+      height: 40%;
     }
   }
 }

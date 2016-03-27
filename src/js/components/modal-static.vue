@@ -1,5 +1,5 @@
 <template>
-  <div class="remodal" data-remodal-id="modal-static--{{ index }}" data-remodal-options="hashTracking: false, closeOnOutsideClick: false">
+  <div class="remodal page{{ pageId }}" data-remodal-id="modal-static--{{ index }}" data-remodal-options="hashTracking: false, closeOnOutsideClick: false">
     <button
       @click="closeModalStatic"
       data-remodal-action="close"

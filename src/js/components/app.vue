@@ -36,10 +36,12 @@
       },
 
       'solution-true': function() {
+        this.$els.true.load()
         this.$els.true.play()
       },
 
       'solution-false': function() {
+        this.$els.false.load()
         this.$els.false.play()
       }
     },

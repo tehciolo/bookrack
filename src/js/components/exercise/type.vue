@@ -8,7 +8,7 @@
   <div class="exercise exercise--typer">
     <img :src="'./img/' + ex.image + '.jpg'">
 
-    <form class="exercise__container id--{{ this.pageId }}">
+    <form class="exercise__container">
       <button class="button button--solve button--scale" type="button" @click="solveForm">
         <span class="wb-solve"></span>
       </button>
