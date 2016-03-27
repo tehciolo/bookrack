@@ -241,6 +241,24 @@ module.exports = function() {
         }
       ]
     },
+    '50': {
+      video: [
+        {
+          video: {
+            source: 'test'
+          },
+          trigger: {
+            button: {
+              top: '11%'
+            },
+            zone: {
+              top: '11%',
+              bottom: '5%'
+            }
+          }
+        }
+      ]
+    },
     '52': {
       exercise: [
         {
