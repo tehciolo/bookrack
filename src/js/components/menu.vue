@@ -26,8 +26,8 @@
         </form>
       </div>
       <div class="info-pages">
-        <button @click="goStatic('toc')" class="button button--block button--default" v-text="site.menu.toc"></button>
-        <button @click="goStatic('help')" class="button button--block button--default" v-text="site.menu.help"></button>
+        <button @click="tableOfContents" class="button button--block button--default" v-text="site.menu.toc"></button>
+        <button @click="help" class="button button--block button--default" v-text="site.menu.help"></button>
       </div>
     </div>
   </section>
@@ -58,6 +58,14 @@
       jumpToPage: function() {
         this.$dispatch('jump-to-page', this.page)
         this.page = ''
+      },
+
+      tableOfContents: function() {
+        this.$route.router.go('/04-05')
+      },
+
+      help: function() {
+        this.$route.router.go('/help')
       }
     }
   }

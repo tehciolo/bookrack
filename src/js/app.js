@@ -28,13 +28,16 @@ var help = Vue.extend(require('./components/help.vue'));
 var App = Vue.extend(require('./components/app.vue'));
 
 var router = new VueRouter();
+router.redirect({
+  '*': '/cover'
+});
 router.map({
-  '/pages/*duo': {
-    component: book
-  },
-
   '/cover': {
     component: cover
+  },
+
+  '/:duo': {
+    component: book
   },
 
   '/help': {
