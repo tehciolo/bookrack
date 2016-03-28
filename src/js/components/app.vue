@@ -13,12 +13,19 @@
     computed: {
       canGoBack: function() {
         var position = this.allowed.indexOf(this.$route.params.duo);
+        if (position === -1) return false
         if (position > 0) {return true} else {return false}
       },
 
       canGoForward: function() {
         var position = this.allowed.indexOf(this.$route.params.duo);
+        if (position === -1) return false
         if (position < this.allowed.length - 1) {return true} else {return false}
+      },
+
+      isCover: function() {
+        if (this.$route.path === '/cover') return true
+        return false
       }
     },
 
