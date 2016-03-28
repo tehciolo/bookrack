@@ -1,4 +1,4 @@
-<template onload="initJsPlumbExercise">
+<template>
   <h1
     v-if="ex.title"
     v-text="ex.title"
@@ -23,7 +23,7 @@
       </template>
 
       <template v-if="ex.help">
-        <help :help="ex.help"></help>
+        <exercise-help :help="ex.help"></exercise-help>
       </template>
 
       <button
@@ -50,7 +50,7 @@
   </div>
 </template>
 
-<script>    
+<script>
   export default {
     props: ['ex', 'pageId', 'index'],
           
@@ -168,7 +168,6 @@
                     [ "Label", { location: [0.5, -0.5], label: "Drop", cssClass: "endpointTargetLabel", visible:false } ]
                 ]
             },
-            makeTarget
             init = function (connection) {
                 connection.getOverlay("label").setLabel(connection.sourceId + "-" + connection.targetId);
             };

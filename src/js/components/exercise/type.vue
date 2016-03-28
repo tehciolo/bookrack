@@ -22,7 +22,7 @@
       </template>
 
       <template v-if="ex.help">
-        <help :help="ex.help"></help>
+        <exercise-help :help="ex.help"></exercise-help>
       </template>
 
       <div

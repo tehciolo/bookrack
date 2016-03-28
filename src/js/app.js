@@ -2,7 +2,6 @@ var $ = require('jquery');
 var Vue = require('vue');
 var remodal = require('remodal');
 var VueRouter = require('vue-router');
-var jsPlumb = require('jsplumb');
 
 Vue.use(VueRouter);
 // Vue.config.debug = true;
