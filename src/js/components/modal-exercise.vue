@@ -1,5 +1,5 @@
 <template>
-  <div class="remodal page{{ pageId }}" data-remodal-id="modal-exercise--{{ index }}" data-remodal-options="hashTracking: false, closeOnOutsideClick: false">
+  <div class="remodal page{{ pageId }}" data-remodal-id="modal-exercise--{{ index }}" data-remodal-options="hashTracking: false, closeOnOutsideClick: false, closeOnEscape: false">
     <button
       @click="closeModalExercise"
       data-remodal-action="close"
@@ -39,6 +39,14 @@
           :index="index"
         ></picker>
       </template>
+
+    <template v-if="item.type === 'linker'">
+        <linker
+          :ex="item"
+          :page-id="pageId"
+          :index="index"          
+        ></linker>
+      </template>
       <!-- <div v-if="selectedPageObject.ex.name == 'bigselect'">
         @@include('./exercise--bigselect.html')
       </div>
@@ -59,18 +67,18 @@
     props: ['index', 'item', 'pageId'],
 
     events: {
-      'open-modal-exercise': function(index) {
+      'open-modal-exercise': function(index, item) {
         if (index === this.index) {
           // this.$els.player.play()
         }
-      }
+      }      
     },
 
     methods: {
       closeModalExercise: function() {
         // this.$els.player.pause()
         // this.$els.player.load()
-      }
+      }    
     }
   }
 </script>

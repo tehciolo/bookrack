@@ -11,6 +11,8 @@ var imagemin = require('gulp-imagemin');
 var pngquant = require('imagemin-pngquant');
 var browserify = require('browserify');
 var vueify = require('vueify');
+var debowerify = require('debowerify');
+var deamdify = require('deamdify');
 var source = require('vinyl-source-stream');
 var browserSync = require('browser-sync').create();
 
@@ -114,9 +116,13 @@ gulp.task('video', function() {
 
 // Browserify
 gulp.task('browserify', function() {
-  return browserify(src.jsApp)
-    .transform(vueify)
-    .bundle()
+    var b = browserify({
+        entries: src.jsApp,
+        debug: true,
+        // defining transforms here will avoid crashing your stream
+        transform: [vueify, debowerify, deamdify]
+      });
+  return b.bundle()
     //Pass desired output filename to vinyl-source-stream
     .pipe(source('bundle.js'))
     // Start piping stream to tasks!

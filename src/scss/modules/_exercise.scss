@@ -412,6 +412,90 @@
     top: -20px;
 }
 
+/* linker */
+.linker-stage .window {
+    border: 1px solid #346789;
+    box-shadow: 2px 2px 19px #aaa;
+    -o-box-shadow: 2px 2px 19px #aaa;
+    -webkit-box-shadow: 2px 2px 19px #aaa;
+    -moz-box-shadow: 2px 2px 19px #aaa;
+    -moz-border-radius: 0.5em;
+    border-radius: 0.5em;
+    opacity: 0.8;
+    width: 80px;
+    height: 80px;
+    line-height: 80px;
+    cursor: pointer;
+    text-align: center;
+    z-index: 20;
+    position: absolute;
+    background-color: #eeeeef;
+    color: black;    
+    padding: 0.5em;
+    font-size: 0.9em;
+    -webkit-transition: -webkit-box-shadow 0.15s ease-in;
+    -moz-transition: -moz-box-shadow 0.15s ease-in;
+    -o-transition: -o-box-shadow 0.15s ease-in;
+    transition: box-shadow 0.15s ease-in;
+}
+.linker-stage .window:hover {
+    box-shadow: 2px 2px 19px #444;
+    -o-box-shadow: 2px 2px 19px #444;
+    -webkit-box-shadow: 2px 2px 19px #444;
+    -moz-box-shadow: 2px 2px 19px #444;
+    opacity: 0.6;
+}
+.linker-stage .window img {
+    width: 100%;
+    height: auto;
+}
+.linker-stage .active {
+    border: 1px dotted green;
+}
+.linker-stage .hover {
+    border: 1px dotted red;
+}
+.linker-stage .jsplumb-connector {
+    z-index: 4;
+}
+.linker-stage .jsplumb-endpoint, .endpointTargetLabel, .endpointSourceLabel {
+    z-index: 21;
+    cursor: pointer;
+}
+.linker-stage .aLabel {
+    background-color: white;
+    padding: 0.4em;
+    font: 12px sans-serif;
+    color: #444;
+    z-index: 21;
+    border: 1px dotted gray;
+    opacity: 0.8;
+    cursor: pointer;
+}
+.linker-stage .aLabel.jsplumb-hover {
+    background-color: #5C96BC;
+    color: white;
+    border: 1px solid white;
+}
+.window.jsplumb-connected {
+    border: 2px solid green;
+}
+.jsplumb-drag {
+    outline: 4px solid pink !important;
+}
+path, .jsplumb-endpoint {
+    cursor: pointer;
+}
+.jsplumb-overlay {
+    background-color:transparent;
+}
+.unselectable {
+  -webkit-user-select: none;  /* Chrome all / Safari all */
+  -moz-user-select: none;     /* Firefox all */
+  -ms-user-select: none;      /* IE 10+ */
+  user-select: none;          /* Likely future */      
+}
+
 /* dnd */
 .ui-droppable.dropped {
     background-color: #fff;
