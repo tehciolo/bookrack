@@ -12,7 +12,7 @@ Vue.component('page', require('./components/page.vue'));
 Vue.component('modal-static', require('./components/modal-static.vue'));
 Vue.component('modal-video', require('./components/modal-video.vue'));
 Vue.component('modal-exercise', require('./components/modal-exercise.vue'));
-Vue.component('help', require('./components/help.vue'));
+Vue.component('exercise-help', require('./components/exercise-help.vue'));
 Vue.component('custom-audio', require('./components/custom-audio.vue'));
 // Exercise components
 Vue.component('typer', require('./components/exercise/typer.vue'));
@@ -21,6 +21,8 @@ Vue.component('checker', require('./components/exercise/checker.vue'));
 Vue.component('picker', require('./components/exercise/picker.vue'));
 // Route components
 var book = Vue.extend(require('./components/book.vue'));
+var cover = Vue.extend(require('./components/cover.vue'));
+var help = Vue.extend(require('./components/help.vue'));
 
 // Router = Main Vue Instance
 var App = Vue.extend(require('./components/app.vue'));
@@ -29,6 +31,14 @@ var router = new VueRouter();
 router.map({
   '/pages/*duo': {
     component: book
+  },
+
+  '/cover': {
+    component: cover
+  },
+
+  '/help': {
+    component: help
   }
 });
 router.start(App, '#app');
