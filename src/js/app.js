@@ -2,6 +2,7 @@ var $ = require('jquery');
 var Vue = require('vue');
 var remodal = require('remodal');
 var VueRouter = require('vue-router');
+var jsPlumb = require('jsplumb');
 
 Vue.use(VueRouter);
 // Vue.config.debug = true;
@@ -19,6 +20,7 @@ Vue.component('typer', require('./components/exercise/typer.vue'));
 Vue.component('type', require('./components/exercise/type.vue'));
 Vue.component('checker', require('./components/exercise/checker.vue'));
 Vue.component('picker', require('./components/exercise/picker.vue'));
+Vue.component('linker', require('./components/exercise/linker.vue'));
 // Route components
 var book = Vue.extend(require('./components/book.vue'));
 

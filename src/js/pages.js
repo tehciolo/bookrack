@@ -165,6 +165,44 @@ module.exports = function() {
         }
       ]
     },
+    '24': {
+     exercise: [
+       {
+          type: 'linker',
+          title: 'Uniti cuvantul cu desenul corespunzator',          
+          trigger: {
+            button: {
+              top: '60%'
+            },
+            zone: {
+              top: '60%',
+              bottom: '4%'
+            }
+          },
+          help: {
+            toggle: false,
+            text: 'UNESTE CUVANTUL CU DESENUL CORESPUNZATOR SI COLOREAZA-L.Cand ai terminat apasa pe cheita si verifica. Succes!'
+          },
+          data: [
+            {
+              identifier: 'one',
+              model: '',
+              position: {
+                top: '28%',
+                left: '20%',
+                width: '80px',
+                height: '80px'
+              },
+              image: { 
+                src: 'ghiozdan.png',
+                width: '80',
+                height: '80'
+              }
+            }
+          ]
+       }
+     ] 
+    },
     '51': {
       exercise: [
         {
