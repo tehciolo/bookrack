@@ -14,6 +14,8 @@ var vueify = require('vueify');
 var debowerify = require('debowerify');
 var deamdify = require('deamdify');
 var source = require('vinyl-source-stream');
+var concat = require('gulp-concat');
+var del = require('del');
 var browserSync = require('browser-sync').create();
 
 var onError = notify.onError({
@@ -24,6 +26,7 @@ var src = {
   scss: 'src/scss/**/*.scss',
   js: ['src/js/*.js', 'src/js/components/**/*.vue'],
   jsApp: 'src/js/app.js',
+  jsVendor: 'src/js/vendor/*.js',
   img: 'src/img/**/*.{png,jpg,jpeg}',
   audio: 'src/audio/*.*',
   video: 'src/video/*.*',
@@ -114,6 +117,13 @@ gulp.task('video', function() {
     .pipe(gulp.dest(dist.video))
 });
 
+// Vendor scripts
+gulp.task('vendor', function() {
+  return gulp.src(src.jsVendor)
+    .pipe(concat('vendor.js'))
+    .pipe(gulp.dest(dist.js))
+});
+
 // Browserify
 gulp.task('browserify', function() {
     var b = browserify({
@@ -132,8 +142,13 @@ gulp.task('rescript', ['browserify'], function () {
   browserSync.reload();
 });
 
+// Clean task
+gulp.task('clean', function () {
+  return del('dist/**/*');
+});
+
 // Static server
-gulp.task('serve', ['build', 'images', 'audio', 'video', 'fonts', 'scss', 'browserify'], function() {
+gulp.task('serve', ['build', 'images', 'audio', 'video', 'fonts', 'scss', 'vendor', 'browserify'], function() {
 
   browserSync.init({
     server: "./dist"
