@@ -1,8 +1,14 @@
 <template>
+  <button
+    @click="closeExercise"
+    class="button button--close button--scale"
+  >
+    <span class="wb-cancel">
+  </button>
+
   <h1
     v-if="ex.title"
     v-text="ex.title"
-    class="remodal__title"
   ></h1>
 
   <div class="exercise exercise--typer">
@@ -36,7 +42,7 @@
           @keyup="checkSolution(row.model, row.solution)"
           type="text"
           name="{{ row.identifier }}"
-          class="typer__input typer--{{ this.pageId }}-{{ this.index }}"
+          class="typer__input typer--{{ this.$route.params.pageId }}-{{ this.$route.params.id }}"
           maxlength="{{ row.solution.length }}"
         >
 
@@ -45,7 +51,7 @@
           v-model="row.model"
           @keyup="checkSolution(row.model, row.solution)"
           name="{{ row.identifier }}"
-          class="typer__input typer__textarea typer--{{ this.pageId }}-{{ this.index }}"
+          class="typer__input typer__textarea typer--{{ this.$route.params.pageId }}-{{ this.$route.params.id }}"
           maxlength="{{ row.solution.length }}"
           rows="{{ row.textareaRows }}"
         ></textarea>
@@ -59,8 +65,24 @@
 </template>
 
 <script>
+  var pages = require('../../pages.js');
+
   export default {
-    props: ['ex', 'pageId', 'index'],
+    name: 'Typer',
+
+    data: function() {
+      return {
+        pages: pages()
+      }
+    },
+
+    computed: {
+      ex: function() {
+        return this.pages[this.$route.params.pageId].exercise[this.$route.params.id]
+      }
+    },
+
+    // props: ['ex', 'pageId', 'index'],
 
     methods: {
       checkSolution: function(model, solution) {
@@ -82,6 +104,10 @@
         for (var i = 0; i < this.ex.data.length; i++) {
           this.ex.data[i].model = ''
         }
+      },
+
+      closeExercise: function() {
+        this.$dispatch('close-exercise', this.$route.params.pageId)
       }
     }
   }

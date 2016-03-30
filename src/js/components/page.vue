@@ -34,8 +34,7 @@
       <template v-if="hasExercise">
         <a
           v-for="item in data.exercise"
-          data-remodal-target="modal-exercise--{{ $index }}"
-          @click="openModalExercise($index)"
+          v-link="{ path: '/' + id + '/exercise/' + $index + '/' + item.type }"
         >
           <button :style="'top: ' + item.trigger.button.top" class="button button--scale button--animated button--trigger" type="button"><span class="wb-ex"></span></button>
 
@@ -67,7 +66,7 @@
       </template>
     </template> -->
 
-    <template v-if="hasExercise">
+    <!-- <template v-if="hasExercise">
       <template v-for="item in data.exercise">
         <modal-exercise
           :index="$index"
@@ -75,7 +74,7 @@
           :page-id="id"
         ></modal-exercise>
       </template>
-    </template>
+    </template> -->
   </div>
 </template>
 

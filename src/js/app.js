@@ -13,7 +13,7 @@ Vue.component('modal-exercise', require('./components/modal-exercise.vue'));
 Vue.component('exercise-help', require('./components/exercise-help.vue'));
 Vue.component('custom-audio', require('./components/custom-audio.vue'));
 // Exercise components
-Vue.component('typer', require('./components/exercise/typer.vue'));
+// Vue.component('typer', require('./components/exercise/typer.vue'));
 Vue.component('type', require('./components/exercise/type.vue'));
 Vue.component('checker', require('./components/exercise/checker.vue'));
 Vue.component('picker', require('./components/exercise/picker.vue'));
@@ -24,6 +24,7 @@ var Help = Vue.extend(require('./components/help.vue'));
 var Book = Vue.extend(require('./components/book.vue'));
 var StaticRoute = Vue.extend(require('./components/static.vue'));
 var VideoRoute = Vue.extend(require('./components/video.vue'));
+var Typer = Vue.extend(require('./components/exercise/typer.vue'));
 
 // Router = Main Vue Instance
 var App = Vue.extend(require('./components/app.vue'));
@@ -53,10 +54,8 @@ router.map({
     component: VideoRoute
   },
 
-  '/:pageId/exercise/:id': {
-    component: {
-      template: "<h1>exercise</h1>"
-    }
+  '/:pageId/exercise/:id/typer': {
+    component: Typer
   }
 });
 router.start(App, '#app');

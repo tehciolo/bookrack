@@ -26,6 +26,11 @@
       isDuo: function() {
         if (this.$route.params.duo) return true
         return false
+      },
+
+      isExercise: function() {
+        if (this.$route.path.indexOf('exercise') > -1) {return true}
+        return false
       }
     },
 
@@ -57,6 +62,10 @@
       },
 
       'close-video': function(pageNo) {
+        this.goToPage(pageNo)
+      },
+
+      'close-exercise': function(pageNo) {
         this.goToPage(pageNo)
       }
     },
