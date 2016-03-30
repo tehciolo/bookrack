@@ -16,7 +16,7 @@
       :max-page="info.maxPage"
     ></menu>
 
-    <div :class="{ 'wrapper--cover': isCover }" class="wrapper">
+    <div :class="{ 'wrapper--duo': isDuo }" class="wrapper">
       <router-view></router-view>
 
       <button @click="goBack" v-show="canGoBack" class="button button--pagenav button--previous button--translateleft"><span class="wb-arrow-left"></span></button>

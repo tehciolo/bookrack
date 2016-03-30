@@ -6,8 +6,7 @@
       <template v-if="hasStatic">
         <a
           v-for="item in data.static"
-          data-remodal-target="modal-static--{{ $index }}"
-          @click="openModalStatic($index)"
+          v-link="{ path: '/' + id + '/static/' + $index }"
         >
           <button :style="'top: ' + item.trigger.button.top" class="button button--scale button--animated button--trigger" type="button"><span class="wb-static"></span></button>
 
@@ -106,9 +105,6 @@
     },
 
     methods: {
-      openModalStatic: function(index) {
-        this.$broadcast('open-modal-static', index)
-      },
       openModalExercise: function(index) {
         this.$broadcast('open-modal-exercise', index)
       }

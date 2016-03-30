@@ -11,7 +11,7 @@
   var allowed = require('../allowed.js');
 
   export default {
-    name: 'cover',
+    name: 'Cover',
 
     data: function() {
       return {

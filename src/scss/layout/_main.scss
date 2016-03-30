@@ -13,10 +13,10 @@
   top: 50%;
   transform: translate(-50%, -50%);
   width: 92%;
-  max-width: 1400px;
+  max-width: 700px;
 
-  &--cover {
-    max-width: 700px;
+  &--duo {
+    max-width: 1400px;
   }
 }
 
@@ -145,6 +145,14 @@
       transition: background 0.5s ease-in-out;
     }
   }
+}
+
+.single-page {
+  background-color: white;
+}
+
+.single-page img {
+  display: block;
 }
 
 [v-cloak] {

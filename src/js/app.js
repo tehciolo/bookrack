@@ -9,7 +9,6 @@ Vue.use(VueRouter);
 // Components
 Vue.component('menu', require('./components/menu.vue'));
 Vue.component('page', require('./components/page.vue'));
-Vue.component('modal-static', require('./components/modal-static.vue'));
 Vue.component('modal-video', require('./components/modal-video.vue'));
 Vue.component('modal-exercise', require('./components/modal-exercise.vue'));
 Vue.component('exercise-help', require('./components/exercise-help.vue'));
@@ -21,9 +20,10 @@ Vue.component('checker', require('./components/exercise/checker.vue'));
 Vue.component('picker', require('./components/exercise/picker.vue'));
 Vue.component('linker', require('./components/exercise/linker.vue'));
 // Route components
-var book = Vue.extend(require('./components/book.vue'));
-var cover = Vue.extend(require('./components/cover.vue'));
-var help = Vue.extend(require('./components/help.vue'));
+var Cover = Vue.extend(require('./components/cover.vue'));
+var Help = Vue.extend(require('./components/help.vue'));
+var Book = Vue.extend(require('./components/book.vue'));
+var Static = Vue.extend(require('./components/static.vue'));
 
 // Router = Main Vue Instance
 var App = Vue.extend(require('./components/app.vue'));
@@ -34,15 +34,31 @@ router.redirect({
 });
 router.map({
   '/cover': {
-    component: cover
+    component: Cover
   },
 
   '/:duo': {
-    component: book
+    component: Book
   },
 
   '/help': {
-    component: help
+    component: Help
+  },
+
+  '/:pageId/static/:id': {
+    component: Static
+  },
+
+  '/:pageId/video/:id': {
+    component: {
+      template: "<h1>video</h1>"
+    }
+  },
+
+  '/:pageId/exercise/:id': {
+    component: {
+      template: "<h1>exercise</h1>"
+    }
   }
 });
 router.start(App, '#app');
