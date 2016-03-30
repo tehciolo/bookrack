@@ -149,10 +149,19 @@
 
 .single-page {
   background-color: white;
-}
 
-.single-page img {
-  display: block;
+  img,
+  video {
+    display: block;
+  }
+
+  &--video {
+    padding: 1.5rem;
+
+    video {
+      margin: 0 auto;
+    }
+  }
 }
 
 [v-cloak] {

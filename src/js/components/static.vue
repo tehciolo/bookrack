@@ -23,7 +23,7 @@
   var pages = require('../pages.js');
 
   export default {
-    name: 'Static',
+    name: 'StaticRoute',
 
     data: function() {
       return {

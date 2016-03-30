@@ -4,12 +4,11 @@ var remodal = require('remodal');
 var VueRouter = require('vue-router');
 
 Vue.use(VueRouter);
-// Vue.config.debug = true;
+Vue.config.debug = true;
 
 // Components
 Vue.component('menu', require('./components/menu.vue'));
 Vue.component('page', require('./components/page.vue'));
-Vue.component('modal-video', require('./components/modal-video.vue'));
 Vue.component('modal-exercise', require('./components/modal-exercise.vue'));
 Vue.component('exercise-help', require('./components/exercise-help.vue'));
 Vue.component('custom-audio', require('./components/custom-audio.vue'));
@@ -23,7 +22,8 @@ Vue.component('linker', require('./components/exercise/linker.vue'));
 var Cover = Vue.extend(require('./components/cover.vue'));
 var Help = Vue.extend(require('./components/help.vue'));
 var Book = Vue.extend(require('./components/book.vue'));
-var Static = Vue.extend(require('./components/static.vue'));
+var StaticRoute = Vue.extend(require('./components/static.vue'));
+var VideoRoute = Vue.extend(require('./components/video.vue'));
 
 // Router = Main Vue Instance
 var App = Vue.extend(require('./components/app.vue'));
@@ -46,13 +46,11 @@ router.map({
   },
 
   '/:pageId/static/:id': {
-    component: Static
+    component: StaticRoute
   },
 
   '/:pageId/video/:id': {
-    component: {
-      template: "<h1>video</h1>"
-    }
+    component: VideoRoute
   },
 
   '/:pageId/exercise/:id': {

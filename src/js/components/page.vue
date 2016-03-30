@@ -20,7 +20,7 @@
       <template v-if="hasVideo">
         <a
           v-for="item in data.video"
-          data-remodal-target="modal-video--{{ $index }}"
+          v-link="{ path: '/' + id + '/video/' + $index }"
         >
           <button :style="'top: ' + item.trigger.button.top" class="button button--scale button--animated button--trigger" type="button"><span class="wb-audio"></span></button>
 
@@ -47,7 +47,7 @@
       </template>
     </div>
 
-    <template v-if="hasStatic">
+    <!-- <template v-if="hasStatic">
       <template v-for="item in data.static">
         <modal-static
           :index="$index"
@@ -65,7 +65,7 @@
           :page-id="id"
         ></modal-video>
       </template>
-    </template>
+    </template> -->
 
     <template v-if="hasExercise">
       <template v-for="item in data.exercise">

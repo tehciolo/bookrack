@@ -54,6 +54,10 @@
 
       'close-static': function(pageNo) {
         this.goToPage(pageNo)
+      },
+
+      'close-video': function(pageNo) {
+        this.goToPage(pageNo)
       }
     },
 
