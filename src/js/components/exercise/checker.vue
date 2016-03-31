@@ -14,7 +14,7 @@
           <span class="wb-cancel">
         </button>
 
-        <button class="button button--solve button--scale" type="button" @click="solveForm">
+        <button class="button button--solve button--scale" type="button" @click="solveCheck">
           <span class="wb-solve"></span>
         </button>
 
