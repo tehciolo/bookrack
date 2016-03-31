@@ -14,7 +14,7 @@ Vue.component('exercise-help', require('./components/exercise-help.vue'));
 Vue.component('custom-audio', require('./components/custom-audio.vue'));
 // Exercise components
 // Vue.component('typer', require('./components/exercise/typer.vue'));
-Vue.component('type', require('./components/exercise/type.vue'));
+// Vue.component('type', require('./components/exercise/type.vue'));
 Vue.component('checker', require('./components/exercise/checker.vue'));
 Vue.component('picker', require('./components/exercise/picker.vue'));
 Vue.component('linker', require('./components/exercise/linker.vue'));
@@ -25,6 +25,7 @@ var Book = Vue.extend(require('./components/book.vue'));
 var StaticRoute = Vue.extend(require('./components/static.vue'));
 var VideoRoute = Vue.extend(require('./components/video.vue'));
 var Typer = Vue.extend(require('./components/exercise/typer.vue'));
+var Type = Vue.extend(require('./components/exercise/type.vue'));
 
 // Router = Main Vue Instance
 var App = Vue.extend(require('./components/app.vue'));
@@ -56,6 +57,10 @@ router.map({
 
   '/:pageId/exercise/:id/typer': {
     component: Typer
+  },
+
+  '/:pageId/exercise/:id/type': {
+    component: Type
   }
 });
 router.start(App, '#app');
