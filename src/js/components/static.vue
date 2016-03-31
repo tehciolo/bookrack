@@ -41,7 +41,7 @@
       closeStatic: function() {
         this.$els.player.pause()
         this.$els.player.load()
-        this.$dispatch('close-static', this.$route.params.pageId)
+        this.$dispatch('return-to-page', this.$route.params.pageId)
       }
     },
 

@@ -57,15 +57,7 @@
         this.$els.false.play()
       },
 
-      'close-static': function(pageNo) {
-        this.goToPage(pageNo)
-      },
-
-      'close-video': function(pageNo) {
-        this.goToPage(pageNo)
-      },
-
-      'close-exercise': function(pageNo) {
+      'return-to-page': function(pageNo) {
         this.goToPage(pageNo)
       }
     },

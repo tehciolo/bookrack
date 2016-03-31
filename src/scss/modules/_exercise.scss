@@ -9,6 +9,26 @@
     background-color: rgba($red-orange, .3)
   }
 
+  @include element(ratio) {
+    position: relative;
+    height: 0px;
+    width: 100%;
+    padding: 84.3% 0px 0px;
+  }
+
+  @include element(position) {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+
+  @include element(controls) {
+    height: 40px;
+    position: relative;
+  }
+
   @include element(container) {
     position: absolute;
     top: 0;
@@ -430,7 +450,7 @@
     z-index: 20;
     position: absolute;
     background-color: #eeeeef;
-    color: black;    
+    color: black;
     padding: 0.5em;
     font-size: 0.9em;
     -webkit-transition: -webkit-box-shadow 0.15s ease-in;
@@ -493,7 +513,7 @@ path, .jsplumb-endpoint {
   -webkit-user-select: none;  /* Chrome all / Safari all */
   -moz-user-select: none;     /* Firefox all */
   -ms-user-select: none;      /* IE 10+ */
-  user-select: none;          /* Likely future */      
+  user-select: none;          /* Likely future */
 }
 
 /* dnd */

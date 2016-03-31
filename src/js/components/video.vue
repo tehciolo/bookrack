@@ -39,7 +39,7 @@
       closeVideo: function() {
         this.$els.player.pause()
         this.$els.player.load()
-        this.$dispatch('close-video', this.$route.params.pageId)
+        this.$dispatch('return-to-page', this.$route.params.pageId)
       }
     }
   }
