@@ -23,8 +23,13 @@
         if (position < this.allowed.length - 1) {return true} else {return false}
       },
 
-      isCover: function() {
-        if (this.$route.path === '/cover') return true
+      isDuo: function() {
+        if (this.$route.params.duo) return true
+        return false
+      },
+
+      isExercise: function() {
+        if (this.$route.path.indexOf('exercise') > -1) {return true}
         return false
       }
     },
@@ -50,6 +55,10 @@
       'solution-false': function() {
         this.$els.false.load()
         this.$els.false.play()
+      },
+
+      'return-to-page': function(pageNo) {
+        this.goToPage(pageNo)
       }
     },
 
@@ -96,7 +105,7 @@
 
           for (var i = 0; i < this.allowed.length; i++) {
             if (this.allowed[i].indexOf(needle) > -1) {
-              this.$route.router.go(this.allowed[i])
+              this.$route.router.go('/' + this.allowed[i])
             }
           }
         }

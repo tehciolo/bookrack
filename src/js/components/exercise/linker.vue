@@ -1,59 +1,85 @@
 <template>
-  <h1
-    v-if="ex.title"
-    v-text="ex.title"
-    class="remodal__title"
-  ></h1>
+  <div class="exercise__ratio">
+    <div class="exercise__position">
+      <h1
+        v-if="ex.title"
+        v-text="ex.title"
+      ></h1>
 
-  <div class="exercise exercise--linker">
-    <img v-if="ex.image"
-         :src="'./img/' + ex.image + '.jpg'">
+      <div class="exercise__controls">
+        <button
+          @click="closeExercise"
+          class="button button--close button--scale"
+        >
+          <span class="wb-cancel">
+        </button>
 
-    <form class="exercise__container">
-      <button class="button button--solve button--scale" type="button">
-        <span class="wb-solve"></span>
-      </button>
+        <button class="button button--solve button--scale" type="button" @click="solveLink">
+          <span class="wb-solve"></span>
+        </button>
 
-      <button class="button button--reset button--scale" type="reset">
-        <span class="wb-reset"></span>
-      </button>
+        <button class="button button--reset button--scale" type="reset" @click="resetLink">
+          <span class="wb-reset"></span>
+        </button>
 
-      <template v-if="ex.audio">
-        <custom-audio :audio="ex.audio"></custom-audio>
-      </template>
+        <template v-if="ex.audio">
+          <custom-audio :audio="ex.audio"></custom-audio>
+        </template>
 
-      <template v-if="ex.help">
-        <exercise-help :help="ex.help"></exercise-help>
-      </template>
+        <template v-if="ex.help">
+          <exercise-help :help="ex.help"></exercise-help>
+        </template>
 
-      <button
-        @click="initJsPlumbExercise"
-        v-text="'Start'"
-        v-el="startButton"
-        class="button button--reversed button--large"
-      >
-      </button>
-     
-      <div class="linker-main">            
-        <div class="canvas-wide linker-stage" id="canvas">
-          <div v-for="row in ex.data"
-               :style="'position: absolute; top: ' + row.position.top + '; left: ' + row.position.left + '; width: ' + row.position.width + '; height: ' + row.position.height"        
-               class="window unselectable" 
-               id="{{ row.identifier }}">
-              <img :src="'./img/' + row.image.src" 
-                   width="{{ row.image.width }}" 
-                   height="{{ row.image.height }}" />
-          </div>          
-        </div>            
+        <button
+          @click="initJsPlumbExercise"
+          v-text="'Start'"
+          v-el="startButton"
+          class="button button--reversed button--large"
+        >
+        </button>
       </div>
-    </form>
+
+      <div class="exercise exercise--linker">
+        <img v-if="ex.image"
+             :src="'./img/' + ex.image + '.jpg'">
+
+        <form class="exercise__container">
+           <div class="linker-main">
+            <div class="canvas-wide linker-stage" id="canvas">
+              <div v-for="row in ex.data"
+                   :style="'position: absolute; top: ' + row.position.top + '; left: ' + row.position.left + '; width: ' + row.position.width + '; height: ' + row.position.height"
+                   class="window unselectable"
+                   id="{{ row.identifier }}">
+                  <img :src="'./img/' + row.image.src"
+                       width="{{ row.image.width }}"
+                       height="{{ row.image.height }}" />
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+  var pages = require('../../pages.js');
+
   export default {
-    props: ['ex', 'pageId', 'index'],
-          
+    name: 'Linker',
+
+    data: function() {
+      return {
+        pages: pages()
+      }
+    },
+
+    computed: {
+      ex: function() {
+        return this.pages[this.$route.params.pageId].exercise[this.$route.params.id]
+      }
+    },
+
     methods: {
       solutionTrue: function() {
         this.$dispatch('solution-true')
@@ -63,18 +89,18 @@
         this.$dispatch('solution-false')
       },
 
-      solveCheck: function() {
-        for (var i = 0; i < this.ex.data.length; i++) {
-          this.ex.data[i].model = 'true';
-        }
+      solveLink: function() {
+
       },
 
-      resetForm: function() {
-        for (var i = 0; i < this.ex.data.length; i++) {
-          this.ex.data[i].model = ''
-        }
+      resetLink: function() {
+
       },
-      
+
+      closeExercise: function() {
+        this.$dispatch('return-to-page', this.$route.params.pageId)
+      },
+
       initJsPlumbExercise: function() {
           console.log('intra');
         var instance = jsPlumb.getInstance({
@@ -163,7 +189,7 @@
                 hoverPaintStyle: endpointHoverStyle,
                 maxConnections: -1,
                 dropOptions: { hoverClass: "hover", activeClass: "active" },
-                isTarget: true,            
+                isTarget: true,
                 overlays: [
                     [ "Label", { location: [0.5, -0.5], label: "Drop", cssClass: "endpointTargetLabel", visible:false } ]
                 ]

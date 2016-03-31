@@ -2,7 +2,7 @@
   <section class="book">
     <div class="cover-page">
       <a v-link="{ path: start }">
-        <img v-bind:src="'./img/cover.jpg'">
+        <img :src="'./img/cover.jpg'">
       </a>
   </section>
 </template>
@@ -11,7 +11,7 @@
   var allowed = require('../allowed.js');
 
   export default {
-    name: 'cover',
+    name: 'Cover',
 
     data: function() {
       return {

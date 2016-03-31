@@ -22,7 +22,7 @@
   var siteData = require('../siteData.js');
 
   export default {
-    name: 'help',
+    name: 'Help',
 
     data: function() {
       return {

@@ -9,7 +9,7 @@
   var pages = require('../pages.js');
 
   export default {
-    name: 'book',
+    name: 'Book',
 
     computed: {
       left: function() {
