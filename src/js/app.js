@@ -1,6 +1,5 @@
 var $ = require('jquery');
 var Vue = require('vue');
-var remodal = require('remodal');
 var VueRouter = require('vue-router');
 
 Vue.use(VueRouter);
@@ -9,7 +8,6 @@ Vue.config.debug = true;
 // Components
 Vue.component('menu', require('./components/menu.vue'));
 Vue.component('page', require('./components/page.vue'));
-Vue.component('modal-exercise', require('./components/modal-exercise.vue'));
 Vue.component('exercise-help', require('./components/exercise-help.vue'));
 Vue.component('custom-audio', require('./components/custom-audio.vue'));
 

@@ -68,10 +68,14 @@
   }
   @include modifier(close) {
     font-size: em(30px);
-    position: absolute;
-    top: -2.7rem;
-    right: -.9rem;
     color: map_get($ui-colors, primary);
+    position: absolute;
+    top: .5rem;
+    right: .5rem;
+    .wrapper--exercise & {
+      top: -2.7rem;
+      right: -.9rem;
+    }
 
     .wb-cancel:before {
       color: inherit;

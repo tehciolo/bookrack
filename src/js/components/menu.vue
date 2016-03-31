@@ -12,22 +12,22 @@
         <div>
           <span v-show="! canGoBack">&nbsp;</span>
           <span v-show="canGoBack" v-text="site.menu.prev"></span>
-          <button @click="goBack" v-show="canGoBack" class="button button--menunav button--scale"><span class="wb-arrow-left"></span></button>
+          <button @click="goBack" v-show="canGoBack" class="button button--menunav button--scale" type="button"><span class="wb-arrow-left"></span></button>
         </div>
         <div>
           <span v-show="canGoForward" v-text="site.menu.next"></span>
-          <button @click="goForward" v-show="canGoForward" class="button button--menunav button--scale"><span class="wb-arrow-right"></span></button>
+          <button @click="goForward" v-show="canGoForward" class="button button--menunav button--scale" type="button"><span class="wb-arrow-right"></span></button>
         </div>
       </div>
       <div class="navigator">
         <form @submit.prevent="jumpToPage">
-          <label class="navigator__label" for="goToPage" v-text="site.menu.jump"></label>
-          <input class="navigator__input" id="goToPage" type="text" v-model="page">&#8195;<button class="button button--default" type="submit" v-text="site.menu.search"></button>
+          <label v-text="site.menu.jump" class="navigator__label" for="goToPage"></label>
+          <input v-model="page" id="goToPage" class="navigator__input" type="text" >&#8195;<button v-text="site.menu.search" class="button button--default" type="submit"></button>
         </form>
       </div>
       <div class="info-pages">
-        <button @click="tableOfContents" class="button button--block button--default" v-text="site.menu.toc"></button>
-        <button @click="help" class="button button--block button--default" v-text="site.menu.help"></button>
+        <button @click="tableOfContents" v-text="site.menu.toc" class="button button--block button--default"  type="button"></button>
+        <button @click="help" v-text="site.menu.help" class="button button--block button--default" type="button"></button>
       </div>
     </div>
   </section>

@@ -1,6 +1,6 @@
 <template>
   <div class="page{{ id }} {{ type }}-page">
-    <img v-bind:src="'./img/' + id + '.jpg'">
+    <img :src="'./img/' + id + '.jpg'">
 
     <div class="{{ type }}-page__content">
       <template v-if="hasStatic">
@@ -45,36 +45,6 @@
         </a>
       </template>
     </div>
-
-    <!-- <template v-if="hasStatic">
-      <template v-for="item in data.static">
-        <modal-static
-          :index="$index"
-          :item="item"
-          :page-id="id"
-        ></modal-static>
-      </template>
-    </template>
-
-    <template v-if="hasVideo">
-      <template v-for="item in data.video">
-        <modal-video
-          :index="$index"
-          :item="item"
-          :page-id="id"
-        ></modal-video>
-      </template>
-    </template> -->
-
-    <!-- <template v-if="hasExercise">
-      <template v-for="item in data.exercise">
-        <modal-exercise
-          :index="$index"
-          :item="item"
-          :page-id="id"
-        ></modal-exercise>
-      </template>
-    </template> -->
   </div>
 </template>
 
@@ -100,12 +70,6 @@
           if ('exercise' in this.data) {return true}
         }
         return false
-      }
-    },
-
-    methods: {
-      openModalExercise: function(index) {
-        this.$broadcast('open-modal-exercise', index)
       }
     }
   }

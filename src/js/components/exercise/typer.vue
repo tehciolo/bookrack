@@ -46,7 +46,7 @@
               @keyup="checkSolution(row.model, row.solution)"
               type="text"
               name="{{ row.identifier }}"
-              class="typer__input typer--{{ this.$route.params.pageId }}-{{ this.$route.params.id }}"
+              class="typer__input typer--{{ $route.params.pageId }}-{{ $route.params.id }}"
               maxlength="{{ row.solution.length }}"
             >
 
@@ -55,7 +55,7 @@
               v-model="row.model"
               @keyup="checkSolution(row.model, row.solution)"
               name="{{ row.identifier }}"
-              class="typer__input typer__textarea typer--{{ this.$route.params.pageId }}-{{ this.$route.params.id }}"
+              class="typer__input typer__textarea typer--{{ $route.params.pageId }}-{{ $route.params.id }}"
               maxlength="{{ row.solution.length }}"
               rows="{{ row.textareaRows }}"
             ></textarea>

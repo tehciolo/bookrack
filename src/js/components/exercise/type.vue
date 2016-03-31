@@ -42,7 +42,7 @@
           >
             <input
               v-model="row.model"
-              :class="['typer--' + this.$route.params.pageId + '-' + this.$route.params.id, {
+              :class="['typer--' + $route.params.pageId + '-' + $route.params.id, {
                 correct: row.model.length == row.solution.length && row.model.toLowerCase() == row.solution,
                 incorrect: row.model.length == row.solution.length && row.model.toLowerCase() != row.solution
               }]"
