@@ -15,7 +15,7 @@ Vue.component('custom-audio', require('./components/custom-audio.vue'));
 // Exercise components
 // Vue.component('typer', require('./components/exercise/typer.vue'));
 // Vue.component('type', require('./components/exercise/type.vue'));
-Vue.component('checker', require('./components/exercise/checker.vue'));
+// Vue.component('checker', require('./components/exercise/checker.vue'));
 Vue.component('picker', require('./components/exercise/picker.vue'));
 Vue.component('linker', require('./components/exercise/linker.vue'));
 // Route components
@@ -26,6 +26,7 @@ var StaticRoute = Vue.extend(require('./components/static.vue'));
 var VideoRoute = Vue.extend(require('./components/video.vue'));
 var Typer = Vue.extend(require('./components/exercise/typer.vue'));
 var Type = Vue.extend(require('./components/exercise/type.vue'));
+var Checker = Vue.extend(require('./components/exercise/checker.vue'));
 
 // Router = Main Vue Instance
 var App = Vue.extend(require('./components/app.vue'));
@@ -61,6 +62,10 @@ router.map({
 
   '/:pageId/exercise/:id/type': {
     component: Type
+  },
+
+  '/:pageId/exercise/:id/checker': {
+    component: Checker
   }
 });
 router.start(App, '#app');
