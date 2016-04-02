@@ -31,8 +31,22 @@
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   lost-flex-container: row;
 
-  &--video {
+  &--video,
+  &--help {
     lost-flex-container: column;
+  }
+
+  &--help {
+    height: 100%;
+    font-size: 130%;
+    line-height: 2;
+    p {
+      line-height: 1.3;
+    }
+
+    @media (min-width: 1367px) {
+      font-size: 140%;
+    }
   }
 }
 
@@ -51,7 +65,7 @@
   @include element(heading) {
     text-align: center;
     line-height: 1;
-    padding-bottom: 1em;
+    padding-bottom: 1rem;
   }
   @include element(chapters) {
     margin: 0;
@@ -182,6 +196,11 @@
     video {
       margin: 0 auto;
     }
+  }
+
+  &--help {
+    flex-grow: 1;
+    padding: 2rem;
   }
 
   &--exercise {
