@@ -1,6 +1,6 @@
 <template>
-  <div class="exercise__ratio">
-    <div class="exercise__position">
+  <section class="book">
+    <div class="page{{ this.$route.params.pageId }} single-page single-page--exercise">
       <h1
         v-if="ex.title"
         v-text="ex.title"
@@ -31,58 +31,64 @@
         </template>
       </div>
 
-      <div class="exercise exercise--checker">
-        <img :src="'./img/' + ex.image + '.jpg'">
+      <img :src="'./img/' + ex.image + '.jpg'">
 
-        <form class="exercise__container">
-          <div
-            v-for="row in ex.data"
-            :style="'position: absolute; top: ' + row.position.top + '; left: ' + row.position.left + '; width: ' + row.position.width + '; height: ' + row.position.height"
-            class="exercise__row"
+      <form class="exercise exercise--checker">
+        <div
+          v-for="row in ex.data"
+          :style="'position: absolute; top: ' + row.position.top + '; left: ' + row.position.left + '; width: ' + row.position.width + '; height: ' + row.position.height"
+          class="exercise__row"
+        >
+          <input
+            v-model="row.model"
+            @click="solutionTrue"
+            id="{{ row.identifier }}true"
+            class="radio-input checker--{{ $route.params.pageId }}-{{ $route.params.id }}"
+            type="radio"
+            name="{{ row.identifier }}"
+            value="true"
           >
-            <input
-              v-model="row.model"
-              @click="solutionTrue"
-              id="{{ row.identifier }}true"
-              class="radio-input checker--{{ $route.params.pageId }}-{{ $route.params.id }}"
-              type="radio"
-              name="{{ row.identifier }}"
-              value="true"
-            >
 
-            <label
-              :style="'top: ' + row.answerTrue.top + ';left: ' + row.answerTrue.left"
-              class="labelChecker__answer labelChecker__answer--true"
-              for="{{ row.identifier }}true"
-            ></label>
+          <label
+            :style="'top: ' + row.answerTrue.top + ';left: ' + row.answerTrue.left"
+            class="labelChecker__answer labelChecker__answer--true"
+            for="{{ row.identifier }}true"
+          ></label>
 
-            <input
-              id="{{ row.identifier }}false"
-              v-model="row.model"
-              @click="solutionFalse"
-              class="radio-input checker--{{ $route.params.pageId }}-{{ $route.params.id }}"
-              type="radio"
-              name="{{ row.identifier }}"
-              value="false"
-            >
+          <input
+            id="{{ row.identifier }}false"
+            v-model="row.model"
+            @click="solutionFalse"
+            class="radio-input checker--{{ $route.params.pageId }}-{{ $route.params.id }}"
+            type="radio"
+            name="{{ row.identifier }}"
+            value="false"
+          >
 
-            <label
-              :style="'top: ' + row.answerFalse.top + ';left: ' + row.answerFalse.left"
-              class="labelChecker__answer labelChecker__answer--false"
-              for="{{ row.identifier }}false"
-            ></label>
-          </div>
-        </form>
-      </div>
+          <label
+            :style="'top: ' + row.answerFalse.top + ';left: ' + row.answerFalse.left"
+            class="labelChecker__answer labelChecker__answer--false"
+            for="{{ row.identifier }}false"
+          ></label>
+        </div>
+      </form>
     </div>
   </div>
 </template>
 
 <script>
+  var $ = require('jquery');
   var pages = require('../../pages.js');
+  var resizeMixin = require('vue-resize-mixin');
 
   export default {
     name: 'Checker',
+
+    mixins: [resizeMixin],
+
+    events: {
+      'resize': 'onResize'
+    },
 
     data: function() {
       return {
@@ -119,7 +125,28 @@
 
       closeExercise: function() {
         this.$dispatch('return-to-page', this.$route.params.pageId)
+      },
+
+      onResize: function() {
+        var scaled = $(".wrapper");
+        scaled.css({ 'height': '100%', 'width': '100%' });
+        var ratio = 79/100;
+        var w = scaled.outerWidth();
+        var h = scaled.outerHeight();
+
+        if (w > ratio*h) {
+          scaled.width(ratio*h);
+        } else if (h > w/ratio) {
+          var newHeight = w/ratio;
+          scaled.height(newHeight);
+          // for vertical centering
+          scaled.css({marginTop: ($("body").height()-newHeight)/2 - 20});
+        }
       }
+    },
+
+    ready: function() {
+      this.onResize()
     }
   }
 </script>

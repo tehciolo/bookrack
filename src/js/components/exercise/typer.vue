@@ -1,6 +1,6 @@
 <template>
-  <div class="exercise__ratio">
-    <div class="exercise__position">
+  <section class="book">
+    <div class="page{{ this.$route.params.pageId }} single-page single-page--exercise">
       <h1
         v-if="ex.title"
         v-text="ex.title"
@@ -31,50 +31,56 @@
         </template>
       </div>
 
-      <div class="exercise exercise--typer">
-        <img :src="'./img/' + ex.image + '.jpg'">
+      <img :src="'./img/' + ex.image + '.jpg'">
 
-        <form class="exercise__container">
-          <div
-            v-for="row in ex.data"
-            class="typer__wrapper"
-            :style="'top: ' + row.position.top + '; left: ' + row.position.left + '; width: ' + row.position.width"
+      <form class="exercise exercise--typer">
+        <div
+          v-for="row in ex.data"
+          class="typer__wrapper"
+          :style="'top: ' + row.position.top + '; left: ' + row.position.left + '; width: ' + row.position.width"
+        >
+          <input
+            v-if="row.textarea === undefined"
+            v-model="row.model"
+            @keyup="checkSolution(row.model, row.solution)"
+            type="text"
+            name="{{ row.identifier }}"
+            class="typer__input typer--{{ $route.params.pageId }}-{{ $route.params.id }}"
+            maxlength="{{ row.solution.length }}"
           >
-            <input
-              v-if="row.textarea === undefined"
-              v-model="row.model"
-              @keyup="checkSolution(row.model, row.solution)"
-              type="text"
-              name="{{ row.identifier }}"
-              class="typer__input typer--{{ $route.params.pageId }}-{{ $route.params.id }}"
-              maxlength="{{ row.solution.length }}"
-            >
 
-            <textarea
-              v-if="row.textarea !== undefined"
-              v-model="row.model"
-              @keyup="checkSolution(row.model, row.solution)"
-              name="{{ row.identifier }}"
-              class="typer__input typer__textarea typer--{{ $route.params.pageId }}-{{ $route.params.id }}"
-              maxlength="{{ row.solution.length }}"
-              rows="{{ row.textareaRows }}"
-            ></textarea>
+          <textarea
+            v-if="row.textarea !== undefined"
+            v-model="row.model"
+            @keyup="checkSolution(row.model, row.solution)"
+            name="{{ row.identifier }}"
+            class="typer__input typer__textarea typer--{{ $route.params.pageId }}-{{ $route.params.id }}"
+            maxlength="{{ row.solution.length }}"
+            rows="{{ row.textareaRows }}"
+          ></textarea>
 
-            <span v-if="row.model.length === row.solution.length && row.model === row.solution" class="wb-checkmark"></span>
+          <span v-if="row.model.length === row.solution.length && row.model === row.solution" class="wb-checkmark"></span>
 
-            <span v-if="row.model.length === row.solution.length && row.model !== row.solution" class="wb-cancel"></span>
-          </div>
-        </form>
-      </div>
+          <span v-if="row.model.length === row.solution.length && row.model !== row.solution" class="wb-cancel"></span>
+        </div>
+      </form>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
+  var $ = require('jquery');
   var pages = require('../../pages.js');
+  var resizeMixin = require('vue-resize-mixin');
 
   export default {
     name: 'Typer',
+
+    mixins: [resizeMixin],
+
+    events: {
+      'resize': 'onResize'
+    },
 
     data: function() {
       return {
@@ -112,7 +118,28 @@
 
       closeExercise: function() {
         this.$dispatch('return-to-page', this.$route.params.pageId)
+      },
+
+      onResize: function() {
+        var scaled = $(".wrapper");
+        scaled.css({ 'height': '100%', 'width': '100%' });
+        var ratio = 79/100;
+        var w = scaled.outerWidth();
+        var h = scaled.outerHeight();
+
+        if (w > ratio*h) {
+          scaled.width(ratio*h);
+        } else if (h > w/ratio) {
+          var newHeight = w/ratio;
+          scaled.height(newHeight);
+          // for vertical centering
+          scaled.css({marginTop: ($("body").height()-newHeight)/2 - 20});
+        }
       }
+    },
+
+    ready: function() {
+      this.onResize()
     }
   }
 </script>

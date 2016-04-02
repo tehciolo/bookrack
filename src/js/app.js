@@ -1,4 +1,3 @@
-var $ = require('jquery');
 var Vue = require('vue');
 var VueRouter = require('vue-router');
 
@@ -74,3 +73,7 @@ router.map({
   }
 });
 router.start(App, '#app');
+
+router.afterEach(function (transition) {
+  //
+})

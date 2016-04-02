@@ -1,34 +1,39 @@
 .root {
   width: 100%;
   height: 100%;
+  padding: 20px 40px;
 }
 
 .wrapper {
-  background-color: map_get($ui-colors, secondary);
-  padding: 5px;
-  box-shadow: 0 5px 16px 5px rgba(50, 50, 50, 0.9);
   margin: auto;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 92%;
-  max-width: 700px;
-
-  &--duo {
-    max-width: 1400px;
-  }
-
+  height: 100%;
+  width: 100%;
+  position: relative;
+  // position: absolute;
+  // left: 50%;
+  // top: 50%;
+  // transform: translate(-50%, -50%);
+  // width: 92%;
+  // max-width: 700px;
+  //
+  // &--duo {
+  //   max-width: 1400px;
+  // }
+  //
   &--exercise {
-    max-width: 850px;
     text-align: center;
-    padding: 20px;
-    background-color: white;
   }
 }
 
 .book {
-  lost-utility: clearfix;
+  border: 5px solid map_get($ui-colors, secondary);
+  background-color: $white;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  lost-flex-container: row;
+
+  &--video {
+    lost-flex-container: column;
+  }
 }
 
 .static {
@@ -83,6 +88,10 @@
 .left-page,
 .right-page {
   lost-column: 1/2 2 0;
+
+  img {
+    display: block;
+  }
 }
 
 .left-page,
@@ -154,6 +163,10 @@
   }
 }
 
+.cover-page img {
+  display: block;
+}
+
 .single-page {
   background-color: white;
 
@@ -163,10 +176,22 @@
   }
 
   &--video {
-    padding: 1.5rem;
+    flex-grow: 1;
+    padding: 2rem;
 
     video {
       margin: 0 auto;
+    }
+  }
+
+  &--exercise {
+    position: relative;
+
+    h1 {
+      position: absolute;
+      top: 1.5rem;
+      right: 2.5rem;
+      left: 2.5rem;
     }
   }
 }

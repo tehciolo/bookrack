@@ -23,6 +23,11 @@
         if (position < this.allowed.length - 1) {return true} else {return false}
       },
 
+      isCover: function() {
+        if (this.$route.path === '/cover') return true
+        return false
+      },
+
       isDuo: function() {
         if (this.$route.params.duo) return true
         return false
