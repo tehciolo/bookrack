@@ -6,10 +6,18 @@
 </template>
 
 <script>
+  var $ = require('jquery');
   var pages = require('../pages.js');
+  var resizeMixin = require('vue-resize-mixin');
 
   export default {
     name: 'Book',
+
+    mixins: [resizeMixin],
+
+    events: {
+      'resize': 'onResize'
+    },
 
     computed: {
       left: function() {
@@ -29,6 +37,29 @@
       return {
         pages: pages()
       }
+    },
+
+    methods: {
+      onResize: function() {
+        var scaled = $(".wrapper");
+        scaled.css({ 'height': '100%', 'width': '100%' });
+        var ratio = 157/100;
+        var w = scaled.outerWidth();
+        var h = scaled.outerHeight();
+
+        if (w > ratio*h) {
+          scaled.width(ratio*h);
+        } else if (h > w/ratio) {
+          var newHeight = w/ratio;
+          scaled.height(newHeight);
+          // for vertical centering
+          scaled.css({marginTop: ($("body").height()-newHeight)/2 - 20});
+        }
+      }
+    },
+
+    ready: function() {
+      this.onResize()
     }
   }
 </script>

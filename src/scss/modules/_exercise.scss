@@ -1,40 +1,21 @@
 .exercise {
-  position: relative;
-  height: 0px;
-  width: 100%;
-  padding: 75% 0px 0px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 
   // for dev only! remove before release!
   @include element(row) {
     background-color: rgba($red-orange, .3)
   }
 
-  @include element(ratio) {
-    position: relative;
-    height: 0px;
-    width: 100%;
-    padding: 84.3% 0px 0px;
-  }
-
-  @include element(position) {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-  }
-
   @include element(controls) {
     height: 40px;
-    position: relative;
-  }
-
-  @include element(container) {
     position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    top: 5rem;
+    right: 2.5rem;
+    left: 2.5rem;
   }
 
   @include modifier(checker) {

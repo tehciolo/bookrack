@@ -10,7 +10,7 @@
   cursor: pointer;
   font-size: em(25px);
   text-align: center;
-  width: em(25px, 25px);
+  width: em(45px, 25px);
   display: inline-block;
   padding: em(10px, 25px);
   border-bottom-right-radius: $br--medium;
@@ -19,8 +19,6 @@
   position: absolute;
   left: 0;
   transition: left 0.5s ease-in-out;
-  border: 1px solid $white;
-  border-left: none;
 }
 
 #js--main-menu__toggle:checked + label {
@@ -33,9 +31,11 @@
 
 .main-menu {
   position: absolute;
+  top: 0;
   left: 0;
   width: 165px;
   z-index: 1;
+
 }
 
 .main-menu__content {
@@ -45,11 +45,11 @@
   position: relative;
   left: -165px;
   transition: left 0.5s ease-in-out;
-  border: 1px solid $white;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
 .page-buttons {
-  lost-utility: clearfix;
+  lost-flex-container: row;
   margin-bottom: em(20px);
   > div {
     lost-column: 1/2 0 0;

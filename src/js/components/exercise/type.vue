@@ -1,6 +1,6 @@
 <template>
-  <div class="exercise__ratio">
-    <div class="exercise__position">
+  <section class="book">
+    <div class="page{{ this.$route.params.pageId }} single-page single-page--exercise">
       <h1
         v-if="ex.title"
         v-text="ex.title"
@@ -31,39 +31,45 @@
         </template>
       </div>
 
-      <div class="exercise exercise--typer">
-        <img :src="'./img/' + ex.image + '.jpg'">
+      <img :src="'./img/' + ex.image + '.jpg'">
 
-        <form class="exercise__container">
-          <div
-            v-for="row in ex.data"
-            class="typer__wrapper"
-            :style="'top: ' + row.position.top + '; left: ' + row.position.left + '; width: ' + row.position.width + '; height: ' + row.position.height"
+      <form class="exercise exercise--typer">
+        <div
+          v-for="row in ex.data"
+          class="typer__wrapper"
+          :style="'top: ' + row.position.top + '; left: ' + row.position.left + '; width: ' + row.position.width + '; height: ' + row.position.height"
+        >
+          <input
+            v-model="row.model"
+            :class="['typer--' + $route.params.pageId + '-' + $route.params.id, {
+              correct: row.model.length == row.solution.length && row.model.toLowerCase() == row.solution,
+              incorrect: row.model.length == row.solution.length && row.model.toLowerCase() != row.solution
+            }]"
+            @keyup="checkSolution(row.model, row.solution)"
+            type="text"
+            name="{{ row.identifier }}"
+            class="typer__input"
+            maxlength="{{ row.solution.length }}"
           >
-            <input
-              v-model="row.model"
-              :class="['typer--' + $route.params.pageId + '-' + $route.params.id, {
-                correct: row.model.length == row.solution.length && row.model.toLowerCase() == row.solution,
-                incorrect: row.model.length == row.solution.length && row.model.toLowerCase() != row.solution
-              }]"
-              @keyup="checkSolution(row.model, row.solution)"
-              type="text"
-              name="{{ row.identifier }}"
-              class="typer__input"
-              maxlength="{{ row.solution.length }}"
-            >
-          </div>
-        </form>
-      </div>
+        </div>
+      </form>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
+  var $ = require('jquery');
   var pages = require('../../pages.js');
+  var resizeMixin = require('vue-resize-mixin');
 
   export default {
     name: 'Type',
+
+    mixins: [resizeMixin],
+
+    events: {
+      'resize': 'onResize'
+    },
 
     data: function() {
       return {
@@ -101,7 +107,28 @@
 
       closeExercise: function() {
         this.$dispatch('return-to-page', this.$route.params.pageId)
+      },
+
+      onResize: function() {
+        var scaled = $(".wrapper");
+        scaled.css({ 'height': '100%', 'width': '100%' });
+        var ratio = 79/100;
+        var w = scaled.outerWidth();
+        var h = scaled.outerHeight();
+
+        if (w > ratio*h) {
+          scaled.width(ratio*h);
+        } else if (h > w/ratio) {
+          var newHeight = w/ratio;
+          scaled.height(newHeight);
+          // for vertical centering
+          scaled.css({marginTop: ($("body").height()-newHeight)/2 - 20});
+        }
       }
+    },
+
+    ready: function() {
+      this.onResize()
     }
   }
 </script>
