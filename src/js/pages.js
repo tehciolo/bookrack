@@ -165,11 +165,75 @@ module.exports = function() {
         }
       ]
     },
+    '23': {
+      exercise: [
+        {
+          type: 'painter',
+          title: 'Titlu provizoriu (lipsa excel)',
+          image: 'pg23ex1',
+          trigger: {
+            button: {
+              top: '8%'
+            },
+            zone: {
+              top: '8%',
+              bottom: '4%'
+            }
+          },
+          help: {
+            toggle: false,
+            text: 'GHICESTE CE OBIECTE SUNT ASCUNSE IN PACHET SI DESENEAZA-LE IN CASUTA ALATURATA. Cand ai terminat apasa pe cheita si verifica. Succes!'
+          },
+          data: [
+            {
+              identifier: 'one',
+              position: {
+                top: '36.5%',
+                left: '59%',
+                width: '30%',
+                height: '13.5%'
+              },
+              solution: 'pg23ex1one'
+            },
+            {
+              identifier: 'two',
+              position: {
+                top: '51%',
+                left: '59%',
+                width: '30%',
+                height: '13.5%'
+              },
+              solution: 'pg23ex1two'
+            },
+            {
+              identifier: 'three',
+              position: {
+                top: '65.3%',
+                left: '59%',
+                width: '30%',
+                height: '13.5%'
+              },
+              solution: 'pg23ex1three'
+            },
+            {
+              identifier: 'four',
+              position: {
+                top: '79.8%',
+                left: '59%',
+                width: '30%',
+                height: '13.5%'
+              },
+              solution: 'pg23ex1four'
+            }
+          ]
+        }
+      ]
+    },
     '24': {
      exercise: [
        {
           type: 'linker',
-          title: 'Uniti cuvantul cu desenul corespunzator',          
+          title: 'Uniti cuvantul cu desenul corespunzator',
           trigger: {
             button: {
               top: '60%'
@@ -193,7 +257,7 @@ module.exports = function() {
                 width: '80px',
                 height: '80px'
               },
-              image: { 
+              image: {
                 src: 'ghiozdan.png',
                 width: '80',
                 height: '80'
@@ -201,7 +265,7 @@ module.exports = function() {
             }
           ]
        }
-     ] 
+     ]
     },
     '51': {
       exercise: [
