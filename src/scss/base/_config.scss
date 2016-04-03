@@ -23,6 +23,8 @@ $la-palma         : #1D9116;
 $razzmatazz       : #E60A78;
 $pizazz           : #FF9600;
 $mariner          : #2675DE;
+$stark-white      : #E9DDC6;
+$lynch            : #667D9C;
 
 
 // Color Palette Modifiers
@@ -44,8 +46,8 @@ $palettes: (
 
 // UI Colors
 $ui-colors: (
-  primary    : $mariner,
-  secondary  : $pizazz
+  primary    : $stark-white,
+  secondary  : $lynch
 );
 
 // Label Colors

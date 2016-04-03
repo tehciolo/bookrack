@@ -18,7 +18,7 @@ body {
   line-height: ($base__line/$base__font-size);
   font-family: $font-family--primary;
   position: relative;
-  background-color: map-get($ui-colors, primary);;
+  background-image: url(../img/school.png);
   color: $log-cabin;
 }
 

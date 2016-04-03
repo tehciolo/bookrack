@@ -19,7 +19,7 @@
   .reset {
     position: absolute;
     font-size: 1rem;
-    color: #FF9600;
+    color: #667D9C;
   }
 
   .solve {
