@@ -169,7 +169,7 @@ module.exports = function() {
      exercise: [
        {
           type: 'linker',
-          title: 'Uniti cuvantul cu desenul corespunzator',          
+          title: 'Uniti cuvantul cu desenul corespunzator',
           trigger: {
             button: {
               top: '60%'
@@ -185,23 +185,215 @@ module.exports = function() {
           },
           data: [
             {
-              identifier: 'one',
+              identifier: 'ghiozdan',
+              itemLabel: 'Ghiozdan',
               model: '',
               position: {
-                top: '28%',
-                left: '20%',
-                width: '80px',
-                height: '80px'
+                top: '7%',
+                left: '12%',
+                width: '12%',
+                height: 'auto'
               },
-              image: { 
-                src: 'ghiozdan.png',
-                width: '80',
-                height: '80'
+              image: {
+                src: 'ghiozdan.png'
+              },
+              solution: 'portocaliu',
+              sourceAnchors: [],
+              targetAnchors: ["RightMiddle"]
+            },
+            {
+              identifier: 'creion-de-ceara',
+              itemLabel: 'Creion de ceara',
+              model: '',
+              position: {
+                top: '32%',
+                left: '12%',
+                width: '12%',
+                height: 'auto'
+              },
+              image: {
+                src: 'creion-ceara.png'
+              },
+              solution: 'portocaliu',
+              sourceAnchors: [],
+              targetAnchors: ["RightMiddle"]
+            },
+            {
+              identifier: 'guma-de-sters',
+              itemLabel: 'Guma de sters',
+              model: '',
+              position: {
+                top: '70%',
+                left: '12%',
+                width: '12%',
+                height: 'auto'
+              },
+              image: {
+                src: 'guma-sters.png'
+              },
+              sourceAnchors: [],
+              targetAnchors: ["RightMiddle"],
+              solution: 'portocaliu',
+              solutionImg: {
+                src: 'guma-sters-colorata.png'
               }
+            },
+            {
+              identifier: 'portocaliu',
+              itemLabel: 'Portocaliu',
+              model: '',
+              position: {
+                top: '14%',
+                left: '42%',
+                width: '14%',
+                height: 'auto'
+              },
+              image: {
+                src: 'portocaliu.png'
+              },
+              sourceAnchors: ["LeftMiddle", "RightMiddle"],
+              targetAnchors: [],
+              color: '#fdb813'
+            },
+            {
+              identifier: 'roz',
+              itemLabel: 'Roz',
+              model: '',
+              position: {
+                top: '26%',
+                left: '42%',
+                width: '14%',
+                height: 'auto'
+              },
+              image: {
+                src: 'roz.png'
+              },
+              sourceAnchors: ["LeftMiddle", "RightMiddle"],
+              targetAnchors: [],
+              color: '#f8cbdf'
+            },
+            {
+              identifier: 'verde',
+              itemLabel: 'Verde',
+              model: '',
+              position: {
+                top: '38%',
+                left: '42%',
+                width: '14%',
+                height: 'auto'
+              },
+              image: {
+                src: 'verde.png'
+              },
+              sourceAnchors: ["LeftMiddle", "RightMiddle"],
+              targetAnchors: [],
+              color: '#bfd630'
+            },
+            {
+              identifier: 'albastru',
+              itemLabel: 'Albastru',
+              model: '',
+              position: {
+                top: '50%',
+                left: '42%',
+                width: '14%',
+                height: 'auto'
+              },
+              image: {
+                src: 'albastru.png'
+              },
+              sourceAnchors: ["LeftMiddle", "RightMiddle"],
+              targetAnchors: [],
+              color: '#D2EEFD'
+            },
+            {
+              identifier: 'galben',
+              itemLabel: 'Galben',
+              model: '',
+              position: {
+                top: '62%',
+                left: '42%',
+                width: '14%',
+                height: 'auto'
+              },
+              image: {
+                src: 'galben.png'
+              },
+              sourceAnchors: ["LeftMiddle", "RightMiddle"],
+              targetAnchors: [],
+              color: '#fedc00'
+            },
+            {
+              identifier: 'rosu',
+              itemLabel: 'Rosu',
+              model: '',
+              position: {
+                top: '74%',
+                left: '42%',
+                width: '14%',
+                height: 'auto'
+              },
+              image: {
+                src: 'rosu.png'
+              },
+              sourceAnchors: ["LeftMiddle", "RightMiddle"],
+              targetAnchors: [],
+              color: '#f9bfbe'
+            },
+            {
+              identifier: 'creion',
+              itemLabel: 'Creion',
+              model: '',
+              position: {
+                top: '4%',
+                left: '74%',
+                width: '12%',
+                height: 'auto'
+              },
+              image: {
+                src: 'creion.png'
+              },
+              solution: 'portocaliu',
+              sourceAnchors: [],
+              targetAnchors: ["LeftMiddle"]
+            },
+            {
+              identifier: 'pix',
+              itemLabel: 'Pix',
+              model: '',
+              position: {
+                top: '46%',
+                left: '74%',
+                width: '12%',
+                height: 'auto'
+              },
+              image: {
+                src: 'pix.png'
+              },
+              solution: 'portocaliu',
+              sourceAnchors: [],
+              targetAnchors: ["LeftMiddle"]
+            },
+            {
+              identifier: 'penar',
+              itemLabel: 'Penar',
+              model: '',
+              position: {
+                top: '76%',
+                left: '74%',
+                width: '12%',
+                height: 'auto'
+              },
+              image: {
+                src: 'penar.png'
+              },
+              solution: 'portocaliu',
+              sourceAnchors: [],
+              targetAnchors: ["LeftMiddle"]
             }
           ]
        }
-     ] 
+     ]
     },
     '51': {
       exercise: [

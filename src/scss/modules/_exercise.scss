@@ -412,7 +412,23 @@
     top: -20px;
 }
 
+.empty-box-10 {
+  height: 10px;
+}
+button.button[disabled],
+button.button[disabled]:hover {
+  color: #ccc;
+  background-color: #fff;
+  border-color: #ccc;
+}
+
 /* linker */
+.linker-main, .linker-stage {
+  height: 100%;
+}
+.linker-stage {
+  position: relative;
+}
 .linker-stage .window {
     border: 1px solid #346789;
     box-shadow: 2px 2px 19px #aaa;
@@ -424,13 +440,13 @@
     opacity: 0.8;
     width: 80px;
     height: 80px;
-    line-height: 80px;
+    // line-height: 80px;
     cursor: pointer;
     text-align: center;
     z-index: 20;
     position: absolute;
     background-color: #eeeeef;
-    color: black;    
+    color: black;
     padding: 0.5em;
     font-size: 0.9em;
     -webkit-transition: -webkit-box-shadow 0.15s ease-in;
@@ -458,7 +474,8 @@
 .linker-stage .jsplumb-connector {
     z-index: 4;
 }
-.linker-stage .jsplumb-endpoint, .endpointTargetLabel, .endpointSourceLabel {
+.linker-stage .jsplumb-endpoint,
+.endpointTargetLabel, .endpointSourceLabel {
     z-index: 21;
     cursor: pointer;
 }
@@ -493,7 +510,7 @@ path, .jsplumb-endpoint {
   -webkit-user-select: none;  /* Chrome all / Safari all */
   -moz-user-select: none;     /* Firefox all */
   -ms-user-select: none;      /* IE 10+ */
-  user-select: none;          /* Likely future */      
+  user-select: none;          /* Likely future */
 }
 
 /* dnd */
