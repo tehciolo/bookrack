@@ -1,60 +1,92 @@
 <template>
-  <h1
-    v-if="ex.title"
-    v-text="ex.title"
-    class="remodal__title"
-  ></h1>
-  <div class="empty-box-10"></div>
-  <div class="exercise exercise--linker">
-    <img v-if="ex.image"
-         :src="'./img/' + ex.image + '.jpg'">
+  <section class="book book--exercise">
+    <div class="page{{ this.$route.params.pageId }} single-page single-page--exercise">
+      <h1
+        v-if="ex.title"
+        v-text="ex.title"
+        class="remodal__title"
+      ></h1>
 
-    <form class="exercise__container">
-      <button class="button button--solve button--scale" type="button">
-        <span class="wb-solve"></span>
-      </button>
+      <div class="exercise__controls">
+        <button
+          @click="closeExercise"
+          class="button button--close button--scale"
+        >
+          <span class="wb-cancel">
+        </button>
 
-      <button class="button button--reset button--scale" type="reset">
-        <span class="wb-reset"></span>
-      </button>
+        <button class="button button--solve button--scale" type="button" @click="solveCheck">
+          <span class="wb-solve"></span>
+        </button>
 
-      <template v-if="ex.audio">
-        <custom-audio :audio="ex.audio"></custom-audio>
-      </template>
+        <button class="button button--reset button--scale" type="reset" @click="resetForm">
+          <span class="wb-reset"></span>
+        </button>
 
-      <template v-if="ex.help">
-        <exercise-help :help="ex.help"></exercise-help>
-      </template>
+        <button
+          @click="initJsPlumbExercise"
+          v-text="'Start'"
+          v-el:start-button
+          class="button button--reversed button--large"
+        >
+        </button>
 
-      <button
-        @click="initJsPlumbExercise"
-        v-text="'Start'"
-        v-el:start-button
-        class="button button--reversed button--large"
-      >
-      </button>
+        <template v-if="ex.audio">
+          <custom-audio :audio="ex.audio"></custom-audio>
+        </template>
 
-      <div class="linker-main">
-        <div class="canvas-wide linker-stage" id="canvas">
-          <div v-for="row in ex.data"
-               :style="'top: ' + row.position.top + ';
-               left: ' + row.position.left + '; width: ' + row.position.width + ';
-               height: ' + row.position.height"
-               class="window unselectable"
-               id="{{ row.identifier }}">
-              <img :src="'./img/' + row.image.src"
-                   width="{{ row.image.width }}"
-                   height="{{ row.image.height }}" />
+        <template v-if="ex.help">
+          <exercise-help :help="ex.help"></exercise-help>
+        </template>
+      </div>
+
+      <img :src="'./img/' + ex.image + '.jpg'">
+
+      <form class="exercise exercise--linker">
+        <div class="linker-main">
+          <div class="canvas-wide linker-stage" id="canvas">
+            <div v-for="row in ex.data"
+                 :style="'top: ' + row.position.top + ';
+                 left: ' + row.position.left + '; width: ' + row.position.width + ';
+                 height: ' + row.position.height"
+                 class="window unselectable"
+                 id="{{ row.identifier }}">
+                <img :src="'./img/' + row.image.src"
+                     width="{{ row.image.width }}"
+                     height="{{ row.image.height }}" />
+            </div>
           </div>
         </div>
-      </div>
-    </form>
-  </div>
+      </form>
+    </div>
+  </section>
 </template>
 
 <script>
+  var $ = require('jquery');
+  var pages = require('../../pages.js');
+  var resizeMixin = require('vue-resize-mixin');
+
   export default {
-    props: ['ex', 'pageId', 'index'],
+    name: 'Linker',
+
+    mixins: [resizeMixin],
+
+    events: {
+      'resize': 'onResize'
+    },
+
+    data: function() {
+      return {
+        pages: pages()
+      }
+    },
+
+    computed: {
+      ex: function() {
+        return this.pages[this.$route.params.pageId].exercise[this.$route.params.id]
+      }
+    },
 
     methods: {
       solutionTrue: function() {
@@ -66,14 +98,31 @@
       },
 
       solveCheck: function() {
-        for (var i = 0; i < this.ex.data.length; i++) {
-          this.ex.data[i].model = 'true';
-        }
+
       },
 
       resetForm: function() {
-        for (var i = 0; i < this.ex.data.length; i++) {
-          this.ex.data[i].model = ''
+
+      },
+
+      closeExercise: function() {
+        this.$dispatch('return-to-page', this.$route.params.pageId)
+      },
+
+      onResize: function() {
+        var scaled = $(".wrapper");
+        scaled.css({ 'height': '100%', 'width': '100%' });
+        var ratio = 79/100;
+        var w = scaled.outerWidth();
+        var h = scaled.outerHeight();
+
+        if (w > ratio*h) {
+          scaled.width(ratio*h);
+        } else if (h > w/ratio) {
+          var newHeight = w/ratio;
+          scaled.height(newHeight);
+          // for vertical centering
+          scaled.css({marginTop: ($("body").height()-newHeight)/2 - 20});
         }
       },
 
