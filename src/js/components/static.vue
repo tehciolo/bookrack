@@ -1,6 +1,6 @@
 <template>
-  <section class="book">
-    <div class="page{{ this.$route.params.pageId }} single-page">
+  <section class="book book--static">
+    <div class="page{{ this.$route.params.pageId }} single-page single-page--static">
       <button
         @click="closeStatic"
         class="button button--close button--scale"

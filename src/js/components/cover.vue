@@ -1,5 +1,5 @@
 <template>
-  <section class="book">
+  <section class="book book--cover">
     <div class="cover-page">
       <a v-link="{ path: start }">
         <img :src="'./img/cover.jpg'">

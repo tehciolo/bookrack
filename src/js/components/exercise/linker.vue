@@ -1,5 +1,5 @@
 <template>
-  <div class="exercise__ratio">
+  <div class="exercise__ratio book--exercise">
     <div class="exercise__position">
       <h1
         v-if="ex.title"

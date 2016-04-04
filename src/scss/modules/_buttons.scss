@@ -68,7 +68,7 @@
   }
   @include modifier(close) {
     font-size: em(30px);
-    color: map_get($ui-colors, primary);
+    color: map_get($ui-colors, secondary);
     position: absolute;
     z-index: 1;
     top: .5rem;

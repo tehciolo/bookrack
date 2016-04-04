@@ -1,5 +1,5 @@
 <template>
-  <section class="book">
+  <section class="book book--exercise">
     <div class="page{{ this.$route.params.pageId }} single-page single-page--exercise">
       <h1
         v-if="ex.title"

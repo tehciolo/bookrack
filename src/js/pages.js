@@ -1,5 +1,43 @@
 module.exports = function() {
   return {
+    '05': {
+      video: [
+        {
+          video: {
+            // change me
+            source: 'test'
+          },
+          trigger: {
+            button: {
+              top: '18%'
+            },
+            zone: {
+              top: '18%',
+              bottom: '2%'
+            }
+          }
+        }
+      ]
+    },
+    '06': {
+      video: [
+        {
+          video: {
+            // change me
+            source: 'test'
+          },
+          trigger: {
+            button: {
+              top: '10%'
+            },
+            zone: {
+              top: '10%',
+              bottom: '7%'
+            }
+          }
+        }
+      ]
+    },
     '07': {
       static: [
         {
@@ -15,6 +53,57 @@ module.exports = function() {
             zone: {
               top: '12%',
               bottom: '48%'
+            }
+          }
+        }
+      ],
+      video: [
+        {
+          video: {
+            // change me
+            source: 'test'
+          },
+          trigger: {
+            button: {
+              top: '52%'
+            },
+            zone: {
+              top: '52%',
+              bottom: '6%'
+            }
+          }
+        }
+      ]
+    },
+    '09': {
+      video: [
+        {
+          video: {
+            // change me
+            source: 'test'
+          },
+          trigger: {
+            button: {
+              top: '11%'
+            },
+            zone: {
+              top: '11%',
+              bottom: '41.5%'
+            }
+          }
+        },
+        {
+          video: {
+            // change me
+            source: 'test'
+          },
+          trigger: {
+            button: {
+              top: '58.5%'
+            },
+            zone: {
+              top: '58.5%',
+              bottom: '4%'
             }
           }
         }
@@ -35,6 +124,23 @@ module.exports = function() {
             zone: {
               top: '82%',
               bottom: '4%'
+            }
+          }
+        }
+      ],
+      video: [
+        {
+          video: {
+            // change me
+            source: 'test'
+          },
+          trigger: {
+            button: {
+              top: '8%'
+            },
+            zone: {
+              top: '8%',
+              bottom: '18%'
             }
           }
         }
@@ -132,6 +238,81 @@ module.exports = function() {
         }
       ]
     },
+    '12': {
+      static: [
+        {
+          image: 'pg12ichbin',
+          audio: {
+            source: 'fundal1',
+            state: 'stopped'
+          },
+          trigger: {
+            button: {
+              top: '81%'
+            },
+            zone: {
+              top: '81%',
+              bottom: '4%'
+            }
+          }
+        }
+      ],
+      video: [
+        {
+          video: {
+            // change me
+            source: 'test'
+          },
+          trigger: {
+            button: {
+              top: '7%'
+            },
+            zone: {
+              top: '7%',
+              bottom: '19%'
+            }
+          }
+        }
+      ]
+    },
+    '13': {
+      video: [
+        {
+          video: {
+            // change me
+            source: 'test'
+          },
+          trigger: {
+            button: {
+              top: '22%'
+            },
+            zone: {
+              top: '22%',
+              bottom: '9%'
+            }
+          }
+        }
+      ]
+    },
+    '14': {
+      video: [
+        {
+          video: {
+            // change me
+            source: 'test'
+          },
+          trigger: {
+            button: {
+              top: '8%'
+            },
+            zone: {
+              top: '8%',
+              bottom: '46%'
+            }
+          }
+        }
+      ]
+    },
     '15': {
       static: [
         {
@@ -142,24 +323,297 @@ module.exports = function() {
           },
           trigger: {
             button: {
-              top: '10%'
+              top: '35%'
             },
             zone: {
-              top: '10%',
-              bottom: '50%',
-              width: '40%'
+              top: '35%',
+              bottom: '59%'
+            }
+          }
+        },
+        {
+          image: 'pg15static1',
+          audio: {
+            source: 'fundal1',
+            state: 'stopped'
+          },
+          trigger: {
+            button: {
+              top: '81%'
+            },
+            zone: {
+              top: '81%',
+              bottom: '13%'
             }
           }
         },
         {
           image: 'pg15static2',
+          audio: {
+            source: 'fundal1',
+            state: 'stopped'
+          },
           trigger: {
             button: {
-              top: '40%'
+              top: '44%'
             },
             zone: {
-              top: '60%',
-              bottom: '10%'
+              top: '44%',
+              bottom: '31%'
+            }
+          }
+        },
+        {
+          image: 'pg15static2',
+          audio: {
+            source: 'fundal1',
+            state: 'stopped'
+          },
+          trigger: {
+            button: {
+              top: '89%'
+            },
+            zone: {
+              top: '89%',
+              bottom: '4%'
+            }
+          }
+        },
+        {
+          image: 'pg15static3',
+          audio: {
+            source: 'fundal1',
+            state: 'stopped'
+          },
+          trigger: {
+            button: {
+              top: '71%'
+            },
+            zone: {
+              top: '71%',
+              bottom: '22%'
+            }
+          }
+        }
+      ]
+    },
+    '16': {
+      static: [
+        {
+          image: 'pg16static1',
+          audio: {
+            source: 'fundal1',
+            state: 'stopped'
+          },
+          trigger: {
+            button: {
+              top: '7%'
+            },
+            zone: {
+              top: '7%',
+              bottom: '52%'
+            }
+          }
+        },
+        {
+          image: 'pg16static2',
+          audio: {
+            source: 'fundal1',
+            state: 'stopped'
+          },
+          trigger: {
+            button: {
+              top: '51%'
+            },
+            zone: {
+              top: '51%',
+              bottom: '26%'
+            }
+          }
+        },
+        {
+          image: 'pg16static3',
+          audio: {
+            source: 'fundal1',
+            state: 'stopped'
+          },
+          trigger: {
+            button: {
+              top: '76%'
+            },
+            zone: {
+              top: '76%',
+              bottom: '4%'
+            }
+          }
+        }
+      ]
+    },
+    '17': {
+      video: [
+        {
+          video: {
+            // change me
+            source: 'test'
+          },
+          trigger: {
+            button: {
+              top: '17%'
+            },
+            zone: {
+              top: '17%',
+              bottom: '6%'
+            }
+          }
+        }
+      ]
+    },
+    '18': {
+      video: [
+        {
+          video: {
+            // change me
+            source: 'test'
+          },
+          trigger: {
+            button: {
+              top: '9%'
+            },
+            zone: {
+              top: '9%',
+              bottom: '6%'
+            }
+          }
+        }
+      ]
+    },
+    '20': {
+      video: [
+        {
+          video: {
+            // change me
+            source: 'test'
+          },
+          trigger: {
+            button: {
+              top: '12%'
+            },
+            zone: {
+              top: '12%',
+              bottom: '6%'
+            }
+          }
+        }
+      ]
+    },
+    '21': {
+      static: [
+        {
+          image: 'pg21static2',
+          audio: {
+            source: 'pg21ex6',
+            state: 'stopped'
+          },
+          trigger: {
+            button: {
+              top: '57%'
+            },
+            zone: {
+              top: '57%',
+              bottom: '35%',
+              left: '23%',
+              width: '21%'
+            }
+          }
+        },
+        {
+          image: 'pg21static4',
+          audio: {
+            source: 'pg21ex6',
+            state: 'stopped'
+          },
+          trigger: {
+            button: {
+              top: '66%'
+            },
+            zone: {
+              top: '66%',
+              bottom: '28%',
+              left: '21%',
+              width: '9%'
+            }
+          }
+        },
+        {
+          image: 'pg21static1',
+          audio: {
+            source: 'pg21ex6',
+            state: 'stopped'
+          },
+          trigger: {
+            button: {
+              top: '76%'
+            },
+            zone: {
+              top: '66%',
+              bottom: '12%',
+              left: '30%',
+              width: '23%'
+            }
+          }
+        },
+        {
+          image: 'pg21static3',
+          audio: {
+            source: 'pg21ex6',
+            state: 'stopped'
+          },
+          trigger: {
+            button: {
+              top: '86%'
+            },
+            zone: {
+              top: '72%',
+              bottom: '8%',
+              left: '19%',
+              width: '10%'
+            }
+          }
+        }
+      ],
+      video: [
+        {
+          video: {
+            // change me
+            source: 'test'
+          },
+          trigger: {
+            button: {
+              top: '9%'
+            },
+            zone: {
+              top: '9%',
+              bottom: '54%'
+            }
+          }
+        }
+      ]
+    },
+    '22': {
+      static: [
+        {
+          image: 'pg22ex7',
+          audio: {
+            source: 'fundal1',
+            state: 'stopped'
+          },
+          trigger: {
+            button: {
+              top: '9%'
+            },
+            zone: {
+              top: '9%',
+              bottom: '9%',
             }
           }
         }
