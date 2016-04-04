@@ -1,13 +1,12 @@
 <template>
   <div class="page{{ id }} {{ type }}-page">
-    <img v-bind:src="'./img/' + id + '.jpg'">
+    <img :src="'./img/' + id + '.jpg'">
 
     <div class="{{ type }}-page__content">
       <template v-if="hasStatic">
         <a
           v-for="item in data.static"
-          data-remodal-target="modal-static--{{ $index }}"
-          @click="openModalStatic($index)"
+          v-link="{ path: '/' + id + '/static/' + $index }"
         >
           <button :style="'top: ' + item.trigger.button.top" class="button button--scale button--animated button--trigger" type="button"><span class="wb-static"></span></button>
 
@@ -21,7 +20,7 @@
       <template v-if="hasVideo">
         <a
           v-for="item in data.video"
-          data-remodal-target="modal-video--{{ $index }}"
+          v-link="{ path: '/' + id + '/video/' + $index }"
         >
           <button :style="'top: ' + item.trigger.button.top" class="button button--scale button--animated button--trigger" type="button"><span class="wb-audio"></span></button>
 
@@ -35,8 +34,7 @@
       <template v-if="hasExercise">
         <a
           v-for="item in data.exercise"
-          data-remodal-target="modal-exercise--{{ $index }}"
-          @click="openModalExercise($index)"
+          v-link="{ path: '/' + id + '/exercise/' + $index + '/' + item.type }"
         >
           <button :style="'top: ' + item.trigger.button.top" class="button button--scale button--animated button--trigger" type="button"><span class="wb-ex"></span></button>
 
@@ -47,36 +45,6 @@
         </a>
       </template>
     </div>
-
-    <template v-if="hasStatic">
-      <template v-for="item in data.static">
-        <modal-static
-          :index="$index"
-          :item="item"
-          :page-id="id"
-        ></modal-static>
-      </template>
-    </template>
-
-    <template v-if="hasVideo">
-      <template v-for="item in data.video">
-        <modal-video
-          :index="$index"
-          :item="item"
-          :page-id="id"
-        ></modal-video>
-      </template>
-    </template>
-
-    <template v-if="hasExercise">
-      <template v-for="item in data.exercise">
-        <modal-exercise
-          :index="$index"
-          :item="item"
-          :page-id="id"
-        ></modal-exercise>
-      </template>
-    </template>
   </div>
 </template>
 
@@ -102,15 +70,6 @@
           if ('exercise' in this.data) {return true}
         }
         return false
-      }
-    },
-
-    methods: {
-      openModalStatic: function(index) {
-        this.$broadcast('open-modal-static', index)
-      },
-      openModalExercise: function(index) {
-        this.$broadcast('open-modal-exercise', index)
       }
     }
   }

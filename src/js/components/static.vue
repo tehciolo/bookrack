@@ -1,7 +1,23 @@
 <template>
-  <section class="book">
-    <page type="left" :id="left" :data="pages[left]"></page>
-    <page type="right" :id="right" :data="pages[right]"></page>
+  <section class="book book--static">
+    <div class="page{{ this.$route.params.pageId }} single-page single-page--static">
+      <button
+        @click="closeStatic"
+        class="button button--close button--scale"
+      >
+        <span class="wb-cancel">
+      </button>
+
+      <img :src="'./img/' + item.image + '.jpg'">
+
+      <audio
+        :src="'./audio/' + item.audio.source + '.mp3'"
+        v-el:player
+        class="remodal__audio"
+        loop
+        preload
+      ></audio>
+    </div>
   </section>
 </template>
 
@@ -11,26 +27,12 @@
   var resizeMixin = require('vue-resize-mixin');
 
   export default {
-    name: 'Book',
+    name: 'StaticRoute',
 
     mixins: [resizeMixin],
 
     events: {
       'resize': 'onResize'
-    },
-
-    computed: {
-      left: function() {
-        var playdoh = this.$route.params.duo;
-        playdoh = playdoh.split('-');
-        return playdoh[0];
-      },
-
-      right: function() {
-        var playdoh = this.$route.params.duo;
-        playdoh = playdoh.split('-');
-        return playdoh[1];
-      }
     },
 
     data: function() {
@@ -39,11 +41,23 @@
       }
     },
 
+    computed: {
+      item: function() {
+        return this.pages[this.$route.params.pageId].static[this.$route.params.id]
+      }
+    },
+
     methods: {
+      closeStatic: function() {
+        this.$els.player.pause()
+        this.$els.player.load()
+        this.$dispatch('return-to-page', this.$route.params.pageId)
+      },
+
       onResize: function() {
         var scaled = $(".wrapper");
         scaled.css({ 'height': '100%', 'width': '100%' });
-        var ratio = 157/100;
+        var ratio = 100/100;
         var w = scaled.outerWidth();
         var h = scaled.outerHeight();
 
@@ -60,6 +74,7 @@
 
     ready: function() {
       this.onResize()
+      this.$els.player.play()
     }
   }
 </script>

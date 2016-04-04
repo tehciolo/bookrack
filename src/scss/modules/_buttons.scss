@@ -66,6 +66,22 @@
     font-size: em(30px);
     color: $white;
   }
+  @include modifier(close) {
+    font-size: em(30px);
+    color: map_get($ui-colors, secondary);
+    position: absolute;
+    z-index: 1;
+    top: .5rem;
+    right: .5rem;
+    .wrapper--exercise & {
+      top: -4.7rem;
+      right: -2.2rem;
+    }
+
+    .wb-cancel:before {
+      color: inherit;
+    }
+  }
   @include modifier(scale) {
     transition: transform 0.2s ease-in-out;
     &:focus,

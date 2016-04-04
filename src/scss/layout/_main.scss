@@ -1,27 +1,59 @@
 .root {
   width: 100%;
   height: 100%;
+  padding: 20px 40px;
 }
 
 .wrapper {
-  background-color: map_get($ui-colors, secondary);
-  padding: 5px;
-  box-shadow: 0 5px 16px 5px rgba(50, 50, 50, 0.9);
   margin: auto;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 92%;
-  max-width: 1400px;
-
-  &--cover {
-    max-width: 700px;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  // position: absolute;
+  // left: 50%;
+  // top: 50%;
+  // transform: translate(-50%, -50%);
+  // width: 92%;
+  // max-width: 700px;
+  //
+  // &--duo {
+  //   max-width: 1400px;
+  // }
+  //
+  &--exercise {
+    text-align: center;
   }
 }
 
 .book {
-  lost-utility: clearfix;
+  border: 5px solid map_get($ui-colors, secondary);
+  background-color: $white;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  lost-flex-container: row;
+
+  &--video,
+  &--help {
+    lost-flex-container: column;
+  }
+
+  &--help {
+    height: 100%;
+    font-size: 130%;
+    line-height: 2;
+    p {
+      line-height: 1.3;
+    }
+
+    @media (min-width: 1367px) {
+      font-size: 140%;
+    }
+  }
+
+  &--cover,
+  &--exercise,
+  &--static {
+    lost-flex-container: column;
+  }
 }
 
 .static {
@@ -39,7 +71,7 @@
   @include element(heading) {
     text-align: center;
     line-height: 1;
-    padding-bottom: 1em;
+    padding-bottom: 1rem;
   }
   @include element(chapters) {
     margin: 0;
@@ -76,11 +108,16 @@
 .left-page,
 .right-page {
   lost-column: 1/2 2 0;
+
+  img {
+    display: block;
+  }
 }
 
 .left-page,
 .right-page {
   position: relative;
+
   @include element(content) {
     position: absolute;
     top: 0;
@@ -116,7 +153,9 @@
     top: 14%;
     border-radius: 10px;
     background: transparent;
+    background: map_get($ui-colors, secondary); // remove me
     opacity: 0;
+    opacity: 0.2; // remove me
     &:hover {
       background: map_get($ui-colors, secondary);
       opacity: 0.1;
@@ -138,12 +177,61 @@
     top: 14%;
     border-radius: 10px;
     background: transparent;
+    background: map_get($ui-colors, secondary); // remove me
     opacity: 0;
+    opacity: 0.2; // remove me
     &:hover {
       background: map_get($ui-colors, secondary);
       opacity: 0.1;
       transition: background 0.5s ease-in-out;
     }
+  }
+}
+
+.cover-page {
+  lost-row: 1/1 0;
+
+  img {
+    display: block;
+  }
+}
+
+.single-page {
+  background-color: white;
+
+  img,
+  video {
+    display: block;
+  }
+
+  &--video {
+    flex-grow: 1;
+    padding: 2rem;
+
+    video {
+      margin: 0 auto;
+    }
+  }
+
+  &--help {
+    flex-grow: 1;
+    padding: 2rem;
+  }
+
+  &--exercise {
+    position: relative;
+    lost-row: 1/1 0;
+
+    h1 {
+      position: absolute;
+      top: 1.5rem;
+      right: 2.5rem;
+      left: 2.5rem;
+    }
+  }
+
+  &--static {
+    lost-row: 1/1 0;
   }
 }
 
