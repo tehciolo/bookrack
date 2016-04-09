@@ -1,11 +1,12 @@
 @import "base/normalize";
-@import "base/config";
+@import "../../../data/config";
 @import "base/utilities";
 @import "base/base";
 @import "base/typography";
 
 @import "modules/buttons";
 @import "modules/exercise";
+@import "../../../data/exercises";
 @import "modules/help";
 @import "modules/labels";
 @import "modules/main-menu";

@@ -233,46 +233,8 @@
     }
   }
 
-  &--41-0 {
-    font-size: 18px;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-  }
-
-  &--52-0 {
-    width: 80%;
-    // background-color: rgba($red-orange, .3);
-    font-size: 2rem;
-    letter-spacing: 20px;
-  }
-
-  &--52-1 {
-    font-size: 18px;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-  }
-
   @include modifier(25) {
     width: 70%;
-  }
-}
-
-.checker {
-  &--11-0 {
-    & + .labelChecker__answer {
-      width: 12%;
-      height: 40%;
-    }
-  }
-}
-
-.picker {
-  &--51-0 {
-    & + .labelPicker__answer {
-      width: 19%;
-    }
   }
 }
 
