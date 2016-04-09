@@ -1,12 +1,12 @@
 @import "base/normalize";
-@import "../../../data/config";
+@import "../../../data/config"; // Pertains to specific book
 @import "base/utilities";
 @import "base/base";
 @import "base/typography";
 
 @import "modules/buttons";
 @import "modules/exercise";
-@import "../../../data/exercises";
+@import "../../../data/exercises"; // Pertains to specific book
 @import "modules/help";
 @import "modules/labels";
 @import "modules/main-menu";
