@@ -27,22 +27,22 @@ var src = {
   js: ['src/js/*.js', 'src/js/components/**/*.vue'],
   jsApp: 'src/js/app.js',
   jsVendor: 'src/js/vendor/*.js',
-  img: 'src/img/**/*.{png,jpg,jpeg}',
-  audio: 'src/audio/*.*',
-  video: 'src/video/*.*',
+  img: '../media/img/**/*.{png,jpg,jpeg}',
+  audio: '../media/audio/*.*',
+  video: '../media/video/*.*',
   font: 'src/font/**.*',
   html: 'src/*.html',
   partials: 'src/partials/*.html'
 };
 
 var dist = {
-  css: 'dist/css',
-  js: 'dist/js',
-  img: 'dist/img',
-  audio: 'dist/audio',
-  video: 'dist/video',
-  font: 'dist/font',
-  html: 'dist'
+  css: '../../dist/css',
+  js: '../../dist/js',
+  img: '../../dist/img',
+  audio: '../../dist/audio',
+  video: '../../dist/video',
+  font: '../../dist/font',
+  html: '../../dist'
 };
 
 // Compile sass into CSS
@@ -151,7 +151,7 @@ gulp.task('clean', function () {
 gulp.task('serve', ['build', 'images', 'audio', 'video', 'fonts', 'scss', 'vendor', 'browserify'], function() {
 
   browserSync.init({
-    server: "./dist"
+    server: "../../dist"
   });
 
   gulp.watch(src.scss, ['scss']);
