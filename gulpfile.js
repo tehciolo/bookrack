@@ -24,7 +24,8 @@ var onError = notify.onError({
 
 var src = {
   scss: 'src/scss/**/*.scss',
-  js: ['src/js/*.js', 'src/js/components/**/*.vue'],
+  scssExternal: '../data/*.scss',
+  js: ['src/js/*.js', 'src/js/components/**/*.vue', '../data/*.js'],
   jsApp: 'src/js/app.js',
   jsVendor: 'src/js/vendor/*.js',
   img: '../media/img/**/*.{png,jpg,jpeg}',
@@ -154,7 +155,7 @@ gulp.task('serve', ['build', 'images', 'audio', 'video', 'fonts', 'scss', 'vendo
     server: "../../dist"
   });
 
-  gulp.watch(src.scss, ['scss']);
+  gulp.watch([src.scss, src.scssExternal], ['scss']);
   gulp.watch(src.js, ['rescript']);
   gulp.watch(src.img, ['images']);
   gulp.watch([src.partials, src.html], ['rebuild']);
