@@ -34,7 +34,7 @@
 </template>
 
 <script>
-  var siteData = require('../siteData.js');
+  var siteData = require('../../../../data/siteData.js');
 
   export default {
     props: ['canGoBack', 'canGoForward', 'minPage', 'maxPage'],

@@ -19,7 +19,7 @@
 
 <script>
   var $ = require('jquery');
-  var siteData = require('../siteData.js');
+  var siteData = require('../../../../data/siteData.js');
   var resizeMixin = require('vue-resize-mixin');
 
 

@@ -1,6 +1,6 @@
 <script>
-  var allowed = require('../allowed.js');
-  var info = require('../info.js');
+  var allowed = require('../../../../data/allowed.js');
+  var info = require('../../../../data/info.js');
 
   export default {
     data: function() {

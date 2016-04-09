@@ -64,7 +64,7 @@
 
 <script>
   var $ = require('jquery');
-  var pages = require('../../pages.js');
+  var pages = require('../../../../../data/pages.js');
   var resizeMixin = require('vue-resize-mixin');
 
   export default {

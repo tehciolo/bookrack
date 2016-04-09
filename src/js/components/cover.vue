@@ -9,7 +9,7 @@
 
 <script>
   var $ = require('jquery');
-  var allowed = require('../allowed.js');
+  var allowed = require('../../../../data/allowed.js');
   var resizeMixin = require('vue-resize-mixin');
 
   export default {
