@@ -36,7 +36,7 @@
       <form class="exercise exercise--typer">
         <div
           v-for="row in ex.data"
-          class="typer__wrapper"
+          class="typer__wrapper exercise__row"
           :style="'top: ' + row.position.top + '; left: ' + row.position.left + '; width: ' + row.position.width"
         >
           <input
