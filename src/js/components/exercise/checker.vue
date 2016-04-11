@@ -70,6 +70,24 @@
             class="labelChecker__answer labelChecker__answer--false"
             for="{{ row.identifier }}false"
           ></label>
+
+          <template v-if="row.answerIndeterminate">
+            <input
+              id="{{ row.identifier }}indeterminate"
+              v-model="row.model"
+              @click="solutionIndeterminate"
+              class="radio-input checker--{{ $route.params.pageId }}-{{ $route.params.id }}"
+              type="radio"
+              name="{{ row.identifier }}"
+              value="indeterminate"
+            >
+
+            <label
+              :style="'top: ' + row.answerIndeterminate.top + ';left: ' + row.answerIndeterminate.left"
+              class="labelChecker__answer labelChecker__answer--indeterminate"
+              for="{{ row.identifier }}indeterminate"
+            ></label>
+          </template>
         </div>
       </form>
     </div>
@@ -108,6 +126,10 @@
       },
 
       solutionFalse: function() {
+        this.$dispatch('solution-false')
+      },
+
+      solutionIndeterminate: function() {
         this.$dispatch('solution-false')
       },
 

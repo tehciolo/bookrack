@@ -187,6 +187,10 @@
     @include modifier(false) {
       background-image: url(../img/checker--false.png);
     }
+
+    @include modifier(indeterminate) {
+      background-image: url(../img/checker--indeterminate.png);
+    }
   }
 }
 
