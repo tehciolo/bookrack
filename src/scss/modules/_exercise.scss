@@ -349,52 +349,24 @@
 }
 
 /* razvan */
-
-.id--18 input[type="text"] {
-    border-bottom: 1px dashed #bbb;
-}
-
-.id--35 .dnd__answer-container {
-    width: 50%;
-}
-.id--35 .ui-droppable {
-    height: 72px;
-}
-.id--35 .dnd__sandbox {
-    line-height: 0.5;
-}
-
-.id--51 .typer__wrapper {
-  border: 2px solid red;
-  border-radius: 14px;
-  width: 20px;
-}
-.id--51 .typer__wrapper input[type="text"] {
-    width: 20px;
-}
-.id--51 .typer__wrapper .wb-cancel,
-.id--51 .typer__wrapper .wb-checkmark {
-    position: absolute;
-    left: 4px;
-    top: -20px;
-}
-
-.empty-box-10 {
-  height: 10px;
-}
 button.button[disabled],
 button.button[disabled]:hover {
   color: #ccc;
   background-color: #fff;
   border-color: #ccc;
 }
+.exercise__controls {
+  z-index: 10;
+}
 
 /* linker */
-.linker-main, .linker-stage {
+.linker-main {
   height: 100%;
 }
 .linker-stage {
   position: relative;
+  top: 15%;
+  height: 85%;
 }
 .linker-stage .window {
     border: 1px solid #346789;
@@ -462,7 +434,7 @@ button.button[disabled]:hover {
     border: 1px solid white;
 }
 .window.jsplumb-connected {
-    border: 2px solid green;
+    border: 2px solid #aaa;
 }
 .jsplumb-drag {
     outline: 4px solid pink !important;

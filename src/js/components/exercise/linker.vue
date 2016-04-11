@@ -15,7 +15,7 @@
           <span class="wb-cancel">
         </button>
 
-        <button class="button button--solve button--scale" type="button" @click="solveCheck">
+        <button class="button button--solve button--scale" type="button" @click="solveLinker">
           <span class="wb-solve"></span>
         </button>
 
@@ -44,11 +44,11 @@
 
       <form class="exercise exercise--linker">
         <div class="linker-main">
-          <div class="canvas-wide linker-stage" id="canvas">
+          <div class="linker-stage" id="canvas">
             <div v-for="row in ex.data"
-                 :style="'top: ' + row.position.top + ';
-                 left: ' + row.position.left + '; width: ' + row.position.width + ';
-                 height: ' + row.position.height"
+                 :style="'top: ' + row.style.top + ';
+                 left: ' + row.style.left + '; width: ' + row.style.width + ';
+                 height: ' + row.style.height"
                  class="window unselectable"
                  id="{{ row.identifier }}">
                 <img :src="'./img/' + row.image.src"
@@ -66,6 +66,8 @@
   var $ = require('jquery');
   var pages = require('../../../../../data/pages.js');
   var resizeMixin = require('vue-resize-mixin');
+  var _jsPlumbDefaults, _initConnection, _addEndpoints,
+    _firstInstance, _secondInstance;
 
   export default {
     name: 'Linker',
@@ -88,6 +90,10 @@
       }
     },
 
+    ready: function() {
+      this.onResize()
+    },
+
     methods: {
       solutionTrue: function() {
         this.$dispatch('solution-true')
@@ -95,18 +101,6 @@
 
       solutionFalse: function() {
         this.$dispatch('solution-false')
-      },
-
-      solveCheck: function() {
-
-      },
-
-      resetForm: function() {
-
-      },
-
-      closeExercise: function() {
-        this.$dispatch('return-to-page', this.$route.params.pageId)
       },
 
       onResize: function() {
@@ -126,153 +120,296 @@
         }
       },
 
-      initJsPlumbExercise: function() {
-          var self = this;
-          self.$els.startButton.setAttribute('disabled', 'disabled');
-          jsPlumb.ready(function () {
-              var instance = jsPlumb.getInstance({
-              // default drag options
-              DragOptions: { cursor: 'pointer', zIndex: 2000 },
-              // the overlays to decorate each connection with.  note that the label overlay uses a function to generate the label text; in this
-              // case it returns the 'labelText' member that we set on each connection in the 'init' method below.
-              ConnectionOverlays: [
-                  [ "Arrow", {
-                      location: 1,
-                      visible:true,
-                      id:"ARROW"
-                  } ],
-                  [ "Label", {
-                      location: 0.1,
-                      id: "label",
-                      cssClass: "aLabel"
-                  }]
-              ],
-              Container: "canvas"
-          });
+      jsPlumbDefaults: function() {
+        // default drag options
+        _jsPlumbDefaults = {
+          DragOptions: { cursor: 'pointer', zIndex: 2000 },
+          ConnectionOverlays: [
+            [ "Arrow", {
+              location: 1,
+              visible:true,
+              id:"ARROW"
+            } ]
+          ],
+          Container: "canvas"
+        };
 
-          // this is the paint style for the connecting lines..
-          var connectorPaintStyle = {
+        // this is the paint style for the connecting lines..
+        var connectorPaintStyle = {
+              lineWidth: 4,
+              strokeStyle: "#61B7CF",
+              joinstyle: "round",
+              outlineColor: "white",
+              outlineWidth: 2
+            },
+        // .. and this is the hover style.
+            connectorHoverStyle = {
+              lineWidth: 4,
+              strokeStyle: "#216477",
+              outlineWidth: 2,
+              outlineColor: "white"
+            },
+            endpointHoverStyle = {
+              fillStyle: "#216477",
+              strokeStyle: "#216477"
+            },
+        // the definition of source endpoints (the small blue ones)
+            sourceEndpoint = {
+              endpoint: "Dot",
+              paintStyle: {
+                strokeStyle: "#7AB02C",
+                fillStyle: "transparent",
+                radius: 7,
+                lineWidth: 3
+              },
+              isSource: true,
+              connector: [ "StateMachine", { stub: [40, 60], gap: 10,
+                cornerRadius: 5, alwaysRespectStubs: true } ],
+              connectorStyle: connectorPaintStyle,
+              hoverPaintStyle: endpointHoverStyle,
+              connectorHoverStyle: connectorHoverStyle,
+              dragOptions: {}
+            },
+        // the definition of target endpoints
+        // (will appear when the user drags a connection)
+            targetEndpoint = {
+              endpoint: "Dot",
+              paintStyle: { fillStyle: "#7AB02C", radius: 11 },
+              hoverPaintStyle: endpointHoverStyle,
+              maxConnections: -1,
+              dropOptions: { hoverClass: "hover", activeClass: "active" },
+              isTarget: true
+            };
+
+        _initConnection = function (connection, connectionColor) {
+          connection.setPaintStyle({ strokeStyle: connectionColor });
+        };
+
+        _addEndpoints = function (instance, toId, sourceAnchors, targetAnchors) {
+          for (var i = 0; i < sourceAnchors.length; i++) {
+            var sourceUUID = toId + sourceAnchors[i];
+              instance.addEndpoint(toId, sourceEndpoint, {
+                anchor: sourceAnchors[i], uuid: sourceUUID
+              });
+          }
+          for (var j = 0; j < targetAnchors.length; j++) {
+            var targetUUID = toId + targetAnchors[j];
+              instance.addEndpoint(toId, targetEndpoint, {
+                anchor: targetAnchors[j], uuid: targetUUID
+              });
+          }
+        };
+      },
+
+      solveLinker: function() {
+        var self = this;
+        self.jsPlumbDefaults();
+        self.$els.startButton.setAttribute('disabled', 'disabled');
+        jsPlumb.ready(function () {
+          if (_secondInstance)
+            _secondInstance.reset();
+          _firstInstance = jsPlumb.getInstance(_jsPlumbDefaults);
+          self.resetForm();
+          // suspend drawing and initialise.
+          _firstInstance.batch(function () {
+            // addEndpoints from JSON
+            for (var i = 0; i < self.ex.data.length; i++) {
+              _addEndpoints(_firstInstance, self.ex.data[i].identifier,
+                self.ex.data[i].sourceAnchors, self.ex.data[i].targetAnchors);
+            }
+            // connect sourceAnchors with targetAnchors solutions
+            var connectionsColors = [];
+            for (var i = 0; i < self.ex.data.length; i++) {
+              if (self.ex.data[i].solution) {
+                for (var j = 0; j < self.ex.data.length; j++) {
+                  if (self.ex.data[i].solution == self.ex.data[j].identifier) {
+                    connectionsColors.push(self.ex.data[j].style.color);
+                    _firstInstance.connect({
+                      uuids: [
+                        self.ex.data[j].identifier +
+                        (self.ex.data[i].targetAnchors[0] !=
+                          self.ex.data[j].sourceAnchors[0] ?
+                          self.ex.data[j].sourceAnchors[0] :
+                          self.ex.data[j].sourceAnchors[1]),
+                        self.ex.data[i].identifier +
+                        self.ex.data[i].targetAnchors[0]
+                      ]
+                    });
+                  }
+                }
+              }
+            }
+            var k = 0;
+            _firstInstance.select(_firstInstance.getConnections()).each(
+              function(connection) {
+                connection.setPaintStyle({
                   lineWidth: 4,
-                  strokeStyle: "#61B7CF",
+                  strokeStyle: connectionsColors[k],
                   joinstyle: "round",
                   outlineColor: "white",
                   outlineWidth: 2
-              },
-          // .. and this is the hover style.
-              connectorHoverStyle = {
-                  lineWidth: 4,
-                  strokeStyle: "#216477",
-                  outlineWidth: 2,
-                  outlineColor: "white"
-              },
-              endpointHoverStyle = {
-                  fillStyle: "#216477",
-                  strokeStyle: "#216477"
-              },
-          // the definition of source endpoints (the small blue ones)
-              sourceEndpoint = {
-                  endpoint: "Dot",
-                  paintStyle: {
-                      strokeStyle: "#7AB02C",
-                      fillStyle: "transparent",
-                      radius: 7,
-                      lineWidth: 3
-                  },
-                  isSource: true,
-                  connector: [ "Flowchart", { stub: [40, 60], gap: 10, cornerRadius: 5, alwaysRespectStubs: true } ],
-                  connectorStyle: connectorPaintStyle,
-                  hoverPaintStyle: endpointHoverStyle,
-                  connectorHoverStyle: connectorHoverStyle,
-                  dragOptions: {},
-                  overlays: [
-                      [ "Label", {
-                          location: [0.5, 1.5],
-                          label: "Drag",
-                          cssClass: "endpointSourceLabel",
-                          visible:false
-                      } ]
-                  ]
-              },
-          // the definition of target endpoints (will appear when the user drags a connection)
-              targetEndpoint = {
-                  endpoint: "Dot",
-                  paintStyle: { fillStyle: "#7AB02C", radius: 11 },
-                  hoverPaintStyle: endpointHoverStyle,
-                  maxConnections: -1,
-                  dropOptions: { hoverClass: "hover", activeClass: "active" },
-                  isTarget: true,
-                  overlays: [
-                      [ "Label", { location: [0.5, -0.5], label: "Drop", cssClass: "endpointTargetLabel", visible:false } ]
-                  ]
-              },
-              init = function (connection) {
-                  connection.getOverlay("label").setLabel(connection.sourceId);
-              };
-
-          var _addEndpoints = function (toId, sourceAnchors, targetAnchors, solution) {
-              for (var i = 0; i < sourceAnchors.length; i++) {
-                  var sourceUUID = toId + sourceAnchors[i];
-                  instance.addEndpoint(toId, sourceEndpoint, {
-                      anchor: sourceAnchors[i], uuid: sourceUUID
-                  });
+                });
+                for (var i = 0; i < self.ex.data.length; i++) {
+                  if (self.ex.data[i].solution && self.ex.data[i].identifier ==
+                    connection.targetId && self.ex.data[i].solution ==
+                    connection.sourceId) {
+                    $('#' + connection.targetId)
+                      .css('border-color', connectionsColors[k])
+                      .find('img')
+                      .attr('src', './img/' + self.ex.data[i].solutionImg.src);
+                      break;
+                  }
+                }
+                k++;
               }
-              for (var j = 0; j < targetAnchors.length; j++) {
-                  var targetUUID = toId + targetAnchors[j];
-                  instance.addEndpoint(toId, targetEndpoint, {
-                    anchor: targetAnchors[j], uuid: targetUUID, cssClass: solution
-                  });
-              }
-          };
-
-          // suspend drawing and initialise.
-          instance.batch(function () {
-              // addEndpoints from JSON
-              for (var i = 0; i < self.ex.data.length; i++) {
-                _addEndpoints(self.ex.data[i].identifier, self.ex.data[i].sourceAnchors, self.ex.data[i].targetAnchors, self.ex.data[i].solution);
-              }
-
-              // listen for new connections; initialise them the same way we initialise the connections at startup.
-              instance.bind("connection", function (connInfo, originalEvent) {
-                  init(connInfo.connection);
-              });
-
-              // make all the window divs draggable
-              instance.draggable(jsPlumb.getSelector(".linker-stage .window"), {
-                containment: true,
-                grid: [20, 20]
-              });
-
-              // listen for clicks on connections, and offer to delete connections on click.
-              //
-              instance.bind("click", function (conn, originalEvent) {
-                  if (confirm("Sterge conexiunea de la " + conn.sourceId + " la " + conn.targetId + "?"))
-                      instance.detach(conn);
-              });
-
-              instance.bind("beforeDrop", function (connection) {
-                console.log(connection);
-                // for (var i = 0; i < self.ex.data.length; i++) {
-                //   console.log(connection.targetid === self.ex.data[i].solution);
-                // }
-                return connection.sourceId !== connection.targetid;
-              });
-
-              instance.bind("connectionDrag", function (connection) {
-                  // console.log(connection);
-                  console.log("connection " + connection.id + " is being dragged. suspendedElement is ", connection.suspendedElement, " of type ", connection.suspendedElementType);
-              });
-
-              instance.bind("connectionDragStop", function (connection) {
-                  // console.log(connection);
-                  console.log("connection " + connection.id + " was dragged");
-              });
-
-              instance.bind("connectionMoved", function (params) {
-                  console.log("connection " + params.connection.id + " was moved");
-              });
+            );
           });
+        });
+      },
 
-          jsPlumb.fire("jsPlumbDemoLoaded", instance);
+      resetForm: function() {
+        //console.log('reset jsPlumb instances');
+        var self = this;
+        self.$els.startButton.removeAttribute('disabled');
+        jsPlumb.ready(function() {
+          if (_firstInstance) {
+            _firstInstance.batch(function () {
+              for (var i = 0; i < self.ex.data.length; i++) {
+                if (self.ex.data[i].solution) {
+                  $('#' + self.ex.data[i].identifier)
+                    .css('border-color', '#aaa')
+                    .find('img')
+                    .attr('src', './img/' + self.ex.data[i].image.src);
+                }
+              }
+            });
+            _firstInstance.reset();
+          }
+          if (_secondInstance) {
+            _secondInstance.batch(function () {
+              for (var i = 0; i < self.ex.data.length; i++) {
+                if (self.ex.data[i].solution) {
+                  $('#' + self.ex.data[i].identifier)
+                    .css('border-color', '#aaa')
+                    .find('img')
+                    .attr('src', './img/' + self.ex.data[i].image.src);
+                }
+              }
+            });
+            _secondInstance.reset();
+          }
+        });
+      },
+
+      closeExercise: function() {
+        this.$dispatch('return-to-page', this.$route.params.pageId)
+      },
+
+      initJsPlumbExercise: function() {
+        var self = this;
+        self.jsPlumbDefaults();
+        self.$els.startButton.setAttribute('disabled', 'disabled');
+        jsPlumb.ready(function () {
+          _secondInstance = jsPlumb.getInstance(_jsPlumbDefaults);
+          // suspend drawing and initialise.
+          _secondInstance.batch(function () {
+          // addEndpoints from JSON
+          for (var i = 0; i < self.ex.data.length; i++) {
+            _addEndpoints(_secondInstance, self.ex.data[i].identifier,
+              self.ex.data[i].sourceAnchors, self.ex.data[i].targetAnchors);
+          }
+          // listen for new connections; initialise them the same way we
+          // initialise the connections at startup.
+          _secondInstance.bind("connection", function (connInfo, originalEvent) {
+            var connectionColor = '';
+            for (var i = 0; i < self.ex.data.length; i++) {
+              if (self.ex.data[i].style.color &&
+                self.ex.data[i].identifier == connInfo.connection.sourceId) {
+                connectionColor = self.ex.data[i].style.color;
+                break;
+              }
+            }
+              _initConnection(connInfo.connection, connectionColor);
+          });
+          // make all the window divs draggable
+          _secondInstance.draggable(jsPlumb.getSelector(".linker-stage .window"), {
+            containment: true,
+            grid: [20, 20]
+          });
+          // listen for clicks on connections,
+          // and offer to delete connections on click.
+          _secondInstance.bind("click", function (conn, originalEvent) {
+            if (confirm("Sterge conexiunea de la " + conn.sourceId +
+              " la " + conn.targetId + "?"))
+              _secondInstance.detach(conn);
+          });
+          // reset suspendedElement
+          _secondInstance.bind("beforeDetach", function (connection) {
+            //console.log("Connection beforeDetach");
+            for (var i = 0; i < self.ex.data.length; i++) {
+              if (self.ex.data[i].solution && self.ex.data[i].identifier ==
+                connection.suspendedElementId && self.ex.data[i].solution ==
+                connection.sourceId) {
+                $('#' + connection.suspendedElementId)
+                  .css('border-color', '#aaa')
+                  .find('img')
+                  .attr('src', './img/' + self.ex.data[i].image.src);
+                break;
+              }
+            }
+            return connection.sourceId !== connection.targetId;
+          });
+          // execute onDragStop - validate targets as solutions
+          _secondInstance.bind("connectionDragStop", function (connection) {
+            //console.log("connection " + connection.id + " was dragged");
+            var connectionColor = '';
+            for (var i = 0; i < self.ex.data.length; i++) {
+              if (self.ex.data[i].style.color && self.ex.data[i].identifier ==
+                connection.sourceId) {
+                connectionColor = self.ex.data[i].style.color;
+                break;
+              }
+            }
+            for (var i = 0; i < self.ex.data.length; i++) {
+              if (self.ex.data[i].solution && self.ex.data[i].identifier ==
+                connection.targetId && self.ex.data[i].solution ==
+                connection.sourceId) {
+                $('#' + connection.targetId)
+                  .css('border-color', connectionColor)
+                  .find('img')
+                  .attr('src', './img/' + self.ex.data[i].solutionImg.src);
+                self.solutionTrue();
+                break;
+              }
+            }
+          });
+          // execute on connectionMoved - validate targets as solutions
+          _secondInstance.bind("connectionMoved", function (params) {
+            //console.log("connection " + params.connection.id + " was moved");
+            var connectionColor = '';
+              for (var i = 0; i < self.ex.data.length; i++) {
+                if (self.ex.data[i].style.color &&
+                  self.ex.data[i].identifier == params.connection.sourceId) {
+                  connectionColor = self.ex.data[i].style.color;
+                  break;
+                }
+              }
+              for (var i = 0; i < self.ex.data.length; i++) {
+                if (self.ex.data[i].solution && self.ex.data[i].identifier ==
+                  params.connection.targetId && self.ex.data[i].solution ==
+                  params.connection.sourceId) {
+                  $('#' + params.connection.targetId)
+                    .css('border-color', connectionColor)
+                    .find('img')
+                    .attr('src', './img/' + self.ex.data[i].solutionImg.src);
+                  self.solutionTrue();
+                  break;
+                }
+              }
+            });
+          });
+          // Fires an update for the given event
+          jsPlumb.fire("jsPlumbLinkerLoaded", _secondInstance);
         });
       }
     }
