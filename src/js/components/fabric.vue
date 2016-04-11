@@ -1,7 +1,7 @@
 <style scoped>
   .foil {
     position: absolute;
-    /*background-color: rgba(255, 0, 0, .2);*/
+    background-color: white;
   }
 
   .start {
@@ -112,7 +112,7 @@
         this.canvas.isDrawingMode = true
         this.canvas.freeDrawingBrush.width = 2
         this.canvas.freeDrawingBrush.color = "#000000"
-        this.canvas.freeDrawingCursor = 'url(../img/pencil.png), crosshair'
+        this.canvas.freeDrawingCursor = 'url(./img/pencil.png), crosshair'
       },
 
       reset: function() {
