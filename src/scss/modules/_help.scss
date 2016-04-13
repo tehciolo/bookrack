@@ -1,5 +1,6 @@
 .help {
   position: absolute;
+  z-index: 100;
   background-color: map-get($ui-colors, secondary);
   top: 1%;
   left: 50%;

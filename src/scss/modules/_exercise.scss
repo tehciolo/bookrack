@@ -5,9 +5,9 @@
   bottom: 0;
   left: 0;
 
-  // for dev only! remove before release!
+  // for dev only! disable before release!
   @include element(row) {
-    background-color: rgba($red-orange, .3)
+    // background-color: rgba($red-orange, .3)
   }
 
   @include element(controls) {
