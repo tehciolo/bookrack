@@ -210,3 +210,17 @@ Painter
   solution: 'pg23ex1one'
 }
 ```
+
+------------
+
+## Image processing
+
+This assumes that:
+- you have imagemagick installed
+- you have two folders: src with images in it, dist empty (both at the same level in your folder structure)
+
+From inside src folder:
+```
+for file in *.jpg; do convert $file -resize 1200 -quality 70 ../dist/$file; done
+```
+
