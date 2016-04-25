@@ -445,6 +445,17 @@ path, .jsplumb-endpoint {
 .jsplumb-overlay {
     background-color:transparent;
 }
+.scissor-icon-label {
+  background: transparent url(../img/scissor.png) no-repeat center;
+  width: 30px;
+  height: 30px;
+  background-size: 30px;
+  z-index: 4 !important;
+}
+.linker-stage .aLabel.scissor-icon-label {
+  background-color: transparent;
+  border: none;
+}
 .unselectable {
   -webkit-user-select: none;  /* Chrome all / Safari all */
   -moz-user-select: none;     /* Firefox all */

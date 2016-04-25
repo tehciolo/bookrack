@@ -66,8 +66,8 @@
   var $ = require('jquery');
   var pages = require('../../../../../data/pages.js');
   var resizeMixin = require('vue-resize-mixin');
-  var _jsPlumbDefaults, _initConnection, _addEndpoints,
-    _firstInstance, _secondInstance;
+  var _jsPlumbDefaults, _initConnection, _setConnectionLabel,
+      _addEndpoints, _firstInstance, _secondInstance;
 
   export default {
     name: 'Linker',
@@ -182,20 +182,28 @@
             };
 
         _initConnection = function (connection, connectionColor) {
+          //connection.getOverlay("label").setLabel();
           connection.setPaintStyle({ strokeStyle: connectionColor });
+        },
+        _setConnectionLabel = function (connection) {
+          connection.addOverlay(["Label", {
+            location: 0.5,
+            id: "connLabel",
+            cssClass: "aLabel scissor-icon-label"
+          }]);
         };
 
         _addEndpoints = function (instance, toId, sourceAnchors, targetAnchors) {
           for (var i = 0; i < sourceAnchors.length; i++) {
             var sourceUUID = toId + sourceAnchors[i];
               instance.addEndpoint(toId, sourceEndpoint, {
-                anchor: sourceAnchors[i], uuid: sourceUUID
+                anchor: sourceAnchors[i], uuid: sourceUUID, connectionsDetachable: false
               });
           }
           for (var j = 0; j < targetAnchors.length; j++) {
             var targetUUID = toId + targetAnchors[j];
               instance.addEndpoint(toId, targetEndpoint, {
-                anchor: targetAnchors[j], uuid: targetUUID
+                anchor: targetAnchors[j], uuid: targetUUID, connectionsDetachable: false
               });
           }
         };
@@ -204,7 +212,6 @@
       solveLinker: function() {
         var self = this;
         self.jsPlumbDefaults();
-        self.$els.startButton.setAttribute('disabled', 'disabled');
         jsPlumb.ready(function () {
           if (_secondInstance)
             _secondInstance.reset();
@@ -221,20 +228,41 @@
             var connectionsColors = [];
             for (var i = 0; i < self.ex.data.length; i++) {
               if (self.ex.data[i].solution) {
-                for (var j = 0; j < self.ex.data.length; j++) {
-                  if (self.ex.data[i].solution == self.ex.data[j].identifier) {
-                    connectionsColors.push(self.ex.data[j].style.color);
-                    _firstInstance.connect({
-                      uuids: [
-                        self.ex.data[j].identifier +
-                        (self.ex.data[i].targetAnchors[0] !=
-                          self.ex.data[j].sourceAnchors[0] ?
-                          self.ex.data[j].sourceAnchors[0] :
-                          self.ex.data[j].sourceAnchors[1]),
-                        self.ex.data[i].identifier +
-                        self.ex.data[i].targetAnchors[0]
-                      ]
-                    });
+                if (typeof self.ex.data[i].solution === 'object') {
+                  for (var k = 0; k < self.ex.data[i].solution.length; k++) {
+                    for (var j = 0; j < self.ex.data.length; j++) {
+                      if (self.ex.data[i].solution[k] == self.ex.data[j].identifier) {
+                        connectionsColors = '#61B7CF';
+                        _firstInstance.connect({
+                          uuids: [
+                            self.ex.data[j].identifier +
+                            (self.ex.data[i].targetAnchors[0] !=
+                              self.ex.data[j].sourceAnchors[0] ?
+                              self.ex.data[j].sourceAnchors[0] :
+                              self.ex.data[j].sourceAnchors[1]),
+                            self.ex.data[i].identifier +
+                            self.ex.data[i].targetAnchors[0]
+                          ]
+                        });
+                      }
+                    }
+                  }
+                } else if (typeof self.ex.data[i].solution === 'string') {
+                  for (var j = 0; j < self.ex.data.length; j++) {
+                    if (self.ex.data[i].solution == self.ex.data[j].identifier) {
+                      connectionsColors.push(self.ex.data[j].style.color);
+                      _firstInstance.connect({
+                        uuids: [
+                          self.ex.data[j].identifier +
+                          (self.ex.data[i].targetAnchors[0] !=
+                            self.ex.data[j].sourceAnchors[0] ?
+                            self.ex.data[j].sourceAnchors[0] :
+                            self.ex.data[j].sourceAnchors[1]),
+                          self.ex.data[i].identifier +
+                          self.ex.data[i].targetAnchors[0]
+                        ]
+                      });
+                    }
                   }
                 }
               }
@@ -244,7 +272,8 @@
               function(connection) {
                 connection.setPaintStyle({
                   lineWidth: 4,
-                  strokeStyle: connectionsColors[k],
+                  strokeStyle: (typeof connectionsColors === 'object') ?
+                    connectionsColors[k] : connectionsColors,
                   joinstyle: "round",
                   outlineColor: "white",
                   outlineWidth: 2
@@ -265,6 +294,7 @@
             );
           });
         });
+        self.$els.startButton.setAttribute('disabled', 'disabled');
       },
 
       resetForm: function() {
@@ -313,103 +343,120 @@
           _secondInstance = jsPlumb.getInstance(_jsPlumbDefaults);
           // suspend drawing and initialise.
           _secondInstance.batch(function () {
-          // addEndpoints from JSON
-          for (var i = 0; i < self.ex.data.length; i++) {
-            _addEndpoints(_secondInstance, self.ex.data[i].identifier,
-              self.ex.data[i].sourceAnchors, self.ex.data[i].targetAnchors);
-          }
-          // listen for new connections; initialise them the same way we
-          // initialise the connections at startup.
-          _secondInstance.bind("connection", function (connInfo, originalEvent) {
-            var connectionColor = '';
+            // addEndpoints from JSON
             for (var i = 0; i < self.ex.data.length; i++) {
-              if (self.ex.data[i].style.color &&
-                self.ex.data[i].identifier == connInfo.connection.sourceId) {
-                connectionColor = self.ex.data[i].style.color;
-                break;
-              }
+              _addEndpoints(_secondInstance, self.ex.data[i].identifier,
+                self.ex.data[i].sourceAnchors, self.ex.data[i].targetAnchors);
             }
-              _initConnection(connInfo.connection, connectionColor);
-          });
-          // make all the window divs draggable
-          _secondInstance.draggable(jsPlumb.getSelector(".linker-stage .window"), {
-            containment: true,
-            grid: [20, 20]
-          });
-          // listen for clicks on connections,
-          // and offer to delete connections on click.
-          _secondInstance.bind("click", function (conn, originalEvent) {
-            if (confirm("Sterge conexiunea de la " + conn.sourceId +
-              " la " + conn.targetId + "?"))
-              _secondInstance.detach(conn);
-          });
-          // reset suspendedElement
-          _secondInstance.bind("beforeDetach", function (connection) {
-            //console.log("Connection beforeDetach");
-            for (var i = 0; i < self.ex.data.length; i++) {
-              if (self.ex.data[i].solution && self.ex.data[i].identifier ==
-                connection.suspendedElementId && self.ex.data[i].solution ==
-                connection.sourceId) {
-                $('#' + connection.suspendedElementId)
-                  .css('border-color', '#aaa')
-                  .find('img')
-                  .attr('src', './img/' + self.ex.data[i].image.src);
-                break;
-              }
-            }
-            return connection.sourceId !== connection.targetId;
-          });
-          // execute onDragStop - validate targets as solutions
-          _secondInstance.bind("connectionDragStop", function (connection) {
-            //console.log("connection " + connection.id + " was dragged");
-            var connectionColor = '';
-            for (var i = 0; i < self.ex.data.length; i++) {
-              if (self.ex.data[i].style.color && self.ex.data[i].identifier ==
-                connection.sourceId) {
-                connectionColor = self.ex.data[i].style.color;
-                break;
-              }
-            }
-            for (var i = 0; i < self.ex.data.length; i++) {
-              if (self.ex.data[i].solution && self.ex.data[i].identifier ==
-                connection.targetId && self.ex.data[i].solution ==
-                connection.sourceId) {
-                $('#' + connection.targetId)
-                  .css('border-color', connectionColor)
-                  .find('img')
-                  .attr('src', './img/' + self.ex.data[i].solutionImg.src);
-                self.solutionTrue();
-                break;
-              }
-            }
-          });
-          // execute on connectionMoved - validate targets as solutions
-          _secondInstance.bind("connectionMoved", function (params) {
-            //console.log("connection " + params.connection.id + " was moved");
-            var connectionColor = '';
+            // listen for new connections; initialise them the same way we
+            // initialise the connections at startup.
+            _secondInstance.bind("connection", function (connInfo, originalEvent) {
+              var connectionColor = '#61B7CF';
               for (var i = 0; i < self.ex.data.length; i++) {
                 if (self.ex.data[i].style.color &&
-                  self.ex.data[i].identifier == params.connection.sourceId) {
+                  self.ex.data[i].identifier == connInfo.connection.sourceId) {
+                  connectionColor = self.ex.data[i].style.color;
+                  break;
+                }
+              }
+                _initConnection(connInfo.connection, connectionColor);
+            });
+            // listen for clicks on connections,
+            // and offer to delete connections on click.
+            _secondInstance.bind("click", function (conn, originalEvent) {
+              var _suspendedElemImg;
+              for (var i = 0; i < self.ex.data.length; i++) {
+                if (typeof self.ex.data[i].solution === 'object') {
+                  for (var j = 0; j < self.ex.data[i].solution.length; j++) {
+                    if (self.ex.data[i].solution[j] == conn.sourceId) {
+                      if (self.ex.data[j].solutionBorder) {
+                        $('#' + conn.sourceId)
+                          .css({
+                            'border-width': '1px',
+                            'border-color': '#346789'
+                          });
+                        _suspendedElemImg = undefined;
+                        break;
+                      }
+                    }
+                  }
+                } else if (typeof self.ex.data[i].solution === 'string') {
+                  if (self.ex.data[i].solution && self.ex.data[i].identifier ==
+                    conn.targetId && self.ex.data[i].solution ==
+                    conn.sourceId) {
+                    _suspendedElemImg = self.ex.data[i].image.src;
+                    break;
+                  } else if (self.ex.data[i].identifier ==
+                    conn.targetId && self.ex.data[i].solution !=
+                    conn.sourceId) {
+                    _suspendedElemImg = self.ex.data[i].image.src;
+                    break;
+                  }
+                }
+              }
+              $('#' + conn.targetId)
+                .css({
+                  'border-width': '1px',
+                  'border-color': '#346789'
+                });
+                if (typeof _suspendedElemImg != 'undefined') {
+                  $('#' + conn.targetId)
+                    .find('img')
+                    .attr('src', './img/' + _suspendedElemImg);
+                }
+              _secondInstance.detach(conn);
+            });
+            // execute onDragStop - validate targets as solutions
+            _secondInstance.bind("connectionDragStop", function (connection) {
+              //console.log("connection " + connection.id + " was dragged");
+              var connectionColor = '#61B7CF',
+                  solutionBorderColor = '#7AB02C';
+              for (var i = 0; i < self.ex.data.length; i++) {
+                if (self.ex.data[i].style.color && self.ex.data[i].identifier ==
+                  connection.sourceId) {
                   connectionColor = self.ex.data[i].style.color;
                   break;
                 }
               }
               for (var i = 0; i < self.ex.data.length; i++) {
                 if (self.ex.data[i].solution && self.ex.data[i].identifier ==
-                  params.connection.targetId && self.ex.data[i].solution ==
-                  params.connection.sourceId) {
-                  $('#' + params.connection.targetId)
-                    .css('border-color', connectionColor)
-                    .find('img')
-                    .attr('src', './img/' + self.ex.data[i].solutionImg.src);
-                  self.solutionTrue();
-                  break;
+                  connection.targetId) {
+                  if (typeof self.ex.data[i].solution === 'object') {
+                    for (var j = 0; j < self.ex.data[i].solution.length; j++) {
+                      if (self.ex.data[i].solution[j] == connection.sourceId) {
+                        if (self.ex.data[j].solutionBorder) {
+                          $('#' + connection.sourceId)
+                            .css({
+                              'border-width': '2px',
+                              'border-color': solutionBorderColor
+                            });
+                        }
+                        self.solutionTrue();
+                        break;
+                      }
+                    }
+                  } else if (typeof self.ex.data[i].solution === 'string' &&
+                    self.ex.data[i].solution == connection.sourceId) {
+                    $('#' + connection.targetId)
+                      .css({
+                        'border-width': '2px',
+                        'border-color': connectionColor
+                      });
+                    if (self.ex.data[i].solutionImg) {
+                      $('#' + connection.targetId)
+                        .find('img')
+                        .attr('src', './img/' + self.ex.data[i].solutionImg.src);
+                    }
+                    self.solutionTrue();
+                    break;
+                  }
                 }
               }
+              _setConnectionLabel(connection);
             });
           });
           // Fires an update for the given event
-          jsPlumb.fire("jsPlumbLinkerLoaded", _secondInstance);
+          //jsPlumb.fire("jsPlumbLinkerLoaded", _secondInstance);
         });
       }
     }
