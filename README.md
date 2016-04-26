@@ -48,7 +48,7 @@ Video
 video: [
   {
     video: {
-      source: 'p5_v1'
+      source: 'test'
     },
     trigger: {
       button: {
@@ -67,7 +67,7 @@ Exercise
 ```
 exercise: [
   {
-    type: 'picker',
+    type: 'typeofexercise',
     title: 'WER SPRICHT? HÖR ZU UND KREIS EIN!',
     image: 'pg08ex5',
     trigger: {
