@@ -50,6 +50,7 @@
             name="{{ row.identifier }}"
             class="typer__input"
             maxlength="{{ row.solution.length }}"
+            autocomplete="off"
           >
         </div>
       </form>
