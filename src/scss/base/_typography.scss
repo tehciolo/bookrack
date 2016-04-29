@@ -1,3 +1,7 @@
+$icomoon-font-path: "../font" !default;
+
+$wb-prev: "\e906";
+$wb-next: "\e907";
 $wb-pause: "\e034";
 $wb-stop: "\e047";
 $wb-help: "\e8fd";
@@ -18,115 +22,126 @@ $wb-reset: "\e902";
 $wb-ex: "\e808";
 
 @font-face {
-  font-family: 'webook';
-  src: url('../font/webook.eot?iwsym3');
-  src: url('../font/webook.eot?iwsym3#iefix') format('embedded-opentype'), url('../font/webook.ttf?iwsym3') format('truetype'), url('../font/webook.woff?iwsym3') format('woff'), url('../font/webook.svg?iwsym3#webook') format('svg');
-  font-weight: normal;
-  font-style: normal;
+    font-family: 'webook';
+    src:
+        url('#{$icomoon-font-path}/webook.ttf?2twl26') format('truetype'),
+        url('#{$icomoon-font-path}/webook.woff?2twl26') format('woff'),
+        url('#{$icomoon-font-path}/webook.svg?2twl26#webook') format('svg');
+    font-weight: normal;
+    font-style: normal;
 }
-[class*=" wb-"],
-[class^="wb-"] {
-  font-family: 'webook';
-  speak: none;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-  /* Better Font Rendering =========== */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+[class^="wb-"], [class*=" wb-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'webook' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
+.wb-prev {
+    &:before {
+        content: $wb-prev;
+    }
+}
+.wb-next {
+    &:before {
+        content: $wb-next;
+    }
+}
 .wb-pause {
-  &:before {
-    content: $wb-pause;
-  }
+    &:before {
+        content: $wb-pause;
+    }
 }
 .wb-stop {
-  &:before {
-    content: $wb-stop;
-  }
+    &:before {
+        content: $wb-stop;
+    }
 }
 .wb-help {
-  &:before {
-    content: $wb-help;
-  }
+    &:before {
+        content: $wb-help;
+    }
 }
 .wb-solve {
-  &:before {
-    content: $wb-solve;
-  }
+    &:before {
+        content: $wb-solve;
+    }
 }
 .wb-play {
-  &:before {
-    content: $wb-play;
-  }
+    &:before {
+        content: $wb-play;
+    }
 }
 .wb-static {
-  &:before {
-    content: $wb-static;
-  }
+    &:before {
+        content: $wb-static;
+    }
 }
 .wb-chevron-left {
-  &:before {
-    content: $wb-chevron-left;
-  }
+    &:before {
+        content: $wb-chevron-left;
+    }
 }
 .wb-chevron-right {
-  &:before {
-    content: $wb-chevron-right;
-  }
+    &:before {
+        content: $wb-chevron-right;
+    }
 }
 .wb-arrow-left {
-  &:before {
-    content: $wb-arrow-left;
-  }
+    &:before {
+        content: $wb-arrow-left;
+    }
 }
 .wb-arrow-right {
-  &:before {
-    content: $wb-arrow-right;
-  }
+    &:before {
+        content: $wb-arrow-right;
+    }
 }
 .wb-video {
-  &:before {
-    content: $wb-video;
-  }
+    &:before {
+        content: $wb-video;
+    }
 }
 .wb-audio {
-  &:before {
-    content: $wb-audio;
-  }
+    &:before {
+        content: $wb-audio;
+    }
 }
 .wb-checkmark {
-  &:before {
-    content: $wb-checkmark;
-    color: $tradewind;
-  }
+    &:before {
+        content: $wb-checkmark;
+    }
 }
 .wb-cancel {
-  &:before {
-    content: $wb-cancel;
-    color: $red-orange;
-  }
+    &:before {
+        content: $wb-cancel;
+    }
 }
 .wb-smiley {
-  &:before {
-    content: $wb-smiley;
-  }
+    &:before {
+        content: $wb-smiley;
+    }
 }
 .wb-sad {
-  &:before {
-    content: $wb-sad;
-  }
+    &:before {
+        content: $wb-sad;
+    }
 }
 .wb-reset {
-  &:before {
-    content: $wb-reset;
-  }
+    &:before {
+        content: $wb-reset;
+    }
 }
 .wb-ex {
-  &:before {
-    content: $wb-ex;
-  }
+    &:before {
+        content: $wb-ex;
+    }
 }

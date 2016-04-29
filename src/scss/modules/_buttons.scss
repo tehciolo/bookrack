@@ -117,15 +117,15 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    font-size: em(50px);
+    font-size: em(140px);
     color: map_get($ui-colors, secondary);
   }
   @include modifier(previous) {
-    left: em(-60px, 50px);
+    left: em(-86px, 140px);
     text-shadow: -1px 1px 5px rgba(50, 50, 50, 0.9);
   }
   @include modifier(next) {
-    right: em(-60px, 50px);
+    right: em(-86px, 140px);
     text-shadow: 1px 1px 5px rgba(50, 50, 50, 0.9);
   }
   @include modifier(solve) {
