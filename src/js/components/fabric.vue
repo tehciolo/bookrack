@@ -44,6 +44,20 @@
   .checking .solution {
     display: block;
   }
+
+  .easel {
+    position: absolute;
+    background-color: white;
+  }
+
+  .color {
+    border: 0;
+    width: 6%;
+    height: 50%;
+    margin-right: 5px;
+    margin-top: 2.5%;
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.5);
+  }
 </style>
 
 <template>
@@ -53,6 +67,21 @@
     v-el:wrapper
     class="foil"
   >
+    <div
+      v-if="data.colors"
+      :style="'top: ' + data.easel.top + '; left: ' + data.easel.left + '; width: ' + data.easel.width + '; height: ' + data.easel.height"
+      class="easel"
+    >
+      <button
+        v-for="color in data.colors"
+        :style="'background-color: #' + color + ';'"
+        @click="setColor(color)"
+        type="button"
+        class="color"
+      >
+      </button>
+    </div>
+
     <button
       @click="start"
       v-text="'Start'"
@@ -111,8 +140,12 @@
         this.canvas = new fabric.Canvas(this.data.identifier)
         this.canvas.isDrawingMode = true
         this.canvas.freeDrawingBrush.width = 2
-        this.canvas.freeDrawingBrush.color = "#000000"
+        this.canvas.freeDrawingBrush.color = '#000000'
         this.canvas.freeDrawingCursor = 'url(./img/pencil.png), crosshair'
+      },
+
+      setColor: function(color) {
+        this.canvas.freeDrawingBrush.color = '#' + color
       },
 
       reset: function() {
