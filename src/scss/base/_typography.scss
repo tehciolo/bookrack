@@ -118,11 +118,13 @@ $wb-ex: "\e808";
 .wb-checkmark {
     &:before {
         content: $wb-checkmark;
+        color: $tradewind;
     }
 }
 .wb-cancel {
     &:before {
         content: $wb-cancel;
+        color: $red-orange;
     }
 }
 .wb-smiley {
