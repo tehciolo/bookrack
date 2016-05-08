@@ -94,6 +94,21 @@ exercise: [
 ]
 ```
 
+Table Of Contents
+```
+toc: [
+  {
+    route: '04-05',
+    trigger: {
+        top: '19%',
+        bottom: '76%',
+        left: '8%',
+        width: '64%'
+    }
+  }
+]
+```
+
 ------------
 
 Type
@@ -223,4 +238,3 @@ From inside src folder:
 ```
 for file in *.jpg; do convert $file -resize 1200 -quality 70 ../dist/$file; done
 ```
-
