@@ -33,6 +33,7 @@ var src = {
   video: '../media/video/*.*',
   font: 'src/font/**.*',
   html: 'src/*.html',
+  favicon: 'src/favicon.ico',
   partials: 'src/partials/*.html'
 };
 
@@ -93,6 +94,12 @@ gulp.task('fonts', function() {
     .pipe(gulp.dest(dist.font))
 });
 
+// Favicon
+gulp.task('favicon', function() {
+  return gulp.src(src.favicon)
+    .pipe(gulp.dest(dist.html))
+});
+
 // Images
 gulp.task('images', function() {
   return gulp.src(src.img)
@@ -149,7 +156,7 @@ gulp.task('clean', function () {
 });
 
 // Static server
-gulp.task('serve', ['build', 'images', 'audio', 'video', 'fonts', 'scss', 'vendor', 'browserify'], function() {
+gulp.task('serve', ['build', 'images', 'audio', 'video', 'fonts', 'favicon', 'scss', 'vendor', 'browserify'], function() {
 
   browserSync.init({
     server: "../../dist"

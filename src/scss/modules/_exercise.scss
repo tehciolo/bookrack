@@ -196,17 +196,17 @@
 
 .labelPicker {
   @include element(answer) {
-    width: 14%;
+    width: 100%;
     height: 100%;
     position: absolute;
-    background-size: contain;
-    background-repeat: no-repeat;
     cursor: pointer;
     opacity: 0;
     transition: opacity 0.2s ease-in-out;
 
     @include modifier(true) {
-      background-image: url(../img/picker.png);
+      border: 3px solid map-get($ui-colors, secondary);
+      border-radius: 50%;
+      background-color: transparent;
     }
   }
 }

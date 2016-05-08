@@ -9,17 +9,7 @@
   height: 100%;
   width: 100%;
   position: relative;
-  // position: absolute;
-  // left: 50%;
-  // top: 50%;
-  // transform: translate(-50%, -50%);
-  // width: 92%;
-  // max-width: 700px;
-  //
-  // &--duo {
-  //   max-width: 1400px;
-  // }
-  //
+
   &--exercise {
     text-align: center;
   }
@@ -30,6 +20,8 @@
   background-color: $white;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   lost-flex-container: row;
+  position: relative;
+  z-index: 1;
 
   &--video,
   &--help {

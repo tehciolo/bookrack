@@ -47,6 +47,7 @@
             name="{{ row.identifier }}"
             class="typer__input typer--{{ $route.params.pageId }}-{{ $route.params.id }}"
             maxlength="{{ row.solution.length }}"
+            autocomplete="off"
           >
 
           <textarea
@@ -57,6 +58,7 @@
             class="typer__input typer__textarea typer--{{ $route.params.pageId }}-{{ $route.params.id }}"
             maxlength="{{ row.solution.length }}"
             rows="{{ row.textareaRows }}"
+            autocomplete="off"
           ></textarea>
 
           <span v-if="row.model.length === row.solution.length && row.model === row.solution" class="wb-checkmark"></span>
