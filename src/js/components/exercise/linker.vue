@@ -168,7 +168,8 @@
               connectorStyle: connectorPaintStyle,
               hoverPaintStyle: endpointHoverStyle,
               connectorHoverStyle: connectorHoverStyle,
-              dragOptions: {}
+              dragOptions: {},
+              cssClass: 'the-source-endpoint'
             },
         // the definition of target endpoints
         // (will appear when the user drags a connection)
@@ -178,7 +179,8 @@
               hoverPaintStyle: endpointHoverStyle,
               maxConnections: -1,
               dropOptions: { hoverClass: "hover", activeClass: "active" },
-              isTarget: true
+              isTarget: true,
+              cssClass: 'the-target-endpoint'
             };
 
         _initConnection = function (connection, connectionColor) {
