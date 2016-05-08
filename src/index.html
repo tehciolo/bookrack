@@ -9,19 +9,19 @@
 </head>
 <body>
   <div id="app" class="root" v-cloak>
-    <menu
-      :can-go-back="canGoBack"
-      :can-go-forward="canGoForward"
-      :min-page="info.minPage"
-      :max-page="info.maxPage"
-    ></menu>
-
     <div :class="{ 'wrapper--cover': isCover, 'wrapper--duo': isDuo, 'wrapper--exercise': isExercise }" class="wrapper">
       <router-view></router-view>
 
       <button @click="goBack" v-show="canGoBack" class="button button--pagenav button--previous"><span class="wb-prev"></span></button>
       <button @click="goForward" v-show="canGoForward" class="button button--pagenav button--next"><span class="wb-next"></span></button>
     </div>
+
+    <menu
+      :can-go-back="canGoBack"
+      :can-go-forward="canGoForward"
+      :min-page="info.minPage"
+      :max-page="info.maxPage"
+    ></menu>
 
     <audio
       :src="'./audio/true.mp3'"

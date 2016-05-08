@@ -17,16 +17,16 @@
   color: $white;
   background: map_get($ui-colors, secondary);
   position: absolute;
-  left: 0;
-  transition: left 0.5s ease-in-out;
+  transition: transform 0.5s ease-in-out;
+  z-index: 10;
 }
 
 #js--main-menu__toggle:checked + label {
-  left: 165px;
+  transform: translateX(165px);
 }
 
 #js--main-menu__toggle:checked ~ .main-menu__content {
-  left: 0;
+  transform: translateX(0);
 }
 
 .main-menu {
@@ -34,7 +34,6 @@
   top: 0;
   left: 0;
   width: 165px;
-  z-index: 2;
 }
 
 .main-menu__content {
@@ -42,9 +41,11 @@
   padding: em(15px);
   color: $white;
   position: relative;
-  left: -165px;
-  transition: left 0.5s ease-in-out;
+  transform: translateX(-165px);
+  transition: transform 0.5s ease-in-out;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  position: relative;
+  z-index: 10;
 }
 
 .page-buttons {
