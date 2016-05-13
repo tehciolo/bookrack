@@ -50,7 +50,8 @@
           >
 
           <label
-            :style="'top: ' + row.answer.top + ';left: ' + row.answer.left"
+            :style="'top: ' + row.answer.top + ';left: ' + row.answer.left + ';
+              width: ' + row.answer.width + ';height: ' + row.answer.height"
             class="labelPicker__answer labelPicker__answer--true"
             for="{{ row.identifier }}true"
           ></label>
