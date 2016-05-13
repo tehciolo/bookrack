@@ -25,7 +25,6 @@ var VideoRoute = Vue.extend(require('./components/video.vue'));
   var Painter = Vue.extend(require('./components/exercise/painter.vue'));
   var Linker = Vue.extend(require('./components/exercise/linker.vue'));
 
-
 // Router = Main Vue Instance
 var App = Vue.extend(require('./components/app.vue'));
 
@@ -78,8 +77,5 @@ router.map({
     component: Linker
   }
 });
-router.start(App, '#app');
 
-router.afterEach(function (transition) {
-  //
-})
+router.start(App, '#app');
