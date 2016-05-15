@@ -41,7 +41,7 @@
         >
           <input
             v-model="row.model"
-            @click="solutionTrue"
+            @click="solutionTrue(row)"
             id="{{ row.identifier }}true"
             class="radio-input picker--{{ $route.params.pageId }}-{{ $route.params.id }}"
             type="radio"
@@ -55,6 +55,16 @@
             class="labelPicker__answer labelPicker__answer--true"
             for="{{ row.identifier }}true"
           ></label>
+        </div>
+
+        <div
+          v-for="row in ex.data"
+          v-if="row.validation"
+          class="picker__validation"
+          :style="'top: ' + row.validation.position.top + '; left: ' + row.validation.position.left + '; width: ' + row.validation.position.width"
+        >
+          <img :src="'./img/' + row.validation.pre + '.png'">
+          <img :src="'./img/' + row.validation.post + '.png'" v-if="row.validation.shown === true">
         </div>
       </form>
     </div>
@@ -88,19 +98,25 @@ var resizeMixin = require('vue-resize-mixin');
     },
 
     methods: {
-      solutionTrue: function() {
+      solutionTrue: function(row) {
         this.$dispatch('solution-true')
+        if (row.validation) {
+          row.validation.shown = true
+        }
       },
 
       solveCheck: function() {
         for (var i = 0; i < this.ex.data.length; i++) {
-          this.ex.data[i].model = 'true';
+          this.ex.data[i].model = 'true'
         }
       },
 
       resetForm: function() {
         for (var i = 0; i < this.ex.data.length; i++) {
           this.ex.data[i].model = ''
+          if (this.ex.data[i].validation) {
+            this.ex.data[i].validation.shown = false            
+          }
         }
       },
 
