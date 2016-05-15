@@ -53,6 +53,16 @@
             autocomplete="off"
           >
         </div>
+
+        <div
+          v-for="row in ex.data"
+          v-if="row.validation"
+          class="typer__validation"
+          :style="'top: ' + row.validation.position.top + '; left: ' + row.validation.position.left + '; width: ' + row.validation.position.width"
+        >
+          <img :src="'./img/' + row.validation.pre + '.png'">
+          <img :src="'./img/' + row.validation.post + '.png'" v-if="row.model.length === row.solution.length && row.model === row.solution">
+        </div>
       </form>
     </div>
   </section>
