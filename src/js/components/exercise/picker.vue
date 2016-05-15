@@ -108,6 +108,9 @@ var resizeMixin = require('vue-resize-mixin');
       solveCheck: function() {
         for (var i = 0; i < this.ex.data.length; i++) {
           this.ex.data[i].model = 'true'
+          if (this.ex.data[i].validation) {
+            this.ex.data[i].validation.shown = true            
+          }
         }
       },
 
