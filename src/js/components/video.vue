@@ -72,7 +72,6 @@
 
     ready: function() {
       this.onResize()
-      this.$els.player.play()
     }
   }
 </script>
